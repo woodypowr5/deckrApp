@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthModule } from './modules/auth/auth.module';
+import { TrainingModule } from './modules/training/training.module';
+import { ContractsModule } from './modules/contracts/contracts.module';
+import { SecurityGroupsModule } from './modules/security-groups/security-groups.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +14,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthModule,
+    TrainingModule,
+    ContractsModule, 
+    SecurityGroupsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
