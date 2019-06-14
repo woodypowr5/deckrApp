@@ -2,6 +2,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { FooterComponent } from '../components/footer/footer.component';
+import { HeaderComponent } from '../components/header/header.component';
+import { SidenavListComponent } from '../components/sidenav-list/sidenav-list.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -9,11 +13,13 @@ import { NgModule } from '@angular/core';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    CommonModule
   ],
   declarations: [
-    // SubheaderComponent,  
-    // FooterComponent
+    HeaderComponent,
+    FooterComponent,
+    SidenavListComponent 
   ],
   providers: [],
   exports: [
@@ -21,6 +27,10 @@ import { NgModule } from '@angular/core';
     ReactiveFormsModule,
     MaterialModule,
     RouterModule,
+    HeaderComponent,
+    FooterComponent,
+    SidenavListComponent ,
+    CommonModule
   ]
 })
 export class SharedModule {}
