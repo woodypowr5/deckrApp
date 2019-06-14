@@ -10,12 +10,11 @@ export class Training {
     private dueDate: Date;
     private timeToComplete: number;
     private progress: number;
-    private completed: boolean;
     private description?: string;
     private status: TrainingStatus;
 
     constructor() {
-        this.completed = false;
         this.progress = 0;
+        this.status = TrainingStatus.notStarted;
     }
 }
