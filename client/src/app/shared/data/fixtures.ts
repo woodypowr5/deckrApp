@@ -64,7 +64,7 @@ export const Fixtures = {
             dueDate: new Date(),
             timeToComplete: 2,
             progress: 0,
-            description: 'test',
+            description: 'This is an exemple training. It is really awesome.',
             status: TrainingStatus.notStarted
         },   
         {
@@ -73,7 +73,7 @@ export const Fixtures = {
             dueDate: new Date(),
             timeToComplete: 4,
             progress: 50,
-            description: 'test',
+            description: 'This is another example training',
             status: TrainingStatus.inProgress
         },   
         {
@@ -82,7 +82,7 @@ export const Fixtures = {
             dueDate: new Date(),
             timeToComplete: 1,
             progress: 0,
-            description: 'test',
+            description: 'Sometimes I like to sleep in late. It is also really awesome, although its like totally too long and is overflowing',
             status: TrainingStatus.notStarted
         },   
         {
@@ -91,7 +91,7 @@ export const Fixtures = {
             dueDate: new Date(),
             timeToComplete: 2.5,
             progress: 100,
-            description: 'test',
+            description: 'This is another example training. Yeah',
             status: TrainingStatus.complete
         },   
     ]

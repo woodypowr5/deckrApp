@@ -1,3 +1,43 @@
+$name-width: 100px;
+$progress-width: 100px;
+$description-width: calc(100% - #{$name-width} - #{$progress-width} - 100px);
+
 :host > * + * {
 	margin-top: 10px;
 }
+
+*{
+	white-space: nowrap;
+}
+
+mat-expansion-panel-header {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	width: 100%;
+}
+
+ .content{
+	 display: flex;
+	 flex-wrap: nowrap;
+	 padding-right: 100px;
+	 overflow: hidden;
+	 max-width: calc(100% - 200px);
+ }
+
+.name{
+ 	padding-right: 10px;
+}
+
+.description{
+	padding-left: 10px;
+	 padding-right: 10px;
+	 overflow: hidden;
+	 color: gray;
+}
+
+ .progress{
+	width: 100px !important;
+	position: absolute;
+	right: 100px;
+ }

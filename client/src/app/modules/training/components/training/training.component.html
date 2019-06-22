@@ -1,3 +1,18 @@
-<mat-card class="training-instance" *ngFor="let training of trainings">
-	{{ training.name }}
-</mat-card>
+
+<!-- <mat-accordion class="example-headers-align"> -->
+		
+	<mat-expansion-panel class="training-instance" *ngFor="let training of trainings">
+		<mat-expansion-panel-header>
+		<div class="content">
+			<div class="name">{{ training.name }}</div>
+			<div class="description">{{ training.description }}</div>
+		</div>
+		<div class="progress">
+			{{ training.progress }} % Complete
+		</div>
+		</mat-expansion-panel-header>
+	
+		<p>This is the primary content of the panel.</p>
+	
+	</mat-expansion-panel>
+<!-- </mat-accordion>	 -->
