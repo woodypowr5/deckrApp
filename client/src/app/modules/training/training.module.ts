@@ -1,10 +1,12 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { TrainingComponent } from './components/training/training.component';
+import { TrainingRoutingModule } from './training-routing.module';
 
 @NgModule({
 	imports: [
-		CommonModule
+		CommonModule,
+		TrainingRoutingModule
 	],
 	declarations: [
 		TrainingComponent
@@ -13,5 +15,3 @@ import { TrainingComponent } from './components/training/training.component';
 export class TrainingModule {
 
 }
-
-
