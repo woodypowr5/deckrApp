@@ -4,8 +4,8 @@
         DeCKR
       </a>
     </div>
-    <div class="navlinks-container" fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
-      <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+    <div class="navlinks-container">
+      <ul fxLayout class="navigation-items">
         <li *ngIf="!(isAuth)">
           <a (click)="setActiveRoute('register')" routerLink="/register" [ngClass]="{'active': activeRoute === 'register'}">Register</a>
         </li>
@@ -13,13 +13,13 @@
           <a (click)="setActiveRoute('login')" [ngClass]="{'active': activeRoute === 'login'}" routerLink="/login">Login</a>
         </li>
         <li *ngIf="isAuth">
-          <a (click)="setActiveRoute('plan')" [ngClass]="{'active': activeRoute === 'plan'}" routerLink="/plan">Plan</a>
+          <a (click)="setActiveRoute('training')" [ngClass]="{'active': activeRoute === 'training'}" routerLink="/training">Plan</a>
         </li>
         <li *ngIf="isAuth">
-          <a (click)="setActiveRoute('tracking')" [ngClass]="{'active': activeRoute === 'tracking'}" routerLink="/tracking">Today</a>
+          <a (click)="setActiveRoute('securitygroups')" [ngClass]="{'active': activeRoute === 'securitygroups'}" routerLink="/securitygroups">Today</a>
         </li>
         <li  *ngIf="isAuth">
-          <a (click)="setActiveRoute('trends')" [ngClass]="{'active': activeRoute === 'trends'}" routerLink="/trends" >Trends</a>
+          <a (click)="setActiveRoute('contracts')" [ngClass]="{'active': activeRoute === 'contracts'}" routerLink="/contracts" >Trends</a>
         </li>
         <li *ngIf="isAuth">
           <a style="cursor: pointer" (click)="onLogout()">Logout</a>
