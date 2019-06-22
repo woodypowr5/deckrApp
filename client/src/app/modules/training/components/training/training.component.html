@@ -17,10 +17,10 @@
 		<h1 class="details-title">Training Details:</h1>
 		<div class="detail-block">
 			<div class="detail-key">
-				Estimated Time:
+				Total Completion Time (est):
 			</div>
 			<div class="detail-value">
-				{{ training.timeToComplete }}
+				{{ training.timeToComplete }} Hours
 			</div>
 		</div>
 		<div class="detail-block">
@@ -28,7 +28,7 @@
 				Due Date: 
 			</div>
 			<div class="detail-value">
-				{{ training.dueDate }}
+				{{ training.dueDate | date }}
 			</div>
 		</div>
 		<div class="detail-block">
@@ -36,7 +36,7 @@
 				Current Progress:
 			</div>
 			<div class="detail-value">
-				{{ training.progress }}
+				{{ training.progress }} %
 			</div>
 		</div>
 	</div>
