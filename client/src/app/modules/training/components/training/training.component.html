@@ -1,18 +1,51 @@
-
-<!-- <mat-accordion class="example-headers-align"> -->
-		
-	<mat-expansion-panel class="training-instance" *ngFor="let training of trainings">
-		<mat-expansion-panel-header>
+<mat-expansion-panel class="training-instance" *ngFor="let training of trainings">
+	<mat-expansion-panel-header>
 		<div class="content">
-			<div class="name">{{ training.name }}</div>
-			<div class="description">{{ training.description }}</div>
+			<div class="name">
+				{{ training.name }}
+			</div>
+			<div class="description">
+				{{ training.description }}
+			</div>
 		</div>
 		<div class="progress">
 			{{ training.progress }} % Complete
 		</div>
-		</mat-expansion-panel-header>
-	
-		<p>This is the primary content of the panel.</p>
-	
-	</mat-expansion-panel>
-<!-- </mat-accordion>	 -->
+	</mat-expansion-panel-header>
+
+	<div class="details">
+		<h1 class="details-title">Training Details:</h1>
+		<div class="detail-block">
+			<div class="detail-key">
+				Estimated Time:
+			</div>
+			<div class="detail-value">
+				{{ training.timeToComplete }}
+			</div>
+		</div>
+		<div class="detail-block">
+			<div class="detail-key">
+				Due Date: 
+			</div>
+			<div class="detail-value">
+				{{ training.dueDate }}
+			</div>
+		</div>
+		<div class="detail-block">
+			<div class="detail-key">
+				Current Progress:
+			</div>
+			<div class="detail-value">
+				{{ training.progress }}
+			</div>
+		</div>
+	</div>
+	<div class="detail-actions">
+		<button class="complete" mat-raised-button>
+			Complete
+		</button> 
+		<button class="log" mat-raised-button>
+			Log Progress
+		</button>
+	</div>
+</mat-expansion-panel>
