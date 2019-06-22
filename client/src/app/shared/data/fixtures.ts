@@ -1,3 +1,6 @@
+import { TrainingStatus } from '../types/training-status';
+
+
 export const Fixtures = {
     user: {
 
@@ -62,7 +65,7 @@ export const Fixtures = {
             timeToComplete: 2,
             progress: 0,
             description: 'test',
-            status: 'not started'
+            status: TrainingStatus.notStarted
         },   
         {
             id: 2,
@@ -71,7 +74,7 @@ export const Fixtures = {
             timeToComplete: 4,
             progress: 50,
             description: 'test',
-            status: 'in progress'
+            status: TrainingStatus.inProgress
         },   
         {
             id: 3,
@@ -80,7 +83,7 @@ export const Fixtures = {
             timeToComplete: 1,
             progress: 0,
             description: 'test',
-            status: 'not started'
+            status: TrainingStatus.notStarted
         },   
         {
             id: 4,
@@ -89,7 +92,7 @@ export const Fixtures = {
             timeToComplete: 2.5,
             progress: 100,
             description: 'test',
-            status: 'complete'
+            status: TrainingStatus.complete
         },   
     ]
 }
