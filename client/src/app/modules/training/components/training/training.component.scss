@@ -14,6 +14,10 @@ mat-expansion-panel-header {
 	border-radius: 0px;
 }
 
+.mat-expansion-panel-header:not(.mat-expanded) {
+	height: 70px !important;
+}
+
 mat-expansion-panel-header.mat-expanded{
 	border-bottom: 1px solid rgb(202, 202, 202);
 }
@@ -24,6 +28,13 @@ mat-expansion-panel-header.mat-expanded{
 	padding-right: 100px;
 	overflow: hidden;
 	max-width: calc(100% - 200px);
+	height: 45px;
+}
+
+.content .key{
+	font-size: 0.8em;
+	margin-bottom: 7px;
+	color: #BBB;
 }
 
 .name{
@@ -45,6 +56,10 @@ mat-expansion-panel-header.mat-expanded{
 	right: 80px;
 	border-left: 1px dashed gray;
 	padding-left: 20px;
+	display: flex;
+	flex-direction: column;
+	height: 45px;
+	line-height: 45px;
 }
 
 .progress.not-started{
