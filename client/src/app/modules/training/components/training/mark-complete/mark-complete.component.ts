@@ -13,9 +13,9 @@ export class MarkCompleteComponent implements OnInit {
 
   	constructor(
 		@Inject(MAT_DIALOG_DATA) data
-	  ) { 
+	) { 
 		this.training = data;
-	  }
+	}
 
   	ngOnInit() { }
 

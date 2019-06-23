@@ -46,8 +46,9 @@ export class TrainingComponent implements OnInit {
 			data: training,
 			scrollStrategy: this.overlay.scrollStrategies.noop()
 		});
-		const sub = this.updateProgressDialogRef.componentInstance.closeDialog.subscribe(() => {
+		const sub = this.updateProgressDialogRef.componentInstance.closeDialog.subscribe((newProgress: number) => {
 			this.dialog.closeAll();
+			this.trainingService.setTrainingProgress(training.id, newProgress);			
 		});
 	}
 }

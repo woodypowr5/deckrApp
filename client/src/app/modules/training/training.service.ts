@@ -29,7 +29,20 @@ export class TrainingService {
 		this.trainingsChanged.next(updatedTrainings);
 	}
 
-	setTrainingProgress(): void {
-
+	setTrainingProgress(trainingId: number, progress: number): void {
+		let updatedTrainings: Training[] = this.trainings;
+		updatedTrainings.map( (training: Training) => {
+			if (training.id === trainingId) {
+				if (progress == 0) {
+					training.status = TrainingStatus.notStarted;
+				} else if (progress == 100) {
+					training.status = TrainingStatus.complete;
+				} else {
+					training.status = TrainingStatus.inProgress;
+				}
+				training.progress = progress;
+			}
+		});
+		this.trainingsChanged.next(updatedTrainings);
 	}
 }
