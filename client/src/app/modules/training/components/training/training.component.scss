@@ -47,6 +47,13 @@ mat-expansion-panel-header.mat-expanded{
 	padding-left: 20px;
 }
 
+.progress.not-started{
+	color: rgb(185, 51, 51);
+}
+.progress.complete{
+	color: rgb(24, 104, 24);
+}
+
 .details{
 	margin-top: 40px;
 }

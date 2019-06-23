@@ -8,7 +8,14 @@
 				{{ training.description }}
 			</div>
 		</div>
-		<div class="progress">
+		<div 
+			class="progress"
+			[ngClass]="{
+				'complete': training.status === 'complete',
+				'in-progress': training.status === 'in progress',
+				'not-started': training.status === 'not started'
+			}"
+		>
 			{{ training.status }}
 		</div>
 	</mat-expansion-panel-header>
