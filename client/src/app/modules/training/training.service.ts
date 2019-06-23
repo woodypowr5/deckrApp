@@ -14,7 +14,6 @@ export class TrainingService {
   	constructor() { 
 		this.trainingsChanged.subscribe( (trainings: Training[]) => {
 			this.trainings = trainings;
-			console.log(this.trainings);
 		});
 		this.trainingsChanged.next(Fixtures.trainings);
 	}
