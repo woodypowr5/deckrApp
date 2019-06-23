@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainingService } from '../../training.service';
-import { Training } from 'src/app/shared/types/training.class';
+import { Training } from 'src/app/shared/types/training.interface';
 
 @Component({
 	selector: 'app-training',
@@ -19,6 +19,14 @@ export class TrainingComponent implements OnInit {
 	}
 
   	ngOnInit() {
-  
+		
+	}
+
+	complete(training: Training): void {
+		this.trainingService.completeTraining(training.id);
+	}
+
+	logProgress(): void {
+
 	}
 }

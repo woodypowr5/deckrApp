@@ -1,6 +1,6 @@
 import { TrainingStatus } from './training-status';
 
-export class Training {
+export interface Training {
     id: number;
     name: string; 
     dueDate: Date;
@@ -8,9 +8,4 @@ export class Training {
     progress: number;
     description?: string;
     status: TrainingStatus;
-
-    constructor() {
-        this.progress = 0;
-        this.status = TrainingStatus.notStarted;
-    }
 }

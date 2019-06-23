@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Training } from 'src/app/shared/types/training.class';
+import { Training } from 'src/app/shared/types/training.interface';
 import { BehaviorSubject } from 'rxjs';
 import { Fixtures } from 'src/app/shared/data/fixtures';
+import { TrainingStatus } from 'src/app/shared/types/training-status';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,20 @@ export class TrainingService {
 			console.log(this.trainings);
 		});
 		this.trainingsChanged.next(Fixtures.trainings);
+	}
+
+	completeTraining(trainingId: number): void {
+		let updatedTrainings: Training[] = this.trainings;
+		updatedTrainings.map( (training: Training) => {
+			if (training.id === trainingId) {
+				training.status = TrainingStatus.complete;
+				training.progress = 100;
+			}
+		});
+		this.trainingsChanged.next(updatedTrainings);
+	}
+
+	setTrainingProgress(): void {
+
 	}
 }

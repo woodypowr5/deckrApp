@@ -9,7 +9,7 @@
 			</div>
 		</div>
 		<div class="progress">
-			{{ training.progress }} % Complete
+			{{ training.status }}
 		</div>
 	</mat-expansion-panel-header>
 
@@ -41,10 +41,18 @@
 		</div>
 	</div>
 	<div class="detail-actions">
-		<button class="complete" mat-raised-button>
+		<button 
+			class="complete" 
+			mat-raised-button
+			(click)="complete(training)"
+		>
 			Complete
 		</button> 
-		<button class="log" mat-raised-button>
+		<button 
+			class="log" 
+			mat-raised-button
+			(click)="logProgress(training)"
+		>
 			Log Progress
 		</button>
 	</div>

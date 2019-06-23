@@ -1,5 +1,5 @@
 export enum TrainingStatus {
     notStarted = 'not started',
-    inProgress = 'in proress',
+    inProgress = 'in progress',
     complete = 'complete'
 }
