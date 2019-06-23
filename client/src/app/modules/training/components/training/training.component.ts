@@ -13,7 +13,7 @@ import { UpdateProgressComponent } from './update-progress/update-progress.compo
 })
 export class TrainingComponent implements OnInit {
 	private trainings: Training[] = [];
-	markComploeteDialogRef: MatDialogRef<MarkCompleteComponent>;
+	markCompleteDialogRef: MatDialogRef<MarkCompleteComponent>;
 	updateProgressDialogRef: MatDialogRef<UpdateProgressComponent>;
 	
   	constructor(
@@ -31,15 +31,21 @@ export class TrainingComponent implements OnInit {
 	}
 
 	markComplete(training: Training): void {
-		this.trainingService.completeTraining(training.id);
-	}
-
-	updateProgress(): void {
-		this.updateProgressDialogRef = this.dialog.open(UpdateProgressComponent, {
-			data: {},
+		this.markCompleteDialogRef = this.dialog.open(MarkCompleteComponent, {
+			data: training,
 			scrollStrategy: this.overlay.scrollStrategies.noop()
 		});
-	  
+		const sub = this.markCompleteDialogRef.componentInstance.closeDialog.subscribe(() => {
+			this.dialog.closeAll();
+			this.trainingService.completeTraining(training.id);			
+		});
+	}
+
+	updateProgress(training): void {
+		this.updateProgressDialogRef = this.dialog.open(UpdateProgressComponent, {
+			data: training,
+			scrollStrategy: this.overlay.scrollStrategies.noop()
+		});
 		const sub = this.updateProgressDialogRef.componentInstance.closeDialog.subscribe(() => {
 			this.dialog.closeAll();
 		});
