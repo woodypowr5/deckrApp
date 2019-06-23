@@ -5,7 +5,7 @@ import { Fixtures } from 'src/app/shared/data/fixtures';
 import { TrainingStatus } from 'src/app/shared/types/training-status';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class TrainingService {
 	private trainings: Training[];

@@ -12,16 +12,16 @@
         <li *ngIf="!(isAuth)">
           <a (click)="setActiveRoute('login')" [ngClass]="{'active': activeRoute === 'login'}" routerLink="/login">Login</a>
         </li>
-        <li *ngIf="isAuth">
+        <li >
           <a (click)="setActiveRoute('training')" [ngClass]="{'active': activeRoute === 'training'}" routerLink="/training">Plan</a>
         </li>
-        <li *ngIf="isAuth">
+        <li >
           <a (click)="setActiveRoute('securitygroups')" [ngClass]="{'active': activeRoute === 'securitygroups'}" routerLink="/securitygroups">Today</a>
         </li>
-        <li  *ngIf="isAuth">
+        <li >
           <a (click)="setActiveRoute('contracts')" [ngClass]="{'active': activeRoute === 'contracts'}" routerLink="/contracts" >Trends</a>
         </li>
-        <li *ngIf="isAuth">
+        <li>
           <a style="cursor: pointer" (click)="onLogout()">Logout</a>
         </li>
       </ul>
