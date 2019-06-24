@@ -19,4 +19,8 @@ export class ContractsComponent implements OnInit {
 		this.contracts = newContracts;
 	});
   }
+
+  signContract() {
+	  
+  }
 }

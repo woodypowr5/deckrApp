@@ -1,3 +1,6 @@
-app-contract  mat-card{
-	max-width: 400px;
+:host {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	column-gap: 20px;
+	row-gap: 2px;
 }
