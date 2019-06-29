@@ -29,6 +29,22 @@ export const Fixtures = {
             description: 'Just the third test contract',
             thumbnailUrl: 'test',
             instanceUrl: 'test'
+		},
+		{
+            id: 4,
+            name: 'Test Contract 3',
+            signed: false,
+            description: 'Just the third test contract',
+            thumbnailUrl: 'test',
+            instanceUrl: 'test'
+		},
+		{
+            id: 5,
+            name: 'Test Contract 3',
+            signed: false,
+            description: 'Just the third test contract',
+            thumbnailUrl: 'test',
+            instanceUrl: 'test'
         }
     ],
     securityGroups: [

@@ -1,0 +1,24 @@
+@import "../../../styles/index.scss";
+
+a{
+	color: inherit;
+	text-decoration: none;
+}
+
+mat-toolbar{
+	display: flex;
+	justify-content: space-between;
+}
+
+.navlinks-container{
+	color: colors(primary);
+}
+
+.navigation-items{
+	display: flex;
+	list-style-type: none;
+
+	li{
+		font-size: 0.9em;
+	}
+}
