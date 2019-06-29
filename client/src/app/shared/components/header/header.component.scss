@@ -1,5 +1,6 @@
 @import "../../../styles/index.scss";
 
+
 a{
 	color: inherit;
 	text-decoration: none;
@@ -11,14 +12,17 @@ mat-toolbar{
 }
 
 .navlinks-container{
-	color: colors(primary);
+	
 }
 
 .navigation-items{
 	display: flex;
+	justify-content: space-around;
+	flex-grow: 2;
 	list-style-type: none;
 
 	li{
 		font-size: 0.9em;
+		color: colors(primary-inverse-subdued-1);
 	}
 }
