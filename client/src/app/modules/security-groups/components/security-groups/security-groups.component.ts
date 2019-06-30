@@ -8,15 +8,19 @@ import { SecurityGroup } from 'src/app/shared/types/security-group.class';
   styleUrls: ['./security-groups.component.scss']
 })
 export class SecurityGroupsComponent implements OnInit {
-	private securityGroups: SecurityGroup[] = [];
+	private allGroups: SecurityGroup[] = [];
+	private approvedGroups: SecurityGroup[] = [];
 
 	constructor(
 		private securityGroupsService: SecurityGroupsService
 	) { }
 
 	ngOnInit() {
-		this.securityGroupsService.securityGroupsChanged.subscribe((newSecurityGroups: SecurityGroup[]) => {
-			this.securityGroups = newSecurityGroups;
+		this.securityGroupsService.allGroupsChanged.subscribe((newSecurityGroups: SecurityGroup[]) => {
+			this.allGroups = newSecurityGroups;
+		});
+		this.securityGroupsService.approvedGroupsChanged.subscribe((newSecurityGroups: SecurityGroup[]) => {
+			this.approvedGroups = newSecurityGroups;
 		});
 	}
 }

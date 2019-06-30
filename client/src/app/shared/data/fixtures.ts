@@ -52,7 +52,7 @@ export const Fixtures = {
             id: 1,
             name: 'Security Group 1',
             iconName: "test",
-            desciption: 'i\'m a sweet icon'        
+            desciption: 'i\'m a sweet icon'       
         },
         {
             id: 2,
@@ -84,7 +84,8 @@ export const Fixtures = {
             iconName: "test",
             desciption: 'i\'m a sweet icon'        
         }
-    ],
+	],
+	approvedSecurityGroups: [1, 2, 5],
     trainings: [
         {
             id: 1,

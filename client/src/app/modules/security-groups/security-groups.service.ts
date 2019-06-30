@@ -7,13 +7,27 @@ import { Fixtures } from 'src/app/shared/data/fixtures';
   providedIn: 'root'
 })
 export class SecurityGroupsService {
-	private securityGroups: SecurityGroup[] = [];
-	securityGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
+	private allGroups: SecurityGroup[] = [];
+	allGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
+	private approvedGroups: SecurityGroup[] = [];
+	approvedGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
+	private approvedGroupNumbers: number[] = [];
+	approvedGroupNumbersChanged: BehaviorSubject<number[]> = new BehaviorSubject([]);
 
   	constructor() { 
-		this.securityGroupsChanged.subscribe((newSecurityGroups: SecurityGroup[]) => {
-			this.securityGroups = newSecurityGroups;
+		this.allGroupsChanged.subscribe((newSecurityGroups: SecurityGroup[]) => {
+			this.allGroups = newSecurityGroups;	
 		});
-		this.securityGroupsChanged.next(Fixtures.securityGroups);
+		this.approvedGroupNumbersChanged.subscribe((approvedGroupNumbers: number[]) => {
+			this.approvedGroupNumbers = approvedGroupNumbers;
+			const allGroups = this.allGroups;
+			this.allGroupsChanged.next(allGroups.filter((group: SecurityGroup) => approvedGroupNumbers.indexOf(group.id) === -1));
+			this.approvedGroupsChanged.next(allGroups.filter((group: SecurityGroup) => approvedGroupNumbers.indexOf(group.id) > -1));
+		});
+		this.approvedGroupsChanged.subscribe((newApprovedGroups: SecurityGroup[]) => {
+			this.approvedGroups = newApprovedGroups;	
+		});
+		this.allGroupsChanged.next(Fixtures.securityGroups);
+		this.approvedGroupNumbersChanged.next(Fixtures.approvedSecurityGroups);		
 	}
 }

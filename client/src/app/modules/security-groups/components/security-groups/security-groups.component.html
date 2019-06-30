@@ -1,3 +1,11 @@
-<mat-card *ngFor="let securityGroup of securityGroups">
-	{{ securityGroup.name }}
+<h1>Your Security Groups</h1>
+
+<mat-card *ngFor="let group of approvedGroups">
+	{{ group.name }}
+</mat-card>
+
+<h1>Other Security Groups</h1>
+
+<mat-card *ngFor="let group of allGroups">
+	{{ group.name }}
 </mat-card>
