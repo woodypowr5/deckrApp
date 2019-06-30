@@ -6,8 +6,9 @@
 
 <h1>Other Security Groups</h1>
 
-<mat-card *ngFor="let group of allGroups">
+<mat-card *ngFor="let group of deniedGroups">
 	{{ group.name }}
+	<button mat-button (click)="raiseAccessRequest(group)">Raise Access Request</button>
 </mat-card>
 
 
