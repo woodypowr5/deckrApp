@@ -12,17 +12,19 @@ mat-toolbar{
 }
 
 .navlinks-container{
-	
+	flex-grow: 2;
+	padding-left: 30px;
+	padding-right: 10%;
 }
 
 .navigation-items{
 	display: flex;
 	justify-content: space-around;
-	flex-grow: 2;
 	list-style-type: none;
+	padding: 0px;
 
 	li{
 		font-size: 0.9em;
-		color: colors(primary-inverse-subdued-1);
+		color: text-colors(primary-inverse-subdued-1);
 	}
 }

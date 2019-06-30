@@ -71,7 +71,19 @@ export const Fixtures = {
             name: 'Security Group 4',
             iconName: "test",
             desciption: 'i\'m a sweet icon'        
-        },
+		},
+		{
+            id: 5,
+            name: 'Security Group 5',
+            iconName: "test",
+            desciption: 'i\'m a sweet icon'        
+		},
+		{
+            id: 6,
+            name: 'Security Group 6',
+            iconName: "test",
+            desciption: 'i\'m a sweet icon'        
+        }
     ],
     trainings: [
         {
