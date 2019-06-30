@@ -13,6 +13,8 @@ export class SecurityGroupsService {
 	approvedGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
 	private approvedGroupNumbers: number[] = [];
 	approvedGroupNumbersChanged: BehaviorSubject<number[]> = new BehaviorSubject([]);
+	private pendingGroupNumbers: number[] = [];
+	pendingGroupNumbersChanged: BehaviorSubject<number[]> = new BehaviorSubject([]);
 
   	constructor() { 
 		this.allGroupsChanged.subscribe((newSecurityGroups: SecurityGroup[]) => {
@@ -21,8 +23,26 @@ export class SecurityGroupsService {
 		this.approvedGroupNumbersChanged.subscribe((approvedGroupNumbers: number[]) => {
 			this.approvedGroupNumbers = approvedGroupNumbers;
 			const allGroups = this.allGroups;
-			this.allGroupsChanged.next(allGroups.filter((group: SecurityGroup) => approvedGroupNumbers.indexOf(group.id) === -1));
-			this.approvedGroupsChanged.next(allGroups.filter((group: SecurityGroup) => approvedGroupNumbers.indexOf(group.id) > -1));
+			this.allGroupsChanged.next(allGroups.filter((group: SecurityGroup) => 
+				approvedGroupNumbers.indexOf(group.id) === -1 && 
+				this.pendingGroupNumbers.indexOf(group.id) === -1)
+			);
+			this.approvedGroupsChanged.next(allGroups.filter((group: SecurityGroup) => 
+				approvedGroupNumbers.indexOf(group.id) > -1 || 
+				this.pendingGroupNumbers.indexOf(group.id) > -1)
+			);
+		});
+		this.pendingGroupNumbersChanged.subscribe((pendingGroupNumbers: number[]) => {
+			this.pendingGroupNumbers = pendingGroupNumbers;
+			const allGroups = this.allGroups;
+			this.allGroupsChanged.next(allGroups.filter((group: SecurityGroup) => 
+				this.approvedGroupNumbers.indexOf(group.id) === -1 && 
+				pendingGroupNumbers.indexOf(group.id) === -1)
+			);
+			this.approvedGroupsChanged.next(allGroups.filter((group: SecurityGroup) => 
+				this.approvedGroupNumbers.indexOf(group.id) > -1 || 
+				pendingGroupNumbers.indexOf(group.id) > -1)
+			);
 		});
 		this.approvedGroupsChanged.subscribe((newApprovedGroups: SecurityGroup[]) => {
 			this.approvedGroups = newApprovedGroups;	
