@@ -1,36 +1,20 @@
 <h1>Your Security Groups</h1>
 
-<mat-card *ngFor="let group of approvedGroups">
-	{{ group.name }}
-	<span
-		*ngIf="pendingGroupNumbers.indexOf(group.id) > -1"
-	>
-		Pending
-	</span>
-</mat-card>
+<app-security-group
+	*ngFor="let group of approvedGroups"
+	[securityGroup]="group"
+	[pending]="pendingGroupNumbers.indexOf(group.id) > -1"
+	[approved]="approvedGroupNumbers.indexOf(group.id) > -1"
+>
+</app-security-group>
 
 <h1>Other Security Groups</h1>
 
-<mat-card *ngFor="let group of deniedGroups">
-	{{ group.name }}
-	<button mat-button (click)="raiseAccessRequest(group)">Raise Access Request</button>
-</mat-card>
-
-
-
-<!-- 
-<mat-card>
-	<mat-card-title>
-		Confirm Sign Contract
-	</mat-card-title>
-	<p>
-		By clicking sign, you agree with the stuff in:
-	</p>
-	<h2> {{ contract.name }}</h2>
-	<mat-card-subtitle>
-		Are you sure you want to continue?
-	</mat-card-subtitle>
-	<button mat-button (click)="sign()">Sign</button>
-	<button mat-button matDialogClose>Cancel</button>
-</mat-card> 
--->
+<app-security-group
+	*ngFor="let group of deniedGroups"
+	[securityGroup]="group"
+	[pending]="false"
+	[approved]="false"
+	(accessRequestRaised)="raiseAccessRequest(group)"
+>
+</app-security-group>

@@ -11,12 +11,9 @@ export class ContractsService {
 	contractChanged: BehaviorSubject<Contract[]> = new BehaviorSubject([]);
 
   	constructor() {
-		// create subscription
 		this.contractChanged.subscribe( (contracts: Contract[]) => {
 			this.contracts = contracts;
-			console.log(this.contracts);
 		});
-		// actually populate the data from a source
 		this.contractChanged.next( Fixtures.contracts );
 	}
 }

@@ -11,6 +11,7 @@ export class SecurityGroupsComponent implements OnInit {
 	private approvedGroups: SecurityGroup[] = [];
 	private deniedGroups: SecurityGroup[] = [];
 	private pendingGroupNumbers: number[] = [];
+	private approvedGroupNumbers: number[] = [];
 
 	constructor(
 		private securityGroupsService: SecurityGroupsService
@@ -25,6 +26,9 @@ export class SecurityGroupsComponent implements OnInit {
 		});
 		this.securityGroupsService.pendingGroupNumbersChanged.subscribe((groupNumbers: number[]) => {
 			this.pendingGroupNumbers = groupNumbers;
+		});
+		this.securityGroupsService.approvedGroupNumbersChanged.subscribe((groupNumbers: number[]) => {
+			this.approvedGroupNumbers = groupNumbers;
 		});
 	}
 
