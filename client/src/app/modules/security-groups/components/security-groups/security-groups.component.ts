@@ -10,7 +10,7 @@ import { SecurityGroup } from 'src/app/shared/types/security-group.class';
 export class SecurityGroupsComponent implements OnInit {
 	private approvedGroups: SecurityGroup[] = [];
 	private deniedGroups: SecurityGroup[] = [];
-
+	private pendingGroupNumbers: number[] = [];
 
 	constructor(
 		private securityGroupsService: SecurityGroupsService
@@ -22,6 +22,9 @@ export class SecurityGroupsComponent implements OnInit {
 		});
 		this.securityGroupsService.approvedGroupsChanged.subscribe((newSecurityGroups: SecurityGroup[]) => {
 			this.approvedGroups = newSecurityGroups;
+		});
+		this.securityGroupsService.pendingGroupNumbersChanged.subscribe((groupNumbers: number[]) => {
+			this.pendingGroupNumbers = groupNumbers;
 		});
 	}
 

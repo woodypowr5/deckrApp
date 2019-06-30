@@ -2,6 +2,11 @@
 
 <mat-card *ngFor="let group of approvedGroups">
 	{{ group.name }}
+	<span
+		*ngIf="pendingGroupNumbers.indexOf(group.id) > -1"
+	>
+		Pending
+	</span>
 </mat-card>
 
 <h1>Other Security Groups</h1>
