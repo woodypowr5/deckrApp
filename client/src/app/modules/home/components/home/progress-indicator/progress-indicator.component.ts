@@ -1,18 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-progress-indicator',
   templateUrl: './progress-indicator.component.html',
   styleUrls: ['./progress-indicator.component.scss']
 })
-export abstract class ProgressIndicatorComponent implements OnInit {
-	@Input() unitsName: string;
-	@Input() unitsCompleted: number;
-	@Input() unitsRequired: number;
+export class ProgressIndicatorComponent implements OnInit {
 
-  	constructor() { }
+  constructor() { }
 
-  	ngOnInit() {
-  	}
+  ngOnInit() {
+  }
 
 }
