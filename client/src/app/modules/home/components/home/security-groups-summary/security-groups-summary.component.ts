@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SecurityGroup } from 'src/app/shared/types/security-group.class';
 
 @Component({
   selector: 'app-security-groups-summary',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./security-groups-summary.component.scss']
 })
 export class SecurityGroupsSummaryComponent implements OnInit {
+	@Input() securityGroups: SecurityGroup[] = [];
+	
+	constructor() { }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
 }

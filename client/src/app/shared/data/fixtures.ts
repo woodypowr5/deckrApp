@@ -15,7 +15,7 @@ export const Fixtures = {
         {   
             id: 1,
             name: 'Test Contract 1',
-            signed: false,
+            signed: true,
             description: 'Just a test contract',
             thumbnailUrl: 'test',
             instanceUrl: 'test'
@@ -39,7 +39,7 @@ export const Fixtures = {
 		{
             id: 4,
             name: 'Test Contract 3',
-            signed: false,
+            signed: true,
             description: 'Just the third test contract',
             thumbnailUrl: 'test',
             instanceUrl: 'test'

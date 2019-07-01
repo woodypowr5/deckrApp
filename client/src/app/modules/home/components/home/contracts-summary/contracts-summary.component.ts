@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Contract } from 'src/app/shared/types/contract.class';
 
 @Component({
   selector: 'app-contracts-summary',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contracts-summary.component.scss']
 })
 export class ContractsSummaryComponent implements OnInit {
+	@Input() contracts: Contract[] = [];
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit() {
-  }
+	get numCompletedContracts(): number {
+        return this.contracts.filter((contract: Contract) => contract.signed === true).length;
+    }
+
+	ngOnInit() {
+	}
 
 }

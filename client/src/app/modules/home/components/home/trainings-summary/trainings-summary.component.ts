@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Training } from 'src/app/shared/types/training.interface';
 
 @Component({
   selector: 'app-trainings-summary',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trainings-summary.component.scss']
 })
 export class TrainingsSummaryComponent implements OnInit {
+	@Input() trainings: Training[] = [];
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit() {
-  }
+	get numCompletedTrainings(): number {
+        return this.trainings.filter((training: Training) => training.progress === 100).length;
+    }
+
+	ngOnInit() {
+	}
 
 }
