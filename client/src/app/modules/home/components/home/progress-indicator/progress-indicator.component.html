@@ -1,1 +1,14 @@
 Completed {{ complete }} / {{ total }}
+<div class="hbi">
+<ngx-charts-gauge
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="data"
+      [min]="0"
+      [max]="100"
+      [angleSpan]="240"
+      [startAngle]="-120"
+      [units]="'percent'"
+      [bigSegments]="5"
+      (select)="onSelect($event)">
+	</ngx-charts-gauge></div>
