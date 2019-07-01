@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './user.class';
+import { User } from '../../shared/types/user.interface';
 import { BehaviorSubject } from 'rxjs';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 
@@ -14,6 +14,6 @@ export class AuthService {
 		this.loggedInUserChanged.subscribe((user: User) => {
 			this.loggedInUser = user;
 		});
-		// this.loggedInUserChanged.next(Fixtures.user);
+		this.loggedInUserChanged.next(Fixtures.user);
 	}
 }

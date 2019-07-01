@@ -1,3 +1,10 @@
-<p>
-  home works!
-</p>
+<h1 class="page-title">Welcom, {{ user.name }}!</h1>
+
+<h2>Your Required Contracts</h2>
+{{ contracts | json }}
+
+<h2>Your Required Trainings</h2>
+{{ trainings | json }}
+
+<h2>Your Security Groups</h2>
+{{ securityGroups | json }}

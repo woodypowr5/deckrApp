@@ -4,6 +4,6 @@ export interface User {
     email: string;
     hashedPassword: string;
     salt: string;
-    createdAt: string;
-	updatedAt: string;
+    createdAt: Date;
+	updatedAt: Date;
 }
