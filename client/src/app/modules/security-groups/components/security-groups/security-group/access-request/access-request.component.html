@@ -1,0 +1,13 @@
+<mat-card>
+	<mat-card-title>
+		Raise Access Request
+	</mat-card-title>
+	<p>
+		You are about to request access to the folowing Security Group:
+	<h2> {{ securityGroup.name }}</h2>
+	<mat-card-subtitle>
+		Are you sure you want to continue?
+	</mat-card-subtitle>
+	<button mat-button (click)="confirm()">Confirm</button>
+	<button mat-button matDialogClose>Cancel</button>
+</mat-card>

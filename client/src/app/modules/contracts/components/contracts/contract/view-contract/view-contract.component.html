@@ -1,0 +1,14 @@
+<mat-card>
+	<mat-card-title>
+		Confirm Sign Contract
+	</mat-card-title>
+	<p>
+		By clicking sign, you agree with the stuff in:
+	</p>
+	<h2> {{ contract.name }}</h2>
+	<mat-card-subtitle>
+		Are you sure you want to continue?
+	</mat-card-subtitle>
+	<button mat-button (click)="sign()">Sign</button>
+	<button mat-button matDialogClose>Cancel</button>
+</mat-card>

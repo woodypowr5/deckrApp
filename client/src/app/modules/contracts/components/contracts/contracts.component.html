@@ -1,0 +1,7 @@
+<h1 class="page-title">Your Required Contracts</h1>
+
+<div class="contracts">
+	<app-contract *ngFor="let contract of contracts" [contract]="contract">
+		{{ contract.name }}
+	</app-contract>
+</div>

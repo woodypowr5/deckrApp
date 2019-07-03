@@ -1,0 +1,21 @@
+<h1 class="page-title">Your Security Groups</h1>
+
+<app-security-group
+	*ngFor="let group of approvedGroups"
+	[securityGroup]="group"
+	[pending]="pendingGroupNumbers.indexOf(group.id) > -1"
+	[approved]="approvedGroupNumbers.indexOf(group.id) > -1"
+>
+</app-security-group>
+
+<h1 class="page-title">Other Security Groups</h1>
+
+<app-security-group
+
+	*ngFor="let group of deniedGroups"
+	[securityGroup]="group"
+	[pending]="false"
+	[approved]="false"
+	(accessRequestRaised)="raiseAccessRequest(group)"
+>
+</app-security-group>

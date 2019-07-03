@@ -1,0 +1,78 @@
+<h1 class="page-title">Your Required Trainings</h1>
+
+<mat-expansion-panel class="training-instance" *ngFor="let training of trainings">
+	<mat-expansion-panel-header>
+		<div class="content">
+			<div class="name">
+				<div class="key">
+					Training Name:
+				</div>
+				<div class="value">
+					{{ training.name }}
+				</div>
+			</div>
+			<div class="description">
+				<div class="key">
+					Description
+				</div>
+				<div class="value">
+					{{ training.description }}
+				</div>
+			</div>
+		</div>
+		<div 
+			class="progress"
+			[ngClass]="{
+				'complete': training.status === 'complete',
+				'in-progress': training.status === 'in progress',
+				'not-started': training.status === 'not started'
+			}"
+		>
+			{{ training.status }}
+		</div>
+	</mat-expansion-panel-header>
+
+	<div class="details">
+		<h1 class="details-title">Training Details:</h1>
+		<div class="detail-block">
+			<div class="detail-key">
+				Total Completion Time (est):
+			</div>
+			<div class="detail-value">
+				{{ training.timeToComplete }} Hours
+			</div>
+		</div>
+		<div class="detail-block">
+			<div class="detail-key">
+				Due Date: 
+			</div>
+			<div class="detail-value">
+				{{ training.dueDate | date }}
+			</div>
+		</div>
+		<div class="detail-block">
+			<div class="detail-key">
+				Current Progress:
+			</div>
+			<div class="detail-value">
+				{{ training.progress }} %
+			</div>
+		</div>
+	</div>
+	<div class="detail-actions">
+		<button 
+			class="complete" 
+			mat-raised-button
+			(click)="markComplete(training)"
+		>
+			Complete
+		</button> 
+		<button 
+			class="log" 
+			mat-raised-button
+			(click)="updateProgress(training)"
+		>
+			Log Progress
+		</button>
+	</div>
+</mat-expansion-panel>

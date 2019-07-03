@@ -1,0 +1,30 @@
+@import "../../../styles/index.scss";
+
+
+a{
+	color: inherit;
+	text-decoration: none;
+}
+
+mat-toolbar{
+	display: flex;
+	justify-content: space-between;
+}
+
+.navlinks-container{
+	flex-grow: 2;
+	padding-left: 30px;
+	padding-right: 10%;
+}
+
+.navigation-items{
+	display: flex;
+	justify-content: space-around;
+	list-style-type: none;
+	padding: 0px;
+
+	li{
+		font-size: 0.9em;
+		color: text-colors(primary-inverse-subdued-1);
+	}
+}

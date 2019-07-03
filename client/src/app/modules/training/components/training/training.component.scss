@@ -1,0 +1,106 @@
+:host > * + * {
+	margin-top: 20px;
+}
+
+*{
+	white-space: nowrap;
+}
+
+mat-expansion-panel-header {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	width: 100%;
+	border-radius: 0px;
+}
+
+.mat-expansion-panel-header:not(.mat-expanded) {
+	height: 70px !important;
+}
+
+mat-expansion-panel-header.mat-expanded{
+	border-bottom: 1px solid rgb(202, 202, 202);
+}
+
+.content{
+	display: flex;
+	flex-wrap: nowrap;
+	padding-right: 100px;
+	overflow: hidden;
+	max-width: calc(100% - 200px);
+	height: 45px;
+}
+
+.content .key{
+	font-size: 0.8em;
+	margin-bottom: 7px;
+	color: #BBB;
+}
+
+.name{
+	 padding-right: 10px;
+	 width: 100px;
+}
+
+.description{
+	padding-left: 10px;
+	padding-right: 10px;
+	overflow: hidden;
+	color: gray;
+	width: calc(100% - 100px);
+}
+
+.progress{
+	width: 100px !important;
+	position: absolute;
+	right: 80px;
+	border-left: 1px dashed gray;
+	padding-left: 20px;
+	display: flex;
+	flex-direction: column;
+	height: 45px;
+	line-height: 45px;
+}
+
+.progress.not-started{
+	color: rgb(185, 51, 51);
+}
+.progress.complete{
+	color: rgb(24, 104, 24);
+}
+
+.details{
+	margin-top: 40px;
+}
+
+.details > * + * {
+	margin-top: 30px;
+}
+
+.details-title{
+	margin-bottom: 40px;
+	font-size: 1.4em;
+	color: rgb(83, 83, 83);
+}
+
+.detail-block{
+	display: flex;
+	justify-content: space-between;
+}
+
+.detail-key{
+	width: 200px;
+}
+
+.detail-value{
+	flex-grow: 2;
+	padding-left: 100px;
+}
+
+.detail-actions{
+	margin-top: 30px;
+}
+
+button.complete{
+	margin-right: 20px;
+}
