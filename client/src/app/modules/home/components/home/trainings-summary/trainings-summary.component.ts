@@ -13,7 +13,15 @@ export class TrainingsSummaryComponent implements OnInit {
 
 	get numCompletedTrainings(): number {
         return this.trainings.filter((training: Training) => training.progress === 100).length;
-    }
+	}
+	
+	get numIncompleteTrainings(): number {
+		return this.trainings.filter((training: Training) => training.progress !== 100).length;
+	}
+
+	get incompleteTrainings(): Training[] {
+		return this.trainings.filter((training: Training) => training.progress !== 100);
+	}
 
 	ngOnInit() {
 	}

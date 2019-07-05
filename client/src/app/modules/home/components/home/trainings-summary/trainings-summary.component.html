@@ -1,6 +1,19 @@
-Completed
 <app-progress-indicator
 	[complete]="numCompletedTrainings"
 	[total]="trainings.length"
 ></app-progress-indicator>
-Trainings
+
+<div class="instance-list trainings-list">
+	<mat-expansion-panel class="instances training-instances">
+		<mat-expansion-panel-header>
+			{{ numIncompleteTrainings }} incomplete trainings
+		</mat-expansion-panel-header>
+		<div class="incomplete-trainings">
+			<mat-card *ngFor="let training of incompleteTrainings">
+				<mat-card-title>
+					{{ training.name }}
+				</mat-card-title>
+			</mat-card>
+		</div>
+	</mat-expansion-panel>	
+</div>

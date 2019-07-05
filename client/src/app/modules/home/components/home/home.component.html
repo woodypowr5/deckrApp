@@ -1,25 +1,34 @@
 <h1 class="page-title">Welcome, {{ user.name }}!</h1>
 
-<h2>Your Required Contracts</h2>
+<div class="home-container">
 
-<mat-card>
-	<app-contracts-summary
-		[contracts]="contracts"
-	></app-contracts-summary>
-</mat-card>
+	<div class="home-section">
+		<h2>Your Required Contracts</h2>
 
-<h2>Your Required Trainings</h2>
+		<mat-card>
+			<app-contracts-summary
+				[contracts]="contracts"
+			></app-contracts-summary>
+		</mat-card>
+	</div>
 
-<mat-card>
-	<app-trainings-summary
-		[trainings]="trainings"
-	></app-trainings-summary>
-</mat-card>
+	<div class="home-section">
+		<h2>Your Required Trainings</h2>
 
-<h2>Your Security Groups</h2>
+		<mat-card>
+			<app-trainings-summary
+				[trainings]="trainings"
+			></app-trainings-summary>
+		</mat-card>
+	</div>
 
-<mat-card class="security-groups-card">
-	<app-security-groups-summary
-		[securityGroups]="securityGroups"
-	></app-security-groups-summary>
-</mat-card>	
+	<div class="home-section">
+		<h2>Your Security Groups</h2>
+		<mat-card class="security-groups-card">
+			<app-security-groups-summary
+				[securityGroups]="securityGroups"
+			></app-security-groups-summary>
+		</mat-card>	
+	</div>	
+
+</div>

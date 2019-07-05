@@ -1,6 +1,20 @@
-Completed
+
 <app-progress-indicator
-	[complete]="numCompletedContracts"
+	[complete]="numSignedContracts"
 	[total]="contracts.length"
 ></app-progress-indicator>
-Contracts
+
+<div class="instance-list contracts-list">
+	<mat-expansion-panel class="instances contract-instances">
+		<mat-expansion-panel-header>
+			{{ numUnsignedContracts }} unsigned contracts!
+		</mat-expansion-panel-header>
+		<div class="unsigned-contracts">
+			<mat-card *ngFor="let contract of unsignedContracts">
+				<mat-card-title>
+					{{ contract.name }}
+				</mat-card-title>
+			</mat-card>
+		</div>
+	</mat-expansion-panel>	
+</div>
