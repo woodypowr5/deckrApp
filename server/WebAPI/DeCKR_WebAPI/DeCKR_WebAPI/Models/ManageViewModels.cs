@@ -1,7 +1,14 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+/*****************************************************
+* Project Name: DeCKR                                *
+* Date: 07/01/2019                                   *
+* Course: CSC 687 - Computer Science Project II      *
+* Instructor: Mudasser Wyne                          *
+******************************************************/
 
 namespace DeCKR_WebAPI.Models
 {
