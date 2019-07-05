@@ -1,0 +1,35 @@
+mat-nav-list{
+	padding: 15px;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+  }
+
+a:hover, a:active {
+	color: lightgray;
+}
+mat-icon{
+	margin-right: 10px;
+}
+
+a.logo{
+	display: block;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	font-size: 1.7em;
+	font-weight: bold;
+}
+
+::ng-deep .mat-list-item-content{
+	padding-left: 0px !important;
+}
+
+mat-divider{
+	margin-top: 15px;
+	margin-bottom: 6px;
+}
+

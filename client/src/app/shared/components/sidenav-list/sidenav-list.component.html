@@ -1,29 +1,32 @@
 <mat-nav-list>
-  SIDENAV LIST!!!!
-  <!-- <a mat-list-item routerLink="/signup" (click)="onClose()" *ngIf="!(isAuth$ | async)">
-    <mat-icon>face</mat-icon>
-    <span class="nav-caption">Signup</span>
-  </a>
-  <a mat-list-item routerLink="/login" (click)="onClose()" *ngIf="!(isAuth$ | async)">
-    <mat-icon>input</mat-icon>
-    <span class="nav-caption">Login</span>
-  </a>
-  <a mat-list-item routerLink="/plan" (click)="onClose()" *ngIf="isAuth$ | async">
-    <mat-icon>perm_identity</mat-icon>
-    <span class="nav-caption">My Plan</span>
-  </a>
-  <a mat-list-item routerLink="/tracking" (click)="onClose()" *ngIf="isAuth$ | async">
-    <mat-icon>today</mat-icon>
-    <span class="nav-caption">Daily Tracker</span>
-  </a>
-  <a mat-list-item routerLink="/trends" (click)="onClose()" *ngIf="isAuth$ | async">
-    <mat-icon>trending_up</mat-icon>
-    <span class="nav-caption">My Trends</span>
-  </a>
-  <a mat-list-item>
-    <button mat-icon-button (click)="onLogout()" *ngIf="isAuth$ | async">
-      <span class="nav-caption">Log Out</span>
-      <mat-icon>eject</mat-icon>
-    </button>
-  </a> -->
+	<a routerLink="/signup" class="logo">DeCKR</a>
+	<mat-divider></mat-divider>
+	<a mat-list-item routerLink="/signup" (click)="close()">
+		<mat-icon>face</mat-icon>
+		<span class="nav-caption">Signup</span>
+	</a>
+	<a mat-list-item routerLink="/login" (click)="close()">
+		<mat-icon>input</mat-icon>
+		<span class="nav-caption">Login</span>
+	</a>
+	<mat-divider></mat-divider>
+	<a mat-list-item routerLink="/home" (click)="close()">
+		<span class="nav-caption">Dashboard</span>
+	</a>
+	<a mat-list-item routerLink="/training" (click)="close()">
+		<span class="nav-caption">Training</span>
+	</a>
+	<a mat-list-item routerLink="/groups" (click)="close()">
+		<span class="nav-caption">Groups</span>
+	</a>
+	<a mat-list-item routerLink="/contracts" (click)="close()">
+		<span class="nav-caption">Contracts</span>
+	</a>
+	<mat-divider></mat-divider>
+	<a mat-list-item>
+		<button mat-icon-button (click)="logout()">
+			<span class="nav-caption">Log Out</span>
+			<mat-icon>eject</mat-icon>
+		</button>
+	</a>
 </mat-nav-list>
