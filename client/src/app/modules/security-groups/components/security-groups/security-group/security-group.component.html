@@ -3,9 +3,9 @@
 		{{ securityGroup.name }}
 	</mat-card-title>
 	<div class="icon-wrapper">
-		<mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+		<mat-icon aria-hidden="false" aria-label="Example home icon">{{ securityGroup.iconName }}</mat-icon>
 	</div>	
-	<mat-card-content>
+	<mat-card-content class="description">
 		<p>
 			{{ securityGroup.name }}
 		</p>
@@ -19,5 +19,8 @@
 		>
 			Request Access
 		</button>
+		<div *ngIf="pending" class="waiting-message">
+			awaiting admin approval...
+		</div>
 	</mat-card-actions>
 </mat-card>

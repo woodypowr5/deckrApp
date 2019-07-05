@@ -38,9 +38,21 @@ mat-icon{
 	padding: 30px;
 }
 
+mat-card-content.description{
+	height: 15px;
+}
+
 mat-card-actions > .mat-button{
 	display: block;
 	margin: 0 auto;
 }
 
-
+.waiting-message{
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	font-size: 0.8em;
+	width: calc(100% - 20px);
+	text-align: center;
+	color: green;
+}
