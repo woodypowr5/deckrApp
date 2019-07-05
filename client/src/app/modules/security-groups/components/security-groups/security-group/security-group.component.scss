@@ -1,12 +1,32 @@
 :host{
-	// width: 200px;
-	// height: 200px;
-	display: inline-block;
+	margin-bottom: 20px;
 }
 
 mat-card{
+	height: 220px;
+	width: 220px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: center;
+	margin: 0 auto;
+}
+
+mat-card-title.name{
+	font-size: 1em;
+	height: 40px;
+	overflow: hidden;
+}
+
+.icon-wrapper{
+	padding: 10px;
+	margin: 0 auto;
+}
+
+mat-icon{
 	width: 100%;
-	height: 100%;
+	text-align: center;
+	font-size: 3em;
 }
 
 ::ng-deep .mat-card-header-text{
@@ -22,3 +42,5 @@ mat-card-actions > .mat-button{
 	display: block;
 	margin: 0 auto;
 }
+
+

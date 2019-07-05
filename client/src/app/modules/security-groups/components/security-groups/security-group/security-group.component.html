@@ -1,12 +1,10 @@
 <mat-card>
-	<mat-card-header>
-		<mat-card-title>
-			{{ securityGroup.name }}
-		</mat-card-title>
-	</mat-card-header>
-	<div class="image-wrapper" mat-card-image>
-		<img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-	</div>
+	<mat-card-title class="name">
+		{{ securityGroup.name }}
+	</mat-card-title>
+	<div class="icon-wrapper">
+		<mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+	</div>	
 	<mat-card-content>
 		<p>
 			{{ securityGroup.name }}

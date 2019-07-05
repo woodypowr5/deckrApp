@@ -2,6 +2,7 @@
 
 <div class="security-groups approved">
 	<app-security-group
+		class="approved"
 		*ngFor="let group of approvedGroups"
 		[securityGroup]="group"
 		[pending]="pendingGroupNumbers.indexOf(group.id) > -1"
@@ -14,6 +15,7 @@
 
 <div class="security-groups denied">
 	<app-security-group
+		class="denied"
 		*ngFor="let group of deniedGroups"
 		[securityGroup]="group"
 		[pending]="false"
