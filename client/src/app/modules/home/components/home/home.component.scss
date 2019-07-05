@@ -1,7 +1,9 @@
 .home-container{
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	grid-row-gap: 20px;
+	grid-auto-rows: main-content;
+	
 	grid-column-gap: 20px;
 }
 
@@ -31,6 +33,17 @@ app-contracts-summary, app-trainings-summary{
 }
 
 
-::ng-deep mat-expansion-panel-header > .mat-content {
+::ng-deep .instances mat-expansion-panel-header > .mat-content {
 	justify-content: space-around;
+}
+
+::ng-deep mat-card-title.instance-name{
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.1em;
+
+	a{
+
+		font-size: 0.9em;
+	}
 }
