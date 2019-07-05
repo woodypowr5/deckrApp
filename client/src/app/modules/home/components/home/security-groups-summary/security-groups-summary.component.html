@@ -1,3 +1,12 @@
-<p>
-  security-groups-summary works!
-</p>
+<div class="security-groups">
+	<div *ngFor="let securityGroup of securityGroups" class="security-group-wrapper">
+		<mat-card >
+			<mat-card-title class="name">
+				{{ securityGroup.name }}
+			</mat-card-title>
+			<div class="icon-wrapper">
+				<mat-icon aria-hidden="false" aria-label="Example home icon">{{ securityGroup.iconName }}</mat-icon>
+			</div>	
+		</mat-card>
+	</div>
+</div>
