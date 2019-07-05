@@ -10,6 +10,7 @@ import { ContractsModule } from './modules/contracts/contracts.module';
 import { SecurityGroupsModule } from './modules/security-groups/security-groups.module';
 import { SharedModule } from './shared/modules/shared.module';
 import { HomeModule } from './modules/home/home.module';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HomeModule } from './modules/home/home.module';
 	HomeModule,
     TrainingModule,
     ContractsModule, 
-    SecurityGroupsModule
+	SecurityGroupsModule,
+	PdfViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
