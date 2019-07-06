@@ -1,23 +1,24 @@
 <mat-card>
 	<mat-card-title>
-		Confirm Sign Contract
+		Viewing: {{ contract.name }}
 	</mat-card-title>
-	<p>
-		By clicking sign, you agree with the stuff in:
-	</p>
-	<h2> {{ contract.name }}</h2>
-	<mat-card-subtitle>
-		Are you sure you want to continue?
-	</mat-card-subtitle>
-	<button mat-button (click)="sign()">Sign</button>
-	<button mat-button matDialogClose>Cancel</button>
+
+	<mat-card-content>
+		<pdf-viewer [src]="pdfSrc" 
+					[render-text]="true"
+				
+		></pdf-viewer>
+	</mat-card-content>	
+	<mat-card-actions>
+		<p>
+			By clicking sign, you agree with the stuff in:
+		</p>
+		<h2> {{ contract.name }}</h2>
+		<mat-card-subtitle>
+			Are you sure you want to continue?
+		</mat-card-subtitle>
+		<button mat-button (click)="sign()">Sign</button>
+		<button mat-button matDialogClose>Cancel</button>
+	</mat-card-actions>	
 </mat-card>
 
-<div>
-		<label>PDF src</label>
-		<input type="text" placeholder="PDF src" [(ngModel)]="pdfSrc">
-	</div>
-	<pdf-viewer [src]="pdfSrc" 
-				[render-text]="true"
-				style="display: block;"
-	></pdf-viewer>

@@ -91,19 +91,19 @@ export const Fixtures = {
             desciption: 'i\'m a sweet icon'        
 		},
 		{
-            id: 6,
+            id: 7,
             name: 'Computer Equipment Manager',
             iconName: "devices",
             desciption: 'i\'m a sweet icon'        
 		},
 		{
-            id: 6,
+            id: 8,
             name: 'Network Infrastructure Manager',
             iconName: "router",
             desciption: 'i\'m a sweet icon'        
 		},
 		{
-            id: 6,
+            id: 9,
             name: 'Operating System Security Manager',
             iconName: "security",
             desciption: 'i\'m a sweet icon'        

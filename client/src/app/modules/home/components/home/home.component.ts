@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
 		this.securityGroupsService.approvedGroupsChanged.subscribe((securityGroups: SecurityGroup[]) => {
 			this.securityGroups = securityGroups;
 		});
-		this.contractsService.contractChanged.subscribe((contracts: Contract[]) => {
+		this.contractsService.contractsChanged.subscribe((contracts: Contract[]) => {
 			this.contracts = contracts;
 		});
 	}

@@ -8,12 +8,17 @@ import { Fixtures } from 'src/app/shared/data/fixtures';
 })
 export class ContractsService {
 	private contracts: Contract[] = [];
-	contractChanged: BehaviorSubject<Contract[]> = new BehaviorSubject([]);
+	contractsChanged: BehaviorSubject<Contract[]> = new BehaviorSubject([]);
 
   	constructor() {
-		this.contractChanged.subscribe( (contracts: Contract[]) => {
+		this.contractsChanged.subscribe( (contracts: Contract[]) => {
 			this.contracts = contracts;
 		});
-		this.contractChanged.next( Fixtures.contracts );
+		this.contractsChanged.next( Fixtures.contracts );
+	}
+
+	signContract(contract: Contract) {
+		const contracts: Contract = this.contracts.find((currentContract: Contract) =>  currentContract.id === contract.id);
+		this.contractsChanged.next(contracts);
 	}
 }
