@@ -1,6 +1,6 @@
 <mat-card>
 	<mat-card-title>
-		Viewing: {{ contract.name }}
+		<span>viewing:</span> {{ contract.name }}
 	</mat-card-title>
 
 	<mat-card-content>
@@ -11,13 +11,12 @@
 	</mat-card-content>	
 	<mat-card-actions>
 		<p>
-			By clicking sign, you agree with the stuff in:
+			By clicking <i>sign</i>, you agree to abide by the policies set forth in the above contract and agree to be bound by all of it's terms
 		</p>
-		<h2> {{ contract.name }}</h2>
 		<mat-card-subtitle>
 			Are you sure you want to continue?
 		</mat-card-subtitle>
-		<button mat-button (click)="sign()">Sign</button>
+		<button mat-button mat-raised-button (click)="sign()">Sign</button>
 		<button mat-button matDialogClose>Cancel</button>
 	</mat-card-actions>	
 </mat-card>

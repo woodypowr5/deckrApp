@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContractsService } from '../../contracts.service';
-import { Contract } from 'src/app/shared/types/contract.class';
+import { Contract } from 'src/app/shared/types/contract';
 
 @Component({
   selector: 'app-contracts',

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Contract } from 'src/app/shared/types/contract.class';
+import { Contract } from 'src/app/shared/types/contract';
 
 @Component({
   selector: 'app-contracts-summary',

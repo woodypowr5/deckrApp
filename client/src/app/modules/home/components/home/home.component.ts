@@ -5,7 +5,7 @@ import { SecurityGroupsService } from 'src/app/modules/security-groups/security-
 import { ContractsService } from 'src/app/modules/contracts/contracts.service';
 import { User } from 'src/app/shared/types/user.interface';
 import { SecurityGroup } from 'src/app/shared/types/security-group.class';
-import { Contract } from 'src/app/shared/types/contract.class';
+import { Contract } from 'src/app/shared/types/contract';
 import { Training } from 'src/app/shared/types/training.interface';
 
 @Component({

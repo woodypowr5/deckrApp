@@ -15,6 +15,12 @@
 			mat-button 
 			mat-raised-button
 			(click)="view(contract)"
-		>VIEW & SIGN</button>
+			class="view-sign-button"
+		>
+			VIEW 
+			<span *ngIf="contract.signed === false">
+				& SIGN
+			</span>
+		</button>
 	</mat-card-actions>
 </mat-card>

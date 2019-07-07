@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
-import { Contract } from 'src/app/shared/types/contract.class';
+import { Contract } from 'src/app/shared/types/contract';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({

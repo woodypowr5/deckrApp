@@ -7,6 +7,11 @@ mat-card{
 
 mat-card-title{
 	margin-bottom: 20px;
+
+	span{
+		font-size: 0.8em;
+		color: #666;
+	}
 }
 
 mat-card-content{
@@ -16,3 +21,7 @@ mat-card-content{
 	padding: 20px;
 }
 
+mat-card-actions{
+	text-align: center;
+	padding: 10px 10% 0 10%;
+}

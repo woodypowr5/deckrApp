@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Contract } from 'src/app/shared/types/contract.class';
+import { Contract } from 'src/app/shared/types/contract';
 import { ViewContractComponent } from './view-contract/view-contract.component';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { Overlay } from '@angular/cdk/overlay';

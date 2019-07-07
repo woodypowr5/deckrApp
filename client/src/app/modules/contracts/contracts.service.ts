@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Contract } from 'src/app/shared/types/contract.class';
+import { Contract } from 'src/app/shared/types/contract';
 import { BehaviorSubject } from 'rxjs';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 
@@ -18,7 +18,12 @@ export class ContractsService {
 	}
 
 	signContract(contract: Contract) {
-		const contracts: Contract = this.contracts.find((currentContract: Contract) =>  currentContract.id === contract.id);
+		const contracts: Contract[] = this.contracts;
+		this.contracts.map((currentContract: Contract) => {
+			if (currentContract.id === contract.id) {
+				currentContract.signed = true;
+			}
+		});
 		this.contractsChanged.next(contracts);
 	}
 }
