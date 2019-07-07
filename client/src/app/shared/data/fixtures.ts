@@ -1,6 +1,5 @@
 import { TrainingStatus } from '../types/training-status';
 
-
 export const Fixtures = {
     user: {
 		id: 1,
