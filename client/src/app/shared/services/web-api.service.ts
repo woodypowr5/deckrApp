@@ -10,10 +10,11 @@ import { Contract } from '../types/contract';
 })
 export class WebApiService implements InMemoryDbService {
 	createDb() {
-		const contracts = [
-		  Fixtures.contracts
-		];
-		return {contracts};
+		return {
+			contracts: Fixtures.contracts,
+			trainings: Fixtures.trainings,
+			securityGroups: Fixtures.securityGroups
+		};
 	}
 	constructor() { }
 
