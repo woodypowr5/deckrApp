@@ -13,7 +13,8 @@ export class WebApiService implements InMemoryDbService {
 		return {
 			contracts: Fixtures.contracts,
 			trainings: Fixtures.trainings,
-			securityGroups: Fixtures.securityGroups
+			securityGroups: Fixtures.securityGroups,
+			approvedGroupNumbers: Fixtures.approvedSecurityGroups
 		};
 	}
 	constructor() { }

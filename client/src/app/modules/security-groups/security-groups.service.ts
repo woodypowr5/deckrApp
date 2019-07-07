@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { SecurityGroup } from 'src/app/shared/types/security-group.class';
 import { BehaviorSubject } from 'rxjs';
 import { Fixtures } from 'src/app/shared/data/fixtures';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SecurityGroupsService {
+	private allGroupsUrl = 'api/securityGroups';
+	private approvedGroupsNumbersUrl = 'api/approvedGroupNumbers';
 	private allGroups: SecurityGroup[] = [];
 	allGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
 	private deniedGroups: SecurityGroup[] = [];
@@ -18,7 +21,7 @@ export class SecurityGroupsService {
 	private pendingGroupNumbers: number[] = [];
 	pendingGroupNumbersChanged: BehaviorSubject<number[]> = new BehaviorSubject([]);
 
-  	constructor() { 
+  	constructor(private http: HttpClient) { 
 		this.allGroupsChanged.subscribe((newSecurityGroups: SecurityGroup[]) => {
 			this.allGroups = newSecurityGroups;	
 		});
@@ -50,8 +53,20 @@ export class SecurityGroupsService {
 		this.approvedGroupsChanged.subscribe((newApprovedGroups: SecurityGroup[]) => {
 			this.approvedGroups = newApprovedGroups;	
 		});
-		this.allGroupsChanged.next(Fixtures.securityGroups);
-		this.approvedGroupNumbersChanged.next(Fixtures.approvedSecurityGroups);		
+		this.getAllGroups();
+		this.getApprovedGroupNumbers();	
+	}
+
+	getAllGroups(): void {
+		this.http.get(this.allGroupsUrl).subscribe((allGroups: SecurityGroup[]) => {
+			this.allGroupsChanged.next(allGroups);
+		});
+	}
+
+	getApprovedGroupNumbers(): void {
+		this.http.get(this.approvedGroupsNumbersUrl).subscribe((approvedGroupNumbers: number[]) => {
+			this.approvedGroupNumbersChanged.next(approvedGroupNumbers);
+		});
 	}
 
 	raiseAccessRequest(group: SecurityGroup): void {
