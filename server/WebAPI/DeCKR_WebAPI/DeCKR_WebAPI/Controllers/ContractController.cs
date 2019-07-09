@@ -12,20 +12,65 @@ using System.Web.Http.Cors;
 ******************************************************/
 namespace DeCKR_WebAPI.Controllers
 {
+    /// <summary>
+    /// Contract Controller Class
+    /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
-   // [EnableCors(origins: "http://deckr1.gearhostpreview.com", headers: "*", methods: "*")]
-    public class ContractController : ApiController
+   public class ContractController : ApiController
     {
+        /// <summary>
+        /// object for the domain model class
+        /// </summary>
         DomainModel model = new DomainModel();
+        
+        /// <summary>
+        /// Returns all the contracts
+        /// </summary>
+        /// <returns></returns>
         public List<ContractModel> Get()
         {
             return model.GetContracts().ToList<ContractModel>();
         }
-        public List<ContractModel> Get(string Id)
-        {
-            return model.GetUserContracts(Id).ToList<ContractModel>();
-        }      
 
+        /// <summary>
+        /// Returns a contract
+        /// </summary>
+        /// <param name="Id">ContractId</param>
+        /// <returns>List of user Contracts</returns>
+        [ActionName("SingleContract")]
+        public ContractModel GetContract(int Id)
+        {
+            return model.GetContract(Id);
+        }
+
+        /// <summary>
+        /// Returns a contract
+        /// </summary>
+        /// <param name="employeeId">EmployeeId</param>
+        /// <returns>List of user Contracts</returns>
+        [ActionName("UserContracts")]
+        public List<ContractModel> GetUserContracts(int employeeId)
+        {
+            return model.GetUserContracts(employeeId).ToList<ContractModel>();
+        }
+
+        /// <summary>
+        /// Returns a contract
+        /// </summary>
+        /// <param name="employeeId">jobRoleId</param>
+        /// <returns>List of user Contracts</returns>
+        [ActionName("DefaultContracts")]
+        public List<ContractModel> GeDefaultContracts(int employeeId)
+        {
+            return model.GetDefaultContracts(employeeId).ToList<ContractModel>();
+        }
+
+        /// <summary>
+        /// Update Contract object
+        /// </summary>
+        /// <param name="Id">EmployeeId</param>
+        /// <param name="contractId"></param>
+        /// <param name="sign"></param>
         [HttpPost]
         public void Post(string Id, int contractId, bool sign)
         {

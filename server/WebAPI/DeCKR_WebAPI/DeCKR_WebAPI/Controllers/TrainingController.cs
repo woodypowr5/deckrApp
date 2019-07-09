@@ -13,20 +13,40 @@ using System.Web.Http.Cors;
 
 namespace DeCKR_WebAPI.Controllers
 {
+    /// <summary>
+    /// Training Controller class
+    /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
-    //[EnableCors(origins: "http://deckr1.gearhostpreview.com", headers: "*", methods: "*")]
     public class TrainingController : ApiController
     {
         DomainModel model = new DomainModel();
+        
+        /// <summary>
+        /// Get all trainings
+        /// </summary>
+        /// <returns></returns>
         public List<TrainingModel> Get()
         {
             return model.GetTrainings().ToList<TrainingModel>();
         }
+
+        /// <summary>
+        /// Get Training
+        /// </summary>
+        /// <param name="Id">EmployeeId</param>
+        /// <returns>Training Class object</returns>
         public List<TrainingModel> Get(string Id)
         {
             return model.GetUserTrainings(Id).ToList<TrainingModel>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="trainingId"></param>
+        /// <param name="status"></param>
+        /// <param name="completion"></param>
         [HttpPost]
         public void Post(string Id, int trainingId, string status, int completion)
         {

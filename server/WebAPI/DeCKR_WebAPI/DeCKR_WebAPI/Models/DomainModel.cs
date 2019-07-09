@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 /*****************************************************
 * Project Name: DeCKR                                *
@@ -14,7 +15,7 @@ namespace DeCKR_WebAPI.Models
 {
     public class DomainModel
     {
-        public UserModel GetUser(string userId)
+        public UserModel GetUser(int userId)
         {
             UserModel user = new UserModel();
             try
@@ -22,26 +23,27 @@ namespace DeCKR_WebAPI.Models
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
                 {
                     conn.Open();
-                    string sqlStr = "GetUserInfo";
+                    string sqlStr = "GetUser";
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Clear();
-                    cmd.Parameters.Add(new SqlParameter("@UserId", userId));
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeId", userId));
                     SqlDataReader dr=cmd.ExecuteReader(CommandBehavior.Default);
                     while(dr.Read())
                     {
-                        user.UserId = Convert.ToString(dr["UserID"]);
+                        user.EmployeeID = Convert.ToInt32(dr["EmployeeID"]);
                         user.Name = Convert.ToString(dr["Name"]);
-                        user.PasswordHash = Convert.ToString(dr["PasswordHash"]);
-                        user.Salt = Convert.ToString(dr["Salt"]);
-                        user.JobTitle = Convert.ToString(dr["JobTitle"]);
-                        user.DepartmentId = Convert.ToInt32(dr["DepartmentId"]);
-                        user.Address = Convert.ToString(dr["Address"]);
-                        user.BankInfo = Convert.ToString(dr["BankInfo"]);
-                        user.DOB = Convert.ToDateTime(dr["DOB"]);
-                        user.SSN = Convert.ToString(dr["SSN"]);
-                        user.Education = Convert.ToString(dr["Education"]);
-                        user.PrevEmployment = Convert.ToString(dr["PrevEmployment"]);
+                        user.JobRole = Convert.ToString(dr["JobRoleName"]);
+                        user.Department = Convert.ToString(dr["DepartmentName"]);
+                        user.EmailAddress= Convert.ToString(dr["EmailAddress"]);
+                        //user.PasswordHash = Convert.ToString(dr["PasswordHash"]);
+                        // user.Salt = Convert.ToString(dr["Salt"]);
+                        // user.Address = Convert.ToString(dr["Address"]);
+                        //user.BankInfo = Convert.ToString(dr["BankInfo"]);
+                        //user.DOB = Convert.ToDateTime(dr["DOB"]);
+                        //user.SSN = Convert.ToString(dr["SSN"]);
+                        //user.Education = Convert.ToString(dr["Education"]);
+                        //user.PrevEmployment = Convert.ToString(dr["PrevEmployment"]);
                     }
                     cmd.Parameters.Clear();
                     cmd.Dispose();
@@ -64,25 +66,25 @@ namespace DeCKR_WebAPI.Models
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
                 {
                     conn.Open();
-                    string sqlStr = "GetAllUsers";
+                    string sqlStr = "GetUser";
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                      SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
                     while (dr.Read())
                     {
                         user = new UserModel();
-                        user.UserId = Convert.ToString(dr["UserID"]);
+                        user.EmployeeID = Convert.ToInt32(dr["EmployeeID"]);
                         user.Name = Convert.ToString(dr["Name"]);
-                        user.PasswordHash = Convert.ToString(dr["PasswordHash"]);
-                        user.Salt = Convert.ToString(dr["Salt"]);
-                        user.JobTitle = Convert.ToString(dr["JobTitle"]);
-                        user.DepartmentId = Convert.ToInt32(dr["DepartmentId"]);
-                        user.Address = Convert.ToString(dr["Address"]);
-                        user.BankInfo = Convert.ToString(dr["BankInfo"]);
-                        user.DOB = Convert.ToDateTime(dr["DOB"]);
-                        user.SSN = Convert.ToString(dr["SSN"]);
-                        user.Education = Convert.ToString(dr["Education"]);
-                        user.PrevEmployment = Convert.ToString(dr["PrevEmployment"]);
+                        user.JobRole = Convert.ToString(dr["JobRoleName"]);
+                        user.Department = Convert.ToString(dr["DepartmentName"]);
+                        user.EmailAddress = Convert.ToString(dr["EmailAddress"]);
+                        // user.PasswordHash = Convert.ToString(dr["PasswordHash"]);
+                        //user.Salt = Convert.ToString(dr["Salt"]);
+                        //user.BankInfo = Convert.ToString(dr["BankInfo"]);
+                        //user.DOB = Convert.ToDateTime(dr["DOB"]);
+                        //user.SSN = Convert.ToString(dr["SSN"]);
+                        //user.Education = Convert.ToString(dr["Education"]);
+                        //user.PrevEmployment = Convert.ToString(dr["PrevEmployment"]);
                         users.Add(user);
                     }
                     cmd.Parameters.Clear();
@@ -93,6 +95,7 @@ namespace DeCKR_WebAPI.Models
             {
                 throw ex;
             }
+
             return users;
         }
 
@@ -204,16 +207,18 @@ namespace DeCKR_WebAPI.Models
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
                 {
                     conn.Open();
-                    string sqlStr = "GetAllContracts";
+                    string sqlStr = "GetContract";
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
                     while (dr.Read())
                     {
                         contract = new ContractModel();
-                        contract.Id = Convert.ToInt32(dr["Id"]);
-                        contract.Name = Convert.ToString(dr["Name"]);
-                   
+                        contract.Id = Convert.ToInt32(dr["ContractID"]);
+                        contract.Name = Convert.ToString(dr["ContractName"]);
+                        contract.ThumbnailURL = Convert.ToString(dr["ThumbnailURL"]);
+                        contract.ContentURL = Convert.ToString(dr["ContentURL"]);
+
                         contracts.Add(contract);
                     }
                     cmd.Parameters.Clear();
@@ -226,6 +231,38 @@ namespace DeCKR_WebAPI.Models
             }
 
             return contracts;
+        }
+
+        public ContractModel GetContract(int contractId)
+        {
+            //List<ContractModel> contracts = new List<ContractModel>();
+            ContractModel contract =new ContractModel(); ;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetContract";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        contract.Id = Convert.ToInt32(dr["ContractID"]);
+                        contract.Name = Convert.ToString(dr["ContractName"]);
+                        contract.ThumbnailURL = Convert.ToString(dr["ThumbnailURL"]);
+                        contract.ContentURL = Convert.ToString(dr["ContentURL"]);                        
+                    }
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return contract;
         }
 
         public List<DepartmentModel> GetDepartments()
@@ -334,7 +371,7 @@ namespace DeCKR_WebAPI.Models
             return trainings;
         }
 
-        public List<ContractModel> GetUserContracts(string userId)
+        public List<ContractModel> GetUserContracts(int EmployeeId)
         {
             List<ContractModel> contracts = new List<ContractModel>();
             ContractModel contract;
@@ -347,15 +384,54 @@ namespace DeCKR_WebAPI.Models
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Clear();
-                    cmd.Parameters.Add(new SqlParameter("@UserId", userId));
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeID", EmployeeId));
                     SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
                     while (dr.Read())
                     {
                         contract = new ContractModel();
                         contract.Id = Convert.ToInt32(dr["ContractId"]);
-                        contract.Name = Convert.ToString(dr["Name"]);
-                       if(!dr.IsDBNull(dr.GetOrdinal("Date")))  contract.Date = Convert.ToDateTime(dr["Date"]);
+                        contract.Name = Convert.ToString(dr["ContractName"]);
+                        contract.ThumbnailURL = Convert.ToString(dr["ThumbnailURL"]);
+                        contract.ContentURL = Convert.ToString(dr["ContentURL"]);
+                        if (!dr.IsDBNull(dr.GetOrdinal("Date")))  contract.Date = Convert.ToDateTime(dr["Date"]);
                        
+                        contracts.Add(contract);
+                    }
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return contracts;
+        }
+
+        public List<ContractModel> GetDefaultContracts(int EmployeeId)
+        {
+            List<ContractModel> contracts = new List<ContractModel>();
+            ContractModel contract;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetDefaultContracts";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeID", EmployeeId));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        contract = new ContractModel();
+                        contract.Id = Convert.ToInt32(dr["ContractId"]);
+                        contract.Name = Convert.ToString(dr["ContractName"]);
+                        contract.ThumbnailURL = Convert.ToString(dr["ThumbnailURL"]);
+                        contract.ContentURL = Convert.ToString(dr["ContentURL"]);
+                        
                         contracts.Add(contract);
                     }
                     cmd.Parameters.Clear();
@@ -493,5 +569,19 @@ namespace DeCKR_WebAPI.Models
 
             return result;
         }
-    }  
+    }
+
+    //public class FakeDomainModel : IDomainModel
+    //{
+    //    private List<UserModel> _userModels = new List<UserModel>() { new UserModel { EmployeeID = "1", Name = "krishna" }, new UserModel() { EmployeeID = "2", Name = "nish" } };
+    //    public UserModel GetUser(string userId)
+    //    {
+    //        return _userModels.FirstOrDefault(d => d.EmployeeID == userId);
+    //    }
+    //}
+
+    //public interface IDomainModel
+    //{
+    //    UserModel GetUser(string userId);
+    //}
 }

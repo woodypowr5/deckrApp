@@ -16,6 +16,24 @@ namespace DeCKR_WebAPI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "SingleContract",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+                );
+
+            config.Routes.MapHttpRoute(
+            name: "UserContracts",
+            routeTemplate: "api/{controller}/{action}/{employeeId}",
+            defaults: new { id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+            name: "DefaultContracts",
+            routeTemplate: "api/{controller}/{action}/{employeeId}",
+            defaults: new { id = RouteParameter.Optional }
+            );
         }
     }
 }

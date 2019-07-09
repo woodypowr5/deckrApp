@@ -13,24 +13,36 @@ using System.Web.Http.Cors;
 
 namespace DeCKR_WebAPI.Controllers
 {
+    /// <summary>
+    /// user controller class
+    /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
-    //[EnableCors(origins: "http://deckr1.gearhostpreview.com", headers: "*", methods: "*")]
-    public class UserController : ApiController
+     public class UserController : ApiController
     {
         DomainModel model = new DomainModel(); 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<UserModel> Get()
         {
             return model.GetUsers().ToList<UserModel>();
         }
-        public UserModel Get(string Id)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public UserModel Get(int Id)
         {
             return model.GetUser(Id);
         }
 
-        public void Post(string Id, string passwordHash, string salt)
-        {
-            bool result= model.SetPassword(Id, passwordHash, salt);
-        }
-    
+        //public void Post(string Id, string passwordHash, string salt)
+        //{
+        //    bool result = model.SetUser(Id, passwordHash, salt);
+        //}
+
     }
 }
