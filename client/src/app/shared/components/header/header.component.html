@@ -1,27 +1,27 @@
 <mat-toolbar color="primary">
     <div>
-      <a class="logo" routerLink="/">
+      <a class="logo" routerLink="/home">
         DeCKR
       </a>
     </div>
-    <div class="navlinks-container" fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
-      <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-        <li *ngIf="!(isAuth)">
+    <div class="navlinks-container">
+      <ul class="navigation-items">
+        <!-- <li>
           <a (click)="setActiveRoute('register')" routerLink="/register" [ngClass]="{'active': activeRoute === 'register'}">Register</a>
         </li>
-        <li *ngIf="!(isAuth)">
+        <li>
           <a (click)="setActiveRoute('login')" [ngClass]="{'active': activeRoute === 'login'}" routerLink="/login">Login</a>
+        </li> -->
+        <li>
+          <a (click)="setActiveRoute('training')" [ngClass]="{'active': activeRoute === 'training'}" routerLink="/training">Training</a>
         </li>
-        <li *ngIf="isAuth">
-          <a (click)="setActiveRoute('plan')" [ngClass]="{'active': activeRoute === 'plan'}" routerLink="/plan">Plan</a>
+        <li>
+          <a (click)="setActiveRoute('securitygroups')" [ngClass]="{'active': activeRoute === 'securitygroups'}" routerLink="/securitygroups">Groups</a>
         </li>
-        <li *ngIf="isAuth">
-          <a (click)="setActiveRoute('tracking')" [ngClass]="{'active': activeRoute === 'tracking'}" routerLink="/tracking">Today</a>
+        <li>
+          <a (click)="setActiveRoute('contracts')" [ngClass]="{'active': activeRoute === 'contracts'}" routerLink="/contracts">Contracts</a>
         </li>
-        <li  *ngIf="isAuth">
-          <a (click)="setActiveRoute('trends')" [ngClass]="{'active': activeRoute === 'trends'}" routerLink="/trends" >Trends</a>
-        </li>
-        <li *ngIf="isAuth">
+        <li>
           <a style="cursor: pointer" (click)="onLogout()">Logout</a>
         </li>
       </ul>

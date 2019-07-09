@@ -9,6 +9,7 @@ import { TrainingModule } from './modules/training/training.module';
 import { ContractsModule } from './modules/contracts/contracts.module';
 import { SecurityGroupsModule } from './modules/security-groups/security-groups.module';
 import { SharedModule } from './shared/modules/shared.module';
+import { HomeModule } from './modules/home/home.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SharedModule } from './shared/modules/shared.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    AuthModule,
+	AuthModule,
+	HomeModule,
     TrainingModule,
     ContractsModule, 
     SecurityGroupsModule

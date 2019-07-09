@@ -1,0 +1,13 @@
+::ng-deep .mat-card-header-text{
+	width: 100%;
+	text-align: center;
+}
+
+.image-wrapper{
+	padding: 30px;
+}
+
+mat-card-actions > .mat-button{
+	display: block;
+	margin: 0 auto;
+}

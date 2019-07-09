@@ -1,0 +1,26 @@
+
+<mat-card>
+	<mat-card-title>
+		Update Training Progress
+	</mat-card-title>
+
+	<p>
+		Select your current progress on the following training:
+	</p>
+
+	<h2> {{ training.name }}</h2>
+
+	<mat-slider 
+		min="0" 
+		max="100" 
+		step="10"
+		tickInterval="10"
+		thumbLabel  
+		[(ngModel)]="sliderValue">
+	</mat-slider>
+	
+	<h3>{{ sliderValue }} % complete</h3>
+
+	<button mat-button (click)="confirm()">Confirm</button>
+	<button mat-button matDialogClose>Cancel</button>
+</mat-card>

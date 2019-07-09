@@ -1,0 +1,14 @@
+<mat-card>
+	<mat-card-title>
+		Confirm Training Completion
+	</mat-card-title>
+	<p>
+		By clicking confirm, you certify that you have completed the followg training:
+	</p>
+	<h2> {{ training.name }}</h2>
+	<mat-card-subtitle>
+		Are you sure you want to continue?
+	</mat-card-subtitle>
+	<button mat-button (click)="confirm()">Confirm</button>
+	<button mat-button matDialogClose>Cancel</button>
+</mat-card>

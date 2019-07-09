@@ -1,0 +1,19 @@
+<mat-card>
+	<mat-card-title>
+		{{ securityGroup.name }}
+	</mat-card-title>
+	<h2> {{ securityGroup.description }}</h2>
+	<mat-card-subtitle>
+		{{ securityGroup.iconName }}
+	</mat-card-subtitle>
+	<p *ngIf="pending === true">
+		pending administrator approval... 
+	</p>
+	<button 
+		mat-button 
+		*ngIf="pending === false && approved === false"
+		(click)="raiseAccessRequest()"
+	>
+		Raise Access Request
+	</button>
+</mat-card> 
