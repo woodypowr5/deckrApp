@@ -1,21 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Training } from 'src/app/shared/types/training.interface';
 import { BehaviorSubject } from 'rxjs';
-import { Fixtures } from 'src/app/shared/data/fixtures';
 import { TrainingStatus } from 'src/app/shared/types/training-status';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class TrainingService {
+	private url = 'api/trainings';
 	private trainings: Training[];
 	trainingsChanged: BehaviorSubject<Training[]> = new BehaviorSubject([]); 
 
-  	constructor() { 
+  	constructor(private http: HttpClient) { 
 		this.trainingsChanged.subscribe( (trainings: Training[]) => {
 			this.trainings = trainings;
 		});
-		this.trainingsChanged.next(Fixtures.trainings);
+		this.getTrainings();
+	}
+
+	getTrainings(): void {
+		this.http.get(this.url).subscribe((trainings: Training[]) => {
+			this.trainingsChanged.next(trainings);
+		});
 	}
 
 	completeTraining(trainingId: number): void {

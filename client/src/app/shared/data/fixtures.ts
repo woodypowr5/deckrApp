@@ -1,6 +1,5 @@
 import { TrainingStatus } from '../types/training-status';
 
-
 export const Fixtures = {
     user: {
 		id: 1,
@@ -56,38 +55,56 @@ export const Fixtures = {
     securityGroups: [
         {
             id: 1,
-            name: 'Security Group 1',
-            iconName: "test",
+            name: 'Webmaster',
+            iconName: "web",
             desciption: 'i\'m a sweet icon'       
         },
         {
             id: 2,
-            name: 'Security Group 2',
-            iconName: "test",
+            name: 'Personnel Records',
+            iconName: "recent_actors",
             desciption: 'i\'m a sweet icon'        
         },
         {
             id: 3,
-            name: 'Security Group 3',
-            iconName: "test",
+            name: 'Cryptographpics',
+            iconName: "vpn_key",
             desciption: 'i\'m a sweet icon'        
         },
         {
             id: 4,
-            name: 'Security Group 4',
-            iconName: "test",
+            name: "Remote Access Administrator",
+            iconName: "rss_feed",
             desciption: 'i\'m a sweet icon'        
 		},
 		{
             id: 5,
-            name: 'Security Group 5',
-            iconName: "test",
+            name: 'Email Administrator',
+            iconName: "mail_outline",
             desciption: 'i\'m a sweet icon'        
 		},
 		{
             id: 6,
-            name: 'Security Group 6',
-            iconName: "test",
+            name: 'Cloud Storage Manager',
+            iconName: "archive",
+            desciption: 'i\'m a sweet icon'        
+		},
+		{
+            id: 7,
+            name: 'Computer Equipment Manager',
+            iconName: "devices",
+            desciption: 'i\'m a sweet icon'        
+		},
+		{
+            id: 8,
+            name: 'Network Infrastructure Manager',
+            iconName: "router",
+            desciption: 'i\'m a sweet icon'        
+		},
+		{
+            id: 9,
+            name: 'Operating System Security Manager',
+            iconName: "security",
             desciption: 'i\'m a sweet icon'        
         }
 	],

@@ -1,19 +1,26 @@
 <mat-card>
-	<mat-card-title>
+	<mat-card-title class="name">
 		{{ securityGroup.name }}
 	</mat-card-title>
-	<h2> {{ securityGroup.description }}</h2>
-	<mat-card-subtitle>
-		{{ securityGroup.iconName }}
-	</mat-card-subtitle>
-	<p *ngIf="pending === true">
-		pending administrator approval... 
-	</p>
-	<button 
-		mat-button 
-		*ngIf="pending === false && approved === false"
-		(click)="raiseAccessRequest()"
-	>
-		Raise Access Request
-	</button>
-</mat-card> 
+	<div class="icon-wrapper">
+		<mat-icon aria-hidden="false" aria-label="Example home icon">{{ securityGroup.iconName }}</mat-icon>
+	</div>	
+	<mat-card-content class="description">
+		<p>
+			{{ securityGroup.name }}
+		</p>
+	</mat-card-content>
+	<mat-card-actions>
+		<button 
+			mat-button
+			mat-raised-button 
+			*ngIf="pending === false && approved === false"
+			(click)="raiseAccessRequest()"
+		>
+			Request Access
+		</button>
+		<div *ngIf="pending" class="waiting-message">
+			awaiting admin approval...
+		</div>
+	</mat-card-actions>
+</mat-card>

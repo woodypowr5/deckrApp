@@ -1,0 +1,58 @@
+:host{
+	margin-bottom: 20px;
+}
+
+mat-card{
+	height: 220px;
+	width: 220px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: center;
+	margin: 0 auto;
+}
+
+mat-card-title.name{
+	font-size: 1em;
+	height: 40px;
+	overflow: hidden;
+}
+
+.icon-wrapper{
+	padding: 10px;
+	margin: 0 auto;
+}
+
+mat-icon{
+	width: 100%;
+	text-align: center;
+	font-size: 3em;
+}
+
+::ng-deep .mat-card-header-text{
+	width: 100%;
+	text-align: center;
+}
+
+.image-wrapper{
+	padding: 30px;
+}
+
+mat-card-content.description{
+	height: 15px;
+}
+
+mat-card-actions > .mat-button{
+	display: block;
+	margin: 0 auto;
+}
+
+.waiting-message{
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	font-size: 0.8em;
+	width: calc(100% - 20px);
+	text-align: center;
+	color: green;
+}

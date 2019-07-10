@@ -10,6 +10,10 @@ import { ContractsModule } from './modules/contracts/contracts.module';
 import { SecurityGroupsModule } from './modules/security-groups/security-groups.module';
 import { SharedModule } from './shared/modules/shared.module';
 import { HomeModule } from './modules/home/home.module';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { WebApiService } from './shared/services/web-api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,10 @@ import { HomeModule } from './modules/home/home.module';
 	HomeModule,
     TrainingModule,
     ContractsModule, 
-    SecurityGroupsModule
+	SecurityGroupsModule,
+	PdfViewerModule,
+	HttpClientModule,
+	HttpClientInMemoryWebApiModule.forRoot(WebApiService, { dataEncapsulation: false })
   ],
   providers: [],
   bootstrap: [AppComponent]

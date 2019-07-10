@@ -1,14 +1,23 @@
 <mat-card>
 	<mat-card-title>
-		Confirm Sign Contract
+		<span>viewing:</span> {{ contract.name }}
 	</mat-card-title>
-	<p>
-		By clicking sign, you agree with the stuff in:
-	</p>
-	<h2> {{ contract.name }}</h2>
-	<mat-card-subtitle>
-		Are you sure you want to continue?
-	</mat-card-subtitle>
-	<button mat-button (click)="sign()">Sign</button>
-	<button mat-button matDialogClose>Cancel</button>
+
+	<mat-card-content>
+		<pdf-viewer [src]="pdfSrc" 
+					[render-text]="true"
+				
+		></pdf-viewer>
+	</mat-card-content>	
+	<mat-card-actions>
+		<p>
+			By clicking <i>sign</i>, you agree to abide by the policies set forth in the above contract and agree to be bound by all of it's terms
+		</p>
+		<mat-card-subtitle>
+			Are you sure you want to continue?
+		</mat-card-subtitle>
+		<button mat-button mat-raised-button (click)="sign()">Sign</button>
+		<button mat-button matDialogClose>Cancel</button>
+	</mat-card-actions>	
 </mat-card>
+

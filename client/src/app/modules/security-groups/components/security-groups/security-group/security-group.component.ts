@@ -27,7 +27,6 @@ export class SecurityGroupComponent implements OnInit {
 	}
 
 	raiseAccessRequest() {
-	
 		this.accessRequestDialogRef = this.dialog.open(AccessRequestComponent, {
 			data: this.securityGroup,
 			scrollStrategy: this.overlay.scrollStrategies.noop()
@@ -37,5 +36,4 @@ export class SecurityGroupComponent implements OnInit {
 			this.securityGroupsService.raiseAccessRequest(this.securityGroup);
 		});
 	}
-
 }

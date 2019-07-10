@@ -1,0 +1,27 @@
+@import '../../../../../../styles/typography/typography';
+
+mat-card{
+	height: 90vh !important;
+	position: relative;
+}
+
+mat-card-title{
+	margin-bottom: 20px;
+
+	span{
+		font-size: 0.8em;
+		color: #666;
+	}
+}
+
+mat-card-content{
+	height: 60vh;
+	overflow-y: scroll;
+	border: 2px dashed #CCC;
+	padding: 20px;
+}
+
+mat-card-actions{
+	text-align: center;
+	padding: 10px 10% 0 10%;
+}

@@ -11,14 +11,14 @@ export class ProgressIndicatorComponent implements OnInit {
 	view: any[] = [200, 200];
 	data: any;
 	colorScheme = {
-	domain: ['#5AA454', '#A10A28', '#C7B42C']
+		domain: ['#5AA454', '#A10A28', '#C7B42C']
 	};
 
 	constructor() { }
 
 	ngOnInit() {
 		this.data = [{
-			name: "stuff",
+			name: "",
 			value: this.complete / this.total * 100
 		}];
 	}

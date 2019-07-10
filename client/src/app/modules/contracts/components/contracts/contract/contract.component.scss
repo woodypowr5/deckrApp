@@ -11,3 +11,7 @@ mat-card-actions > .mat-button{
 	display: block;
 	margin: 0 auto;
 }
+
+::ng-deep button > span > span{
+	vertical-align: baseline !important;
+}

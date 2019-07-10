@@ -1,0 +1,61 @@
+.security-groups {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.security-group-wrapper{
+	width: 135px;
+}
+
+mat-card{
+	height: 120px;
+	width: 120px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+mat-card-title.name{
+	font-size: 0.8em;
+	height: 40px;
+	overflow: hidden;
+}
+
+.icon-wrapper{
+	padding: 0px;
+	margin: 0 auto;
+}
+
+mat-icon{
+	width: 100%;
+	text-align: center;
+	font-size: 3em;
+}
+
+::ng-deep .mat-card-header-text{
+	width: 100%;
+	text-align: center;
+}
+
+
+mat-card-content.description{
+	height: 15px;
+}
+
+mat-card-actions > .mat-button{
+	display: block;
+	margin: 0 auto;
+}
+
+.waiting-message{
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	font-size: 0.8em;
+	width: calc(100% - 20px);
+	text-align: center;
+	color: green;
+}
+
