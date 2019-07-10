@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeCKR_WebAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -18,5 +19,30 @@ namespace DeCKR_WebAPI.Controllers
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
     public class AdminHomeController : ApiController
     {
+
+        /// <summary>
+        /// object for the domain model class
+        /// </summary>
+        DomainModel model = new DomainModel();
+
+        //Gets all users progress 
+        public List<AdminProgressModel> Get()
+        {
+            return model.GetUsersProgress().ToList();
+        }
+
+        //Gets progress for a department
+        [ActionName("DepartmentProgress")]
+        public List<AdminProgressModel> GetDepartmentProgress(int departmentID)
+        {
+            return model.GetDepartmentProgress(departmentID).ToList();
+        }
+
+        //Gets a single user progress
+        [ActionName("SingleUserProgress")]
+        public AdminProgressModel GetTrainingProgress(int EmployeeID)
+        {
+            return model.GetUserProgress(EmployeeID);
+        }       
     }
 }

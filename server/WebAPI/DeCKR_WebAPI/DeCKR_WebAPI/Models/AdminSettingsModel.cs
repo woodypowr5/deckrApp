@@ -14,5 +14,15 @@ namespace DeCKR_WebAPI.Models
 {
     public class AdminSettingsModel
     {
+
+        public int SettingID { get; set; }
+
+        public string SettingName { get; set; }
+
+        public string SettingDescription { get; set; }
+
+        public int SettingValue { get; set; }
+
+        public int ModuleID { get; set; }
     }
 }

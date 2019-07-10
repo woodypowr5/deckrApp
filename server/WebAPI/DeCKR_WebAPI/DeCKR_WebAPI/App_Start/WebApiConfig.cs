@@ -53,7 +53,6 @@ namespace DeCKR_WebAPI
               defaults: new { id = RouteParameter.Optional }
               );
 
-
             config.Routes.MapHttpRoute(
                  name: "SingleUser",
                  routeTemplate: "api/{controller}/{action}/{id}",
@@ -65,6 +64,48 @@ namespace DeCKR_WebAPI
               routeTemplate: "api/{controller}/{action}/{employeeId}",
               defaults: new { id = RouteParameter.Optional }
               );
+
+
+                    config.Routes.MapHttpRoute(
+                   name: "SecurityProgress",
+                   routeTemplate: "api/{controller}/{action}/{employeeId}",
+                   defaults: new { id = RouteParameter.Optional }
+                   );
+
+                    config.Routes.MapHttpRoute(
+                   name: "TrainingProgress",
+                   routeTemplate: "api/{controller}/{action}/{employeeId}",
+                   defaults: new { id = RouteParameter.Optional }
+                   );
+
+                    config.Routes.MapHttpRoute(
+                   name: "ContractProgress",
+                   routeTemplate: "api/{controller}/{action}/{employeeId}",
+                   defaults: new { id = RouteParameter.Optional }
+                   );
+
+                    config.Routes.MapHttpRoute(
+                   name: "DepartmentProgress",
+                   routeTemplate: "api/{controller}/{action}/{employeeId}",
+                   defaults: new { id = RouteParameter.Optional }
+                   );
+                    config.Routes.MapHttpRoute(
+                   name: "SingleUserProgress",
+                   routeTemplate: "api/{controller}/{action}/{employeeId}",
+                   defaults: new { id = RouteParameter.Optional }
+                   );
+
+                    config.Routes.MapHttpRoute(
+                   name: "UserSettings",
+                   routeTemplate: "api/{controller}/{action}/{employeeId}",
+                   defaults: new { id = RouteParameter.Optional }
+                   );
+
+                    config.Routes.MapHttpRoute(
+                   name: "DepartmentSettings",
+                   routeTemplate: "api/{controller}/{action}/{employeeId}",
+                   defaults: new { id = RouteParameter.Optional }
+                   );
         }
     }
 }

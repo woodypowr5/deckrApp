@@ -16,5 +16,36 @@ namespace DeCKR_WebAPI.Controllers
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
     public class UserHomeController : ApiController
     {
+        /// <summary>
+        /// object for the domain model class
+        /// </summary>
+        DomainModel model = new DomainModel();
+
+        //Gets all Modules Data for the user
+        public List<ModuleProgressModel> Get()
+        {
+            return model.GetModulesProgress().ToList();
+        }
+
+        //Gets Security Groups Progress for the user
+        [ActionName("SecurityProgress")]
+        public ModuleProgressModel GetSecurityProgress()
+        {
+            return model.GetSecurityProgress();
+        }
+
+        //Gets Trainings Progress for the user
+        [ActionName("TrainingProgress")]
+        public ModuleProgressModel GetTrainingProgress()
+        {
+            return model.GetTrainingProgress();
+        }
+
+        //Gets Contracts Progress for the user
+        [ActionName("ContractProgress")]
+        public ModuleProgressModel GetContractProgress()
+        {
+            return model.GetContractProgress();
+        }
     }
 }

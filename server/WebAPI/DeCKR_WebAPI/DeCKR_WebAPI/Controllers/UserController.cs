@@ -21,9 +21,9 @@ namespace DeCKR_WebAPI.Controllers
     {
         DomainModel model = new DomainModel(); 
         /// <summary>
-        /// 
+        /// Returns all users
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of UserModel objects</returns>
         public List<UserModel> Get()
         {
             return model.GetUsers().ToList();
@@ -51,10 +51,18 @@ namespace DeCKR_WebAPI.Controllers
             return model.GetDepartmentUsers(departmentID).ToList();
         }
 
-        //public void Post(string Id, string passwordHash, string salt)
-        //{
-        //    bool result = model.SetUser(Id, passwordHash, salt);
-        //}
-
+        /// <summary>
+        /// Register a user
+        /// </summary>
+        /// <param name="name">Name of the user</param>
+        /// <param name="emailaddress">Email Address of the user</param>
+        /// <param name="jobRole">Job Role of the user</param>
+        /// <param name="password">Password of the user</param>
+        /// <returns>Status of the user registration</returns>
+        [HttpPost]
+        public int RegisterUser(string name,  string emailaddress, string jobRole, string password)
+        {
+            return model.RegisterUser(name, emailaddress, jobRole, password);
+        }
     }
 }

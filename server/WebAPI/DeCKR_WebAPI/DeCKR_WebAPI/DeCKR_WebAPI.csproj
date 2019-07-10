@@ -238,15 +238,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AdminHomeModel.cs" />
     <Compile Include="Models\AdminSettingsModel.cs" />
     <Compile Include="Models\ContractModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\DomainModel.cs" />
     <Compile Include="Models\JobRoleModel.cs" />
+    <Compile Include="Models\ModuleProgressModel.cs" />
     <Compile Include="Models\SecurityGroupModel.cs" />
     <Compile Include="Models\TrainingModel.cs" />
-    <Compile Include="Models\UserHomeModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
