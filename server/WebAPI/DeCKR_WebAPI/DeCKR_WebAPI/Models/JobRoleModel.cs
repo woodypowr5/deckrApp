@@ -7,21 +7,9 @@
 
 namespace DeCKR_WebAPI.Models
 {
-    public class SecurityGroupModel
+    public class JobRoleModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
-        public string Description { get; set; }
-
-        public string iconName { get; set; }
-    }
-
-    public class UserSecurityGroupModel
-    {
-        public string Status { get; set; }
-
-        public SecurityGroupModel SecurityGroup { get; set; }
-
     }
 }

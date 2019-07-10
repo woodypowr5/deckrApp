@@ -24,20 +24,32 @@ namespace DeCKR_WebAPI.Controllers
         /// <summary>
         /// Get all trainings
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Trainings List</returns>
         public List<TrainingModel> Get()
         {
-            return model.GetTrainings().ToList<TrainingModel>();
+            return model.GetTrainings().ToList();
         }
 
         /// <summary>
-        /// Get Training
+        /// Returns a training
         /// </summary>
-        /// <param name="Id">EmployeeId</param>
-        /// <returns>Training Class object</returns>
-        public List<TrainingModel> Get(string Id)
+        /// <param name="Id">trainingid</param>
+        /// <returns>single training</returns>
+        [ActionName("SingleTraining")]
+        public TrainingModel GetTraining(int Id)
         {
-            return model.GetUserTrainings(Id).ToList<TrainingModel>();
+            return model.GetTraining(Id);
+        }
+
+        /// <summary>
+        /// Returns user trainings
+        /// </summary>
+        /// <param name="employeeID">employee ID</param>
+        /// <returns>list of user trainings</returns>
+        [ActionName("UserTrainings")]
+        public List<UserTrainingModel> Get(int employeeID)
+        {
+            return model.GetUserTrainings(employeeID).ToList();
         }
 
         /// <summary>
@@ -48,9 +60,9 @@ namespace DeCKR_WebAPI.Controllers
         /// <param name="status"></param>
         /// <param name="completion"></param>
         [HttpPost]
-        public void Post(string Id, int trainingId, string status, int completion)
+        public void Post(int employeeID, int trainingId, string status, int progress)
         {
-            bool result = model.SetTrainingStatus(Id, trainingId,status, completion);
+            bool result = model.SetTrainingStatus(employeeID, trainingId,status, progress);
         }
     }
 }

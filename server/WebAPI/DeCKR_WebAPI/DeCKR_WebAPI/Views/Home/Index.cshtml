@@ -1,31 +1,44 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@*/*****************************************************
+    * Project Name: DeCKR                                *
+    * Date: 07/09/2019                                   *
+    * Course: CSC 687 - Computer Science Project II      *
+    * Instructor: Mudasser Wyne                           *
+    ******************************************************/*@
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    <h1>API Home</h1>
 
+</div>
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <h2>User</h2>
+        <p>All Users - <a href="http://~/api/user" target="_blank">//api/user</a></p>
+        <p>Get User Info - <a href="http://~/api/user/user1" target="_blank">//api/user/user1</a> </p>
+        <p>Set Password  - <a href="http://~/api/user/post?Id=user1&passwordHash=passwordHash1&salt=salt1" target="_blank">//api/user/post?Id=user1&passwordHash=passwordHash1&salt=salt1</a> </p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Department</h2>
+        <p>All Departments  - <a href="http://~/api/department" target="_blank">//api/department</a> </p>
+
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Contract</h2>
+        <p>All Contracts  - <a href="http://~/api/contract" target="_blank">//api/contract</a> </p>
+        <p>Get User Contracts  - <a href="http://~/api/contract/user1" target="_blank">//api/contract/user1</a>  </p>
+        <p>Sign/Unsign Contract  - <a href="http://~/api/contract/post?Id=user1&contractId=1&sign=true" target="_blank">//api/contract/post?Id=user1&contractId=1&sign=true</a> </p>
+
+    </div>
+    <div class="col-md-4">
+        <h2>Security Group</h2>
+        <p>All Security Groups - <a href="http://~/api/SecurityGroup" target="_blank">//api/SecurityGroup</a>  </p>
+        <p>Get User Security Groups - <a href="http://~/api/SecurityGroup/user1" target="_blank">//api/SecurityGroup/user1</a>  </p>
+        <p>Set Security Group  - <a href="http://~/api/SecurityGroup/post?departmentId=1&securityId=1" target="_blank">//api/SecurityGroup/post?departmentId=1&securityId=1</a> </p>
+
+    </div>
+    <div class="col-md-4">
+        <h2>Training</h2>
+        <p>All Trainings  - <a href="http://~/api/Training" target="_blank">//api/Training</a> </p>
+        <p>Get User Trainings - <a href="http://~/api/Training/user1" target="_blank">//api/Training/user1</a>  </p>
+        <p>Set Training Status  - <a href="http://~/api/training/post?Id=user1&trainingId=1&status=Current&completion=10" target="_blank">//api/training/post?Id=user1&trainingId=1&status=Current&completion=10</a> </p>
     </div>
 </div>

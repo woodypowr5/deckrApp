@@ -29,7 +29,7 @@ namespace DeCKR_WebAPI.Controllers
         /// <returns></returns>
         public List<ContractModel> Get()
         {
-            return model.GetContracts().ToList<ContractModel>();
+            return model.GetContracts().ToList();
         }
 
         /// <summary>
@@ -54,16 +54,16 @@ namespace DeCKR_WebAPI.Controllers
             return model.GetUserContracts(employeeId).ToList<ContractModel>();
         }
 
-        /// <summary>
-        /// Returns a contract
-        /// </summary>
-        /// <param name="employeeId">jobRoleId</param>
-        /// <returns>List of user Contracts</returns>
-        [ActionName("DefaultContracts")]
-        public List<ContractModel> GeDefaultContracts(int employeeId)
-        {
-            return model.GetDefaultContracts(employeeId).ToList<ContractModel>();
-        }
+        ///// <summary>
+        ///// Returns a contract
+        ///// </summary>
+        ///// <param name="employeeId">jobRoleId</param>
+        ///// <returns>List of user Contracts</returns>
+        //[ActionName("DefaultContracts")]
+        //public List<ContractModel> GeDefaultContracts(int employeeId)
+        //{
+        //    return model.GetDefaultContracts(employeeId).ToList<ContractModel>();
+        //}
 
         /// <summary>
         /// Update Contract object

@@ -26,17 +26,29 @@ namespace DeCKR_WebAPI.Controllers
         /// <returns></returns>
         public List<UserModel> Get()
         {
-            return model.GetUsers().ToList<UserModel>();
+            return model.GetUsers().ToList();
         }
 
         /// <summary>
-        /// 
+        /// returns a single user
         /// </summary>
-        /// <param name="Id"></param>
-        /// <returns></returns>
+        /// <param name="Id">EmployeeID</param>
+        /// <returns>single user</returns>
+        [ActionName("SingleUser")]
         public UserModel Get(int Id)
         {
             return model.GetUser(Id);
+        }
+
+        /// <summary>
+        /// returns user in a department
+        /// </summary>
+        /// <param name="Id">EmployeeID</param>
+        /// <returns>single user</returns>
+        [ActionName("DepartmentUsers")]
+        public List<UserModel> GetDepartmentUsers(int departmentID)
+        {
+            return model.GetDepartmentUsers(departmentID).ToList();
         }
 
         //public void Post(string Id, string passwordHash, string salt)

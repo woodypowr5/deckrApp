@@ -99,6 +99,45 @@ namespace DeCKR_WebAPI.Models
             return users;
         }
 
+        public List<UserModel> GetDepartmentUsers(int departmentID)
+        {
+            List<UserModel> users = new List<UserModel>();
+            UserModel user;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetDepartmentUser";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@DepartmentID", departmentID));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        user = new UserModel();
+                        user.EmployeeID = Convert.ToInt32(dr["EmployeeID"]);
+                        user.Name = Convert.ToString(dr["Name"]);
+                        user.JobRole = Convert.ToString(dr["JobRoleName"]);
+                        user.Department = Convert.ToString(dr["DepartmentName"]);
+                        user.EmailAddress = Convert.ToString(dr["EmailAddress"]);
+                        
+                        users.Add(user);
+                    }
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return users;
+        }
+
+
         public bool SetPassword (string userId, string passwordHash, string salt)
         {
             bool result = false;
@@ -137,16 +176,17 @@ namespace DeCKR_WebAPI.Models
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
                 {
                     conn.Open();
-                    string sqlStr = "GetAllSecurityGroups";
+                    string sqlStr = "GetSecurityGroup";
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
                     while (dr.Read())
                     {
                         group = new SecurityGroupModel();
-                        group.Id= Convert.ToInt32(dr["Id"]);
-                        group.Name = Convert.ToString(dr["Name"]);
-                        group.Description = Convert.ToString(dr["Description"]);
+                        group.Id= Convert.ToInt32(dr["SecurityId"]);
+                        group.Name = Convert.ToString(dr["SecurityName"]);
+                        group.Description = Convert.ToString(dr["SecurityDescription"]);
+                        group.iconName= Convert.ToString(dr["IconName"]);
                         groups.Add(group);
                     }
                     cmd.Parameters.Clear();
@@ -161,6 +201,40 @@ namespace DeCKR_WebAPI.Models
             return groups;
         }
 
+        public SecurityGroupModel GetSecurityGroup(int securityID)
+        {
+            SecurityGroupModel group= new SecurityGroupModel(); ;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetSecurityGroup";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@SecurityID", securityID));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        group.Id = Convert.ToInt32(dr["SecurityId"]);
+                        group.Name = Convert.ToString(dr["SecurityName"]);
+                        group.Description = Convert.ToString(dr["SecurityDescription"]);
+                        group.iconName = Convert.ToString(dr["IconName"]);
+                        
+                    }
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return group;
+        }
+
         public List<TrainingModel> GetTrainings()
         {
             List<TrainingModel> trainings = new List<TrainingModel>();
@@ -170,20 +244,19 @@ namespace DeCKR_WebAPI.Models
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
                 {
                     conn.Open();
-                    string sqlStr = "GetAllTrainings";
+                    string sqlStr = "GetTraining";
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
                     while (dr.Read())
                     {
                         training = new TrainingModel();
-                        training.Id = Convert.ToInt32(dr["Id"]);
+                        training.Id = Convert.ToInt32(dr["TrainingID"]);
                         training.Name = Convert.ToString(dr["Name"]);
-                        training.Location = Convert.ToString(dr["Location"]);
+                        training.Description = Convert.ToString(dr["Description"]);
                         training.Duration = Convert.ToInt32(dr["Duration"]);
-                        training.Time = Convert.ToDateTime(dr["Time"]);
-                        training.Status = "";
-                        training.CompletionPercentage = 0;
+                        training.DueDate = Convert.ToDateTime(dr["DueDate"]);
+                        training.TrainingURL = Convert.ToString(dr["TrainingURL"]); 
                         trainings.Add(training);
                     }
                     cmd.Parameters.Clear();
@@ -196,6 +269,43 @@ namespace DeCKR_WebAPI.Models
             }
 
             return trainings;
+        }
+
+        public TrainingModel GetTraining(int trainingID)
+        {
+            TrainingModel training = new TrainingModel();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetTraining";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@TrainingID", trainingID));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                       
+                        training.Id = Convert.ToInt32(dr["TrainingID"]);
+                        training.Name = Convert.ToString(dr["Name"]);
+                        training.Description = Convert.ToString(dr["Description"]);
+                        training.Duration = Convert.ToInt32(dr["Duration"]);
+                        training.DueDate = Convert.ToDateTime(dr["DueDate"]);
+                        training.TrainingURL = Convert.ToString(dr["TrainingURL"]); 
+                        
+                    }
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return training;
         }
 
         public List<ContractModel> GetContracts()
@@ -235,7 +345,6 @@ namespace DeCKR_WebAPI.Models
 
         public ContractModel GetContract(int contractId)
         {
-            //List<ContractModel> contracts = new List<ContractModel>();
             ContractModel contract =new ContractModel(); ;
             try
             {
@@ -245,6 +354,8 @@ namespace DeCKR_WebAPI.Models
                     string sqlStr = "GetContract";
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@ContractID", contractId));
                     SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
                     while (dr.Read())
                     {
@@ -274,15 +385,15 @@ namespace DeCKR_WebAPI.Models
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
                 {
                     conn.Open();
-                    string sqlStr = "GetAllDepartments";
+                    string sqlStr = "GetDepartment";
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
                     while (dr.Read())
                     {
                         department = new DepartmentModel();
-                        department.Id = Convert.ToInt32(dr["Id"]);
-                        department.Name = Convert.ToString(dr["Name"]);
+                        department.Id = Convert.ToInt32(dr["DepartmentID"]);
+                        department.Name = Convert.ToString(dr["DepartmentName"]);
 
                         departments.Add(department);
                     }
@@ -296,7 +407,40 @@ namespace DeCKR_WebAPI.Models
             }
 
             return departments;
-        }   
+        }
+
+        public List<JobRoleModel> GetJobRoles()
+        {
+            List<JobRoleModel> jobRoles = new List<JobRoleModel>();
+            JobRoleModel jobRole;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetJobRole";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        jobRole = new JobRoleModel();
+                        jobRole.Id = Convert.ToInt32(dr["JobRoleID"]);
+                        jobRole.Name = Convert.ToString(dr["JobRoleName"]);
+
+                        jobRoles.Add(jobRole);
+                    }
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return jobRoles;
+        }
 
         public UserModel GetPassword(string userId)
         {
@@ -314,10 +458,10 @@ namespace DeCKR_WebAPI.Models
                     SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
                     while (dr.Read())
                     {
-                        user.UserId = Convert.ToString(dr["UserID"]);
+                        user.EmployeeID = Convert.ToInt32(dr["UserID"]);
                         user.Name = Convert.ToString(dr["Name"]);
-                        user.PasswordHash = Convert.ToString(dr["PasswordHash"]);
-                        user.Salt = Convert.ToString(dr["Salt"]);
+                       // user.PasswordHash = Convert.ToString(dr["PasswordHash"]);
+                       // user.Salt = Convert.ToString(dr["Salt"]);
                        
                     }
                     cmd.Parameters.Clear();
@@ -332,7 +476,48 @@ namespace DeCKR_WebAPI.Models
             return user;
         }
 
-        public List<TrainingModel> GetUserTrainings(string userId)
+        public List<UserTrainingModel> GetUserTrainings(int EmployeeId)
+        {
+            List<UserTrainingModel> trainings = new List<UserTrainingModel>();
+            UserTrainingModel training;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetUserTrainings";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeId", EmployeeId));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        training = new UserTrainingModel();
+                        training.Training = new TrainingModel();
+                        training.Training.Id = Convert.ToInt32(dr["TrainingID"]);
+                        training.Training.Name = Convert.ToString(dr["Name"]);
+                        training.Training.Description = Convert.ToString(dr["Description"]);
+                        training.Training.Duration = Convert.ToInt32(dr["Duration"]);
+                        training.Training.DueDate = Convert.ToDateTime(dr["DueDate"]);
+                        training.Training.TrainingURL = Convert.ToString(dr["TrainingURL"]);
+                        training.Progress= Convert.ToInt32(dr["Progress"]);
+                        training.Status = Convert.ToString(dr["Status"]);
+                        trainings.Add(training);
+                    }
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return trainings;
+        }
+
+        public List<TrainingModel> GetDefaultTrainings(int EmployeeId)
         {
             List<TrainingModel> trainings = new List<TrainingModel>();
             TrainingModel training;
@@ -341,22 +526,22 @@ namespace DeCKR_WebAPI.Models
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
                 {
                     conn.Open();
-                    string sqlStr = "GetUserTrainingInfo";
+                    string sqlStr = "GetDefaultTrainings";
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Clear();
-                    cmd.Parameters.Add(new SqlParameter("@UserId", userId));
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeID", EmployeeId));
                     SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
                     while (dr.Read())
                     {
                         training = new TrainingModel();
-                        training.Id = Convert.ToInt32(dr["TrainingId"]);
+                        training.Id = Convert.ToInt32(dr["TrainingID"]);
                         training.Name = Convert.ToString(dr["Name"]);
-                        training.Time = Convert.ToDateTime(dr["Time"]);
-                        training.Location = Convert.ToString(dr["Location"]);
+                        training.Description = Convert.ToString(dr["Description"]);
                         training.Duration = Convert.ToInt32(dr["Duration"]);
-                        training.Status = Convert.ToString(dr["Status"]);
-                        training.CompletionPercentage = Convert.ToInt32(dr["CompletionPercentage"]);
+                        training.DueDate = Convert.ToDateTime(dr["DueDate"]);
+                        training.TrainingURL = Convert.ToString(dr["TrainingURL"]);
+
                         trainings.Add(training);
                     }
                     cmd.Parameters.Clear();
@@ -446,29 +631,28 @@ namespace DeCKR_WebAPI.Models
             return contracts;
         }
 
-        public List<UserSecurityGroupModel> GetUserSecurityGroups(string userId)
+        public List<SecurityGroupModel> GetDefaultSecurityGroups(int EmployeeId)
         {
-            List<UserSecurityGroupModel> securityGroups = new List<UserSecurityGroupModel>();
-            UserSecurityGroupModel securityGroup;
+            List<SecurityGroupModel> securityGroups = new List<SecurityGroupModel>();
+            SecurityGroupModel securityGroup;
             try
             {
                 using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
                 {
                     conn.Open();
-                    string sqlStr = "GetUserSecurityGroups";
+                    string sqlStr = "GetDefaultSecurityGroups";
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Clear();
-                    cmd.Parameters.Add(new SqlParameter("@UserId", userId));
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeID", EmployeeId));
                     SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
                     while (dr.Read())
                     {
-                        securityGroup = new UserSecurityGroupModel();
-                        securityGroup.DepartmentId= Convert.ToInt32(dr["DepartmentId"]);
-                        securityGroup.SecurityGroup = new SecurityGroupModel();
-                        securityGroup.SecurityGroup.Id= Convert.ToInt32(dr["SecurityId"]);
-                        securityGroup.SecurityGroup.Name = Convert.ToString(dr["Name"]);
-                        securityGroup.SecurityGroup.Description = Convert.ToString(dr["Description"]);
+                        securityGroup = new SecurityGroupModel();
+                        securityGroup.Id = Convert.ToInt32(dr["SecurityID"]);
+                        securityGroup.Name = Convert.ToString(dr["SecurityName"]);
+                        securityGroup.Description = Convert.ToString(dr["SecurityDescription"]);
+                        securityGroup.iconName = Convert.ToString(dr["IconName"]);
                         securityGroups.Add(securityGroup);
                     }
                     cmd.Parameters.Clear();
@@ -483,7 +667,45 @@ namespace DeCKR_WebAPI.Models
             return securityGroups;
         }
 
-        public bool SetTrainingStatus(string userId, int trainingId, string status, int completion)
+        public List<UserSecurityGroupModel> GetUserSecurityGroups(int employeeId)
+        {
+            List<UserSecurityGroupModel> securityGroups = new List<UserSecurityGroupModel>();
+            UserSecurityGroupModel securityGroup;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetUserSecurityGroups";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeID", employeeId));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        securityGroup = new UserSecurityGroupModel();
+                       
+                        securityGroup.SecurityGroup = new SecurityGroupModel();
+                        securityGroup.SecurityGroup.Id= Convert.ToInt32(dr["SecurityID"]);
+                        securityGroup.SecurityGroup.Name = Convert.ToString(dr["SecurityName"]);
+                        securityGroup.SecurityGroup.Description = Convert.ToString(dr["SecurityDescription"]);
+                        securityGroup.Status = Convert.ToString(dr["Status"]);
+                        securityGroups.Add(securityGroup);
+                    }
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return securityGroups;
+        }
+
+        public bool SetTrainingStatus(int employeeID, int trainingId, string status, int progress)
         {
             bool result = false;
             try
@@ -495,10 +717,10 @@ namespace DeCKR_WebAPI.Models
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Clear();
-                    cmd.Parameters.Add(new SqlParameter("@UserId", userId));
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeID", employeeID));
                     cmd.Parameters.Add(new SqlParameter("@TrainingId", trainingId));
                     cmd.Parameters.Add(new SqlParameter("@Status", status));
-                    cmd.Parameters.Add(new SqlParameter("@Completion", completion));
+                    cmd.Parameters.Add(new SqlParameter("@Progress", progress));
                     cmd.ExecuteNonQuery();
                     result = true;
                     cmd.Parameters.Clear();
@@ -513,25 +735,28 @@ namespace DeCKR_WebAPI.Models
             return result;
         }
 
-        public bool SignContract(string userId, int contractId, bool sign)
+        public bool SignContract(string employeeId, int contractId, bool sign)
         {
             bool result = false;
             try
             {
-                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                if (sign)
                 {
-                    conn.Open();
-                    string sqlStr = "SignContract";
-                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.Add(new SqlParameter("@UserId", userId));
-                    cmd.Parameters.Add(new SqlParameter("@ContractId", contractId));
-                    cmd.Parameters.Add(new SqlParameter("@Sign", sign));
-                    cmd.ExecuteNonQuery();
-                    result = true;
-                    cmd.Parameters.Clear();
-                    cmd.Dispose();
+                    using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                    {
+                        conn.Open();
+                        string sqlStr = "SignContract";
+                        SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.Add(new SqlParameter("@EmployeeId", employeeId));
+                        cmd.Parameters.Add(new SqlParameter("@ContractId", contractId));
+
+                        cmd.ExecuteNonQuery();
+                        result = true;
+                        cmd.Parameters.Clear();
+                        cmd.Dispose();
+                    }
                 }
             }
             catch (Exception ex)
@@ -542,7 +767,7 @@ namespace DeCKR_WebAPI.Models
             return result;
         }
 
-        public bool SetSecurityGroup(int departmentId, int securityId)
+        public bool SetSecurityGroup(int employeeId, int securityId, string status)
         {
             bool result = false;
             try
@@ -554,8 +779,9 @@ namespace DeCKR_WebAPI.Models
                     SqlCommand cmd = new SqlCommand(sqlStr, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Clear();
-                    cmd.Parameters.Add(new SqlParameter("@SecurityId", securityId));
-                    cmd.Parameters.Add(new SqlParameter("@DepartmentId", departmentId));
+                    cmd.Parameters.Add(new SqlParameter("@SecurityID", securityId));
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeID", employeeId));
+                    cmd.Parameters.Add(new SqlParameter("@Status", status));
                     cmd.ExecuteNonQuery();
                     result = true;
                     cmd.Parameters.Clear();

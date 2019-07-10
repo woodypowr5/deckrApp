@@ -14,25 +14,41 @@ using System.Web.Http.Cors;
 namespace DeCKR_WebAPI.Controllers
 {
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
-   // [EnableCors(origins: "http://deckr1.gearhostpreview.com", headers: "*", methods: "*")]
     public class SecurityGroupController : ApiController
     {
         DomainModel model = new DomainModel();
 
         public List<SecurityGroupModel> Get()
         {
-            return model.GetSecurityGroups().ToList<SecurityGroupModel>();
+            return model.GetSecurityGroups().ToList();
         }
 
-        public List<UserSecurityGroupModel> Get(string id)
+        /// <summary>
+        /// Returns a contract
+        /// </summary>
+        /// <param name="Id">ContractId</param>
+        /// <returns>List of user Contracts</returns>
+        [ActionName("SingleSecurityGroup")]
+        public SecurityGroupModel GetContract(int Id)
         {
-            return model.GetUserSecurityGroups(id).ToList<UserSecurityGroupModel>();
+            return model.GetSecurityGroup(Id);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="employeeID"></param>
+        /// <returns></returns>
+        [ActionName("UserSecurityGroups")]
+        public List<UserSecurityGroupModel> Get(int employeeID)
+        {
+            return model.GetUserSecurityGroups(employeeID).ToList();
         }
 
         [HttpPost]
-        public void Post(int departmentId, int securityId)
+        public void Post(int employeeId, int securityId, string status)
         {
-            bool result = model.SetSecurityGroup(departmentId, securityId);
+            bool result = model.SetSecurityGroup(employeeId, securityId, status);
         }
     }
 }

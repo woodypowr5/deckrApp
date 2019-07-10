@@ -15,7 +15,7 @@ namespace DeCKR_WebAPI
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
-            );
+                );
 
             config.Routes.MapHttpRoute(
                 name: "SingleContract",
@@ -24,16 +24,34 @@ namespace DeCKR_WebAPI
                 );
 
             config.Routes.MapHttpRoute(
-            name: "UserContracts",
-            routeTemplate: "api/{controller}/{action}/{employeeId}",
-            defaults: new { id = RouteParameter.Optional }
-            );
+                name: "UserContracts",
+                routeTemplate: "api/{controller}/{action}/{employeeId}",
+                defaults: new { id = RouteParameter.Optional }
+                );
 
             config.Routes.MapHttpRoute(
-            name: "DefaultContracts",
-            routeTemplate: "api/{controller}/{action}/{employeeId}",
-            defaults: new { id = RouteParameter.Optional }
-            );
+                 name: "SingleSecurityGroup",
+                 routeTemplate: "api/{controller}/{action}/{id}",
+                 defaults: new { id = RouteParameter.Optional }
+                 );
+
+            config.Routes.MapHttpRoute(
+                  name: "UserSecurityGroups",
+                  routeTemplate: "api/{controller}/{action}/{employeeId}",
+                  defaults: new { id = RouteParameter.Optional }
+                  );
+
+            config.Routes.MapHttpRoute(
+                 name: "SingleTraining",
+                 routeTemplate: "api/{controller}/{action}/{id}",
+                 defaults: new { id = RouteParameter.Optional }
+                 );
+
+            config.Routes.MapHttpRoute(
+              name: "UserTrainings",
+              routeTemplate: "api/{controller}/{action}/{employeeId}",
+              defaults: new { id = RouteParameter.Optional }
+              );
         }
     }
 }

@@ -13,21 +13,8 @@ using System.Web.Http.Cors;
 
 namespace DeCKR_WebAPI.Controllers
 {
-    /// <summary>
-    /// Department Controller class
-    /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
-    public class DepartmentController : ApiController
+    public class AdminSettingsController : ApiController
     {
-        DomainModel model = new DomainModel();
-        /// <summary>
-        /// Gets all departments list
-        /// </summary>
-        /// <returns></returns>
-        public List<DepartmentModel> Get()
-        {
-            return model.GetDepartments().ToList();
-        }
-        
     }
 }
