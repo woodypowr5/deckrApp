@@ -14,20 +14,20 @@ using System.Web.Http.Cors;
 namespace DeCKR_WebAPI.Controllers
 {
     /// <summary>
-    /// Department Controller class
+    /// Job Role Controller class
     /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
-    public class DepartmentController : ApiController
+    public class JobRoleController : ApiController
     {
         DomainModel model = new DomainModel();
+
         /// <summary>
-        /// Gets all departments list
+        /// Gets all Job Roles list
         /// </summary>
-        /// <returns></returns>
-        public List<DepartmentModel> Get()
+        /// <returns>Job Roles List</returns>
+        public List<JobRoleModel> Get()
         {
-            return model.GetDepartments().ToList();
+            return model.GetJobRoles().ToList();
         }
-        
     }
 }

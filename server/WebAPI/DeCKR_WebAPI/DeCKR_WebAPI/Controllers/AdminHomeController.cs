@@ -1,6 +1,8 @@
-﻿using DeCKR_WebAPI.Models;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -13,21 +15,8 @@ using System.Web.Http.Cors;
 
 namespace DeCKR_WebAPI.Controllers
 {
-    /// <summary>
-    /// Department Controller class
-    /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
-    public class DepartmentController : ApiController
+    public class AdminHomeController : ApiController
     {
-        DomainModel model = new DomainModel();
-        /// <summary>
-        /// Gets all departments list
-        /// </summary>
-        /// <returns></returns>
-        public List<DepartmentModel> Get()
-        {
-            return model.GetDepartments().ToList();
-        }
-        
     }
 }

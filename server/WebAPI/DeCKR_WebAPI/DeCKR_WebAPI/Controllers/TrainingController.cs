@@ -13,24 +13,56 @@ using System.Web.Http.Cors;
 
 namespace DeCKR_WebAPI.Controllers
 {
+    /// <summary>
+    /// Training Controller class
+    /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
-    //[EnableCors(origins: "http://deckr1.gearhostpreview.com", headers: "*", methods: "*")]
     public class TrainingController : ApiController
     {
         DomainModel model = new DomainModel();
+        
+        /// <summary>
+        /// Get all trainings
+        /// </summary>
+        /// <returns>Trainings List</returns>
         public List<TrainingModel> Get()
         {
-            return model.GetTrainings().ToList<TrainingModel>();
-        }
-        public List<TrainingModel> Get(string Id)
-        {
-            return model.GetUserTrainings(Id).ToList<TrainingModel>();
+            return model.GetTrainings().ToList();
         }
 
-        [HttpPost]
-        public void Post(string Id, int trainingId, string status, int completion)
+        /// <summary>
+        /// Returns a training
+        /// </summary>
+        /// <param name="Id">trainingid</param>
+        /// <returns>single training</returns>
+        [ActionName("SingleTraining")]
+        public TrainingModel GetTraining(int Id)
         {
-            bool result = model.SetTrainingStatus(Id, trainingId,status, completion);
+            return model.GetTraining(Id);
+        }
+
+        /// <summary>
+        /// Returns user trainings
+        /// </summary>
+        /// <param name="employeeID">employee ID</param>
+        /// <returns>list of user trainings</returns>
+        [ActionName("UserTrainings")]
+        public List<UserTrainingModel> Get(int employeeID)
+        {
+            return model.GetUserTrainings(employeeID).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="trainingId"></param>
+        /// <param name="status"></param>
+        /// <param name="completion"></param>
+        [HttpPost]
+        public void Post(int employeeID, int trainingId, string status, int progress)
+        {
+            bool result = model.SetTrainingStatus(employeeID, trainingId,status, progress);
         }
     }
 }

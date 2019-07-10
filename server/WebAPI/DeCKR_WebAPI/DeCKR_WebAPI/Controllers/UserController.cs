@@ -13,24 +13,48 @@ using System.Web.Http.Cors;
 
 namespace DeCKR_WebAPI.Controllers
 {
+    /// <summary>
+    /// user controller class
+    /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
-    //[EnableCors(origins: "http://deckr1.gearhostpreview.com", headers: "*", methods: "*")]
-    public class UserController : ApiController
+     public class UserController : ApiController
     {
         DomainModel model = new DomainModel(); 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<UserModel> Get()
         {
-            return model.GetUsers().ToList<UserModel>();
+            return model.GetUsers().ToList();
         }
-        public UserModel Get(string Id)
+
+        /// <summary>
+        /// returns a single user
+        /// </summary>
+        /// <param name="Id">EmployeeID</param>
+        /// <returns>single user</returns>
+        [ActionName("SingleUser")]
+        public UserModel Get(int Id)
         {
             return model.GetUser(Id);
         }
 
-        public void Post(string Id, string passwordHash, string salt)
+        /// <summary>
+        /// returns user in a department
+        /// </summary>
+        /// <param name="Id">EmployeeID</param>
+        /// <returns>single user</returns>
+        [ActionName("DepartmentUsers")]
+        public List<UserModel> GetDepartmentUsers(int departmentID)
         {
-            bool result= model.SetPassword(Id, passwordHash, salt);
+            return model.GetDepartmentUsers(departmentID).ToList();
         }
-    
+
+        //public void Post(string Id, string passwordHash, string salt)
+        //{
+        //    bool result = model.SetUser(Id, passwordHash, salt);
+        //}
+
     }
 }

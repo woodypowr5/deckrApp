@@ -15,7 +15,56 @@ namespace DeCKR_WebAPI
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
-            );
+                );
+
+            config.Routes.MapHttpRoute(
+                name: "SingleContract",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+                );
+
+            config.Routes.MapHttpRoute(
+                name: "UserContracts",
+                routeTemplate: "api/{controller}/{action}/{employeeId}",
+                defaults: new { id = RouteParameter.Optional }
+                );
+
+            config.Routes.MapHttpRoute(
+                 name: "SingleSecurityGroup",
+                 routeTemplate: "api/{controller}/{action}/{id}",
+                 defaults: new { id = RouteParameter.Optional }
+                 );
+
+            config.Routes.MapHttpRoute(
+                  name: "UserSecurityGroups",
+                  routeTemplate: "api/{controller}/{action}/{employeeId}",
+                  defaults: new { id = RouteParameter.Optional }
+                  );
+
+            config.Routes.MapHttpRoute(
+                 name: "SingleTraining",
+                 routeTemplate: "api/{controller}/{action}/{id}",
+                 defaults: new { id = RouteParameter.Optional }
+                 );
+
+            config.Routes.MapHttpRoute(
+              name: "UserTrainings",
+              routeTemplate: "api/{controller}/{action}/{employeeId}",
+              defaults: new { id = RouteParameter.Optional }
+              );
+
+
+            config.Routes.MapHttpRoute(
+                 name: "SingleUser",
+                 routeTemplate: "api/{controller}/{action}/{id}",
+                 defaults: new { id = RouteParameter.Optional }
+                 );
+
+            config.Routes.MapHttpRoute(
+              name: "DepartmentUsers",
+              routeTemplate: "api/{controller}/{action}/{employeeId}",
+              defaults: new { id = RouteParameter.Optional }
+              );
         }
     }
 }

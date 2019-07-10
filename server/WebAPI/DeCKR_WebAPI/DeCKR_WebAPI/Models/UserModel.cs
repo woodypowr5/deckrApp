@@ -9,19 +9,50 @@
 
 namespace DeCKR_WebAPI.Models
 {
+    /// <summary>
+    /// User View Model Class
+    /// </summary>
     public class UserModel
     {
-        public string UserId { get; set; }
-        public string PasswordHash { get; set; }
-        public string Salt { get; set; }
+        /// <summary>
+        /// Employee ID of the user
+        /// </summary>
+        public int EmployeeID { get; set; }
+
+        /// <summary>
+        /// Password of the User
+        /// </summary>
+       // public string Password { get; set; }
+
+        /// <summary>
+        /// Name of the user
+        /// </summary>
         public string Name { get; set; }
-        public string JobTitle { get; set; }
-        public int DepartmentId { get; set; }
-        public string Address { get; set; }
-        public DateTime DOB { get; set; }
-        public string SSN { get; set; }
-        public string BankInfo { get; set; }
-        public string Education { get; set; }
-        public string PrevEmployment { get; set; }
+
+        /// <summary>
+        /// User name of the user
+        /// </summary>
+       // public string UserName { get; set; }
+
+        /// <summary>
+        /// type of the user
+        /// </summary>
+       // public string UserType { get; set; }
+
+        /// <summary>
+        /// Job Role id of the user
+        /// </summary>
+        public string JobRole { get; set; }
+
+        /// <summary>
+        /// Department Id of the user
+        /// </summary>
+        public string Department { get; set; }
+
+        /// <summary>
+        /// Email Address of the user
+        /// </summary>
+        public string EmailAddress { get; set; }
+
     }
 }

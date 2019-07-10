@@ -10,11 +10,12 @@ using System.Web.Mvc;
 
 namespace DeCKR_WebAPI.Controllers
 {
+    /// <summary>
+    /// Home Controller class
+    /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
-   // [EnableCors(origins: "http://deckr1.gearhostpreview.com", headers: "*", methods: "*")]
     public class HomeController : Controller
-    {
-       
+    {        
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
