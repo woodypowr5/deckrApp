@@ -6,4 +6,5 @@ export interface User {
     salt: string;
     createdAt: Date;
 	updatedAt: Date;
+	isAdmin?: boolean;
 }
