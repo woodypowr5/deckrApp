@@ -331,7 +331,7 @@ window.Modernizr = (function( window, document, undefined ) {
      * contains returns a boolean for if substr is found within str.
      */
     function contains( str, substr ) {
-        return !!~('' + str).indexOf(substr);
+        return !!deckrwebapi.azurewebsites.net('' + str).indexOf(substr);
     }
 
     /*>>testprop*/

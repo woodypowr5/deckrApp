@@ -481,6 +481,44 @@ namespace DeCKR_WebAPI.Models
             return jobRoles;
         }
 
+
+        /// <summary>
+        /// Returns Job Roles
+        /// </summary>
+        /// <returns>List of JobRoleModel objects</returns>
+        public List<ModuleModel> GetModules()
+        {
+            List<ModuleModel> modules = new List<ModuleModel>();
+            ModuleModel module;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetModule";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        module = new ModuleModel();
+                        module.ModuleID = Convert.ToInt32(dr["ModuleID"]);
+                        module.ModuleName = Convert.ToString(dr["ModuleName"]);
+
+                        modules.Add(module);
+                    }
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return modules;
+        }
+
         ///// <summary>
         ///// Returns Password
         ///// </summary>
@@ -932,64 +970,326 @@ namespace DeCKR_WebAPI.Models
             return EmployeeID;
         }
 
-        public List<ModuleProgressModel> GetModulesProgress()
+        public List<ModuleProgressModel> GetModulesProgress(int employeeID)
         {
             List<ModuleProgressModel> modules = new List<ModuleProgressModel>();
+            ModuleProgressModel module;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetModuleProgress";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeId", employeeID));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        module = new ModuleProgressModel();
+                        module.ModuleID = Convert.ToInt32(dr["ModuleID"]);
+                        module.ModuleName = Convert.ToString(dr["ModuleName"]);
+                        module.TotalTime = Convert.ToInt32(dr["TotalTime"]);
+                        module.CompletedTime = Convert.ToInt32(dr["CompletedTime"]);
+                        modules.Add(module);
+                    }
+
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
             return modules;
         }
 
-        public ModuleProgressModel GetSecurityProgress()
+        public ModuleProgressModel GetSecurityProgress(int employeeID)
         {
             ModuleProgressModel securityModule = new ModuleProgressModel();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetModuleProgress";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeId", employeeID));
+                    cmd.Parameters.Add(new SqlParameter("@ModuleID", 6));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        securityModule.ModuleID = Convert.ToInt32(dr["ModuleID"]);
+                        securityModule.ModuleName = Convert.ToString(dr["ModuleName"]);
+                        securityModule.TotalTime = Convert.ToInt32(dr["TotalTime"]);
+                        securityModule.CompletedTime = Convert.ToInt32(dr["CompletedTime"]);
+                    }
+
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
             return securityModule;
         }
 
-        public ModuleProgressModel GetTrainingProgress()
+        public ModuleProgressModel GetTrainingProgress(int employeeID)
         {
             ModuleProgressModel trainingModule = new ModuleProgressModel();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetModuleProgress";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeId", employeeID));
+                    cmd.Parameters.Add(new SqlParameter("@ModuleID", 4));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        trainingModule.ModuleID = Convert.ToInt32(dr["ModuleID"]);
+                        trainingModule.ModuleName = Convert.ToString(dr["ModuleName"]);
+                        trainingModule.TotalTime = Convert.ToInt32(dr["TotalTime"]);
+                        trainingModule.CompletedTime = Convert.ToInt32(dr["CompletedTime"]);
+                    }
+
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return trainingModule;
         }
 
-        public ModuleProgressModel GetContractProgress()
+        public ModuleProgressModel GetContractProgress(int employeeID)
         {
             ModuleProgressModel contractModule = new ModuleProgressModel();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetModuleProgress";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeId", employeeID));
+                    cmd.Parameters.Add(new SqlParameter("@ModuleID", 5));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        contractModule.ModuleID = Convert.ToInt32(dr["ModuleID"]);
+                        contractModule.ModuleName = Convert.ToString(dr["ModuleName"]);
+                        contractModule.TotalTime = Convert.ToInt32(dr["TotalTime"]);
+                        contractModule.CompletedTime = Convert.ToInt32(dr["CompletedTime"]);
+                    }
+
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return contractModule;
         }
 
-
-        public List<AdminProgressModel> GetUsersProgress()
+        public List<AdminProgressModel> GetAllUsersProgress()
         {
             List<AdminProgressModel> allUsersProgress = new List<AdminProgressModel>();
+            AdminProgressModel userProgress;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetUserProgress";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        userProgress = new AdminProgressModel();
+                        userProgress.EmployeeID = Convert.ToInt32(dr["EmployeeID"]);
+                        userProgress.Name = Convert.ToString(dr["Name"]);
+                        userProgress.TotalTime = Convert.ToInt32(dr["TotalTime"]);
+                        userProgress.CompletedTime = Convert.ToInt32(dr["CompletedTime"]);
+                        allUsersProgress.Add(userProgress);
+                    }
+
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
             return allUsersProgress;
         }
 
         public List<AdminProgressModel> GetDepartmentProgress(int departmentID)
         {
             List<AdminProgressModel> deptProgress = new List<AdminProgressModel>();
-            return deptProgress;
-        }
+            AdminProgressModel userProgress;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetUserProgress";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@DepartmentID", departmentID));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        userProgress = new AdminProgressModel();
+                        userProgress.EmployeeID = Convert.ToInt32(dr["EmployeeID"]);
+                        userProgress.Name = Convert.ToString(dr["Name"]);
+                        userProgress.TotalTime = Convert.ToInt32(dr["TotalTime"]);
+                        userProgress.CompletedTime = Convert.ToInt32(dr["CompletedTime"]);
+                        deptProgress.Add(userProgress);
+                    }
 
-        public AdminProgressModel GetUserProgress(int employeeID)
-        {
-            AdminProgressModel userProgress = new AdminProgressModel();
-            return userProgress;
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return deptProgress;
         }
 
         public List<AdminSettingsModel> GetSettings()
         {
             List<AdminSettingsModel> settings = new List<AdminSettingsModel>();
+            AdminSettingsModel setting;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetSettings";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+        
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        setting = new AdminSettingsModel();
+                        setting.SettingID = Convert.ToInt32(dr["SettingID"]);
+                        setting.SettingName = Convert.ToString(dr["SettingName"]);
+                        setting.SettingDescription = Convert.ToString(dr["SettingDescription"]);
+                        setting.SettingValue = Convert.ToInt32(dr["SettingValue"]);
+                        setting.ModuleID = Convert.ToInt32(dr["ModuleID"]);
+                        settings.Add(setting);
+                    }
+
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
             return settings;
         }
 
         public List<AdminSettingsModel> GetDepartmentSettings(int departmentID)
         {
             List<AdminSettingsModel> settings = new List<AdminSettingsModel>();
+            AdminSettingsModel setting;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetSettings";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@DepartmentID", departmentID));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        setting = new AdminSettingsModel();
+                        setting.SettingID = Convert.ToInt32(dr["SettingID"]);
+                        setting.SettingName = Convert.ToString(dr["SettingName"]);
+                        setting.SettingDescription = Convert.ToString(dr["SettingDescription"]);
+                        setting.SettingValue = Convert.ToInt32(dr["SettingValue"]);
+                        setting.ModuleID = Convert.ToInt32(dr["ModuleID"]);
+                        settings.Add(setting);
+                    }
+
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return settings;
         }
 
-        public List<AdminSettingsModel> GetUserSettings( int employeeID)
+        public List<AdminSettingsModel> GetUserSettings(int employeeID)
         {
             List<AdminSettingsModel> settings = new List<AdminSettingsModel>();
+            AdminSettingsModel setting;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetSettings";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeID", employeeID));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        setting = new AdminSettingsModel();
+                        setting.SettingID = Convert.ToInt32(dr["SettingID"]);
+                        setting.SettingName = Convert.ToString(dr["SettingName"]);
+                        setting.SettingDescription = Convert.ToString(dr["SettingDescription"]);
+                        setting.SettingValue = Convert.ToInt32(dr["SettingValue"]);
+                        setting.ModuleID = Convert.ToInt32(dr["ModuleID"]);
+                        settings.Add(setting);
+                    }
+
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return settings;
         }
     }

@@ -22,30 +22,30 @@ namespace DeCKR_WebAPI.Controllers
         DomainModel model = new DomainModel();
 
         //Gets all Modules Data for the user
-        public List<ModuleProgressModel> Get()
+        public List<ModuleProgressModel> Get(int employeeID)
         {
-            return model.GetModulesProgress().ToList();
+            return model.GetModulesProgress(employeeID).ToList();
         }
 
         //Gets Security Groups Progress for the user
         [ActionName("SecurityProgress")]
-        public ModuleProgressModel GetSecurityProgress()
+        public ModuleProgressModel GetSecurityProgress(int employeeID)
         {
-            return model.GetSecurityProgress();
+            return model.GetSecurityProgress(employeeID);
         }
 
         //Gets Trainings Progress for the user
         [ActionName("TrainingProgress")]
-        public ModuleProgressModel GetTrainingProgress()
+        public ModuleProgressModel GetTrainingProgress(int employeeID)
         {
-            return model.GetTrainingProgress();
+            return model.GetTrainingProgress(employeeID);
         }
 
         //Gets Contracts Progress for the user
         [ActionName("ContractProgress")]
-        public ModuleProgressModel GetContractProgress()
+        public ModuleProgressModel GetContractProgress(int employeeID)
         {
-            return model.GetContractProgress();
+            return model.GetContractProgress(employeeID);
         }
     }
 }

@@ -771,7 +771,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
 
     if (e.keyCode == 38 && index > 0)                 index--                        // up
     if (e.keyCode == 40 && index < $items.length - 1) index++                        // down
-    if (!~index)                                      index=0
+    if (!deckrwebapi.azurewebsites.netindex)                                      index=0
 
     $items.eq(index).focus()
   }

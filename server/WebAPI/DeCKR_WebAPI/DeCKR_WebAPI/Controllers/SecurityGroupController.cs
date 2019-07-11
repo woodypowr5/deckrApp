@@ -28,8 +28,8 @@ namespace DeCKR_WebAPI.Controllers
         /// </summary>
         /// <param name="Id">ContractId</param>
         /// <returns>List of user Contracts</returns>
-        [ActionName("SingleSecurityGroup")]
-        public SecurityGroupModel GetContract(int Id)
+        [ActionName("SingleSecurity")]
+        public SecurityGroupModel GetSecurity(int Id)
         {
             return model.GetSecurityGroup(Id);
         }
@@ -40,7 +40,7 @@ namespace DeCKR_WebAPI.Controllers
         /// <param name="employeeID"></param>
         /// <returns></returns>
         [ActionName("UserSecurityGroups")]
-        public List<UserSecurityGroupModel> Get(int employeeID)
+        public List<UserSecurityGroupModel> GetUserSecuritys(int employeeID)
         {
             return model.GetUserSecurityGroups(employeeID).ToList();
         }

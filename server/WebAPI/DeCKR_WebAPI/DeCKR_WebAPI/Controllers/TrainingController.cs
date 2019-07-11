@@ -47,7 +47,7 @@ namespace DeCKR_WebAPI.Controllers
         /// <param name="employeeID">employee ID</param>
         /// <returns>list of user trainings</returns>
         [ActionName("UserTrainings")]
-        public List<UserTrainingModel> Get(int employeeID)
+        public List<UserTrainingModel> GetUserTrainings(int employeeID)
         {
             return model.GetUserTrainings(employeeID).ToList();
         }

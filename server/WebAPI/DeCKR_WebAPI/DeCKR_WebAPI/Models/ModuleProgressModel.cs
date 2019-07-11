@@ -23,8 +23,10 @@ namespace DeCKR_WebAPI.Models
 
         public string Name { get; set; }
 
-        public int Progress { get; set; }
+        public int TotalTime { get; set; }
 
-        public List<ModuleProgressModel> ModulesProgress { get; set; }
+        public int CompletedTime { get; set; }
+
+        // public List<ModuleProgressModel> ModulesProgress { get; set; }
     }
 }
