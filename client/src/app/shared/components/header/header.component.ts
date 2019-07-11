@@ -10,7 +10,8 @@ import { User } from '../../types/user.interface';
 	export class HeaderComponent implements OnInit {
 	@Output() sidenavToggle = new EventEmitter<void>();
 	private activeRoute = 'login';
-	private isAuth: boolean;
+	private isAuth: boolean = false;
+	private isAdmin: boolean = false;
 	private loggedInUser: User = null;
 
 	constructor(private authService: AuthService) {
@@ -19,6 +20,9 @@ import { User } from '../../types/user.interface';
 		});
 		this.authService.isAuthChanged.subscribe((isAuth: boolean) => {
 			this.isAuth = isAuth;
+		});
+		this.authService.isAdminChanged.subscribe((isAdmin: boolean) => {
+			this.isAdmin = isAdmin;
 		});
 	}
 

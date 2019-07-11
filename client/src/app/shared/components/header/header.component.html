@@ -15,16 +15,16 @@
         <li *ngIf="!isAuth">
           <a (click)="setActiveRoute('login')" [ngClass]="{'active': activeRoute === 'login'}" routerLink="/login">Login</a>
         </li>
-        <li *ngIf="isAuth">
+        <li *ngIf="isAuth && !isAdmin">
           <a (click)="setActiveRoute('training')" [ngClass]="{'active': activeRoute === 'training'}" routerLink="/training">Training</a>
         </li>
-        <li *ngIf="isAuth">
+        <li *ngIf="isAuth && !isAdmin">
           <a (click)="setActiveRoute('securitygroups')" [ngClass]="{'active': activeRoute === 'securitygroups'}" routerLink="/securitygroups">Groups</a>
         </li>
-        <li *ngIf="isAuth">
+        <li *ngIf="isAuth && !isAdmin">
           <a (click)="setActiveRoute('contracts')" [ngClass]="{'active': activeRoute === 'contracts'}" routerLink="/contracts">Contracts</a>
         </li>
-        <li *ngIf="isAuth">
+        <li *ngIf="isAuth && !isAdmin">
           <a style="cursor: pointer" (click)="logout()">Logout</a>
         </li>
       </ul>

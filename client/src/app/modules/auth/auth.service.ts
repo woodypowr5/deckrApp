@@ -10,16 +10,15 @@ import { Router } from '@angular/router';
 export class AuthService {
 	private loggedInUser: User;
 	loggedInUserChanged: BehaviorSubject<User> = new BehaviorSubject(null);
-	private isAuth: boolean;
+	private isAuth: boolean = false;
 	isAuthChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
-	private isAdmin: boolean;
+	private isAdmin: boolean = false;
 	isAdminChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   	constructor(
 		  private router: Router
 	  ) { 
 		this.loggedInUserChanged.subscribe((user: User) => {
-			console.log(user);
 			this.loggedInUser = user;
 			if (user && user !== null){
 				this.isAuthChanged.next(true);
@@ -49,7 +48,7 @@ export class AuthService {
 	}
 
 	getIsAdmin(): boolean {
-		if (this.loggedInUser || this.loggedInUser === null) {
+		if (!this.loggedInUser || this.loggedInUser === null) {
 			return false;
 		}
 		return this.loggedInUser.isAdmin === true;
