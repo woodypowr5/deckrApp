@@ -28,7 +28,7 @@ export class AuthService {
 
 	loginAdmin() {
 		this.loggedInUserChanged.next(Fixtures.adminUser);
-		this.router.navigate(["admin"]);
+		this.router.navigate(["/admin"]);
 	}
 
 	loginUser() {
