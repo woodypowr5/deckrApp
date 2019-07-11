@@ -1,4 +1,7 @@
-<mat-toolbar color="primary">
+<mat-toolbar 
+	color="primary"
+	[ngClass]="{'expanded': activeRoute === '' || activeRoute === 'login' || activeRoute === 'register' }"	
+>
     <div>
       <a class="logo" routerLink="/home">
 		DeCKR
@@ -7,7 +10,9 @@
 		
       </a>
     </div>
-    <div class="navlinks-container">
+	<div 
+		class="navlinks-container"
+	>
       <ul class="navigation-items">
         <li *ngIf="!isAuth">
           <a (click)="setActiveRoute('register')" routerLink="/register" [ngClass]="{'active': activeRoute === 'register'}">Register</a>
