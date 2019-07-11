@@ -12,17 +12,29 @@ export class AuthService {
 	loggedInUserChanged: BehaviorSubject<User> = new BehaviorSubject(null);
 	private isAuth: boolean;
 	isAuthChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
+	private isAdmin: boolean;
+	isAdminChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   	constructor(
 		  private router: Router
 	  ) { 
 		this.loggedInUserChanged.subscribe((user: User) => {
+			console.log(user);
 			this.loggedInUser = user;
-			this.isAuthChanged.next(this.getIsAuth());
+			if (user && user !== null){
+				this.isAuthChanged.next(true);
+			} else {
+				this.isAuthChanged.next(false);
+			}	
+			this.isAdminChanged.next(this.getIsAdmin());
 		});
 		this.isAuthChanged.subscribe( (newIsAuth: boolean) => {
 			this.isAuth = newIsAuth;
 		});
+		this.isAdminChanged.subscribe( (newIsAdmin: boolean) => {
+			this.isAdmin = newIsAdmin;
+		});
+
 		// this.loggedInUserChanged.next(Fixtures.user);
 	}
 
@@ -36,7 +48,15 @@ export class AuthService {
 		this.router.navigate(["home"]);
 	}
 
-	getIsAuth(): boolean {
+	getIsAdmin(): boolean {
+		if (this.loggedInUser || this.loggedInUser === null) {
+			return false;
+		}
 		return this.loggedInUser.isAdmin === true;
+	}
+
+	logout() {
+		this.loggedInUserChanged.next(null);
+		this.router.navigate([""]);
 	}
 }

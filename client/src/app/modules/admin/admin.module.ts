@@ -4,7 +4,6 @@ import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 
-
 @NgModule({
 	imports: [
 		CommonModule,
