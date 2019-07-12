@@ -6,6 +6,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { SidenavListComponent } from '../components/sidenav-list/sidenav-list.component';
 import { CommonModule } from '@angular/common';
+import { DestinationButtonComponent } from '../components/destination-button/destination-button.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { CommonModule } from '@angular/common';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    SidenavListComponent 
+	SidenavListComponent,
+	DestinationButtonComponent 
   ],
   providers: [],
   exports: [
@@ -30,7 +32,8 @@ import { CommonModule } from '@angular/common';
     HeaderComponent,
     FooterComponent,
     SidenavListComponent ,
-    CommonModule
+	CommonModule,
+	DestinationButtonComponent
   ]
 })
 export class SharedModule {}

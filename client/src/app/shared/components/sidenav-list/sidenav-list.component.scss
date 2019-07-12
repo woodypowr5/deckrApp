@@ -7,9 +7,14 @@ a {
 	color: white;
 }
 
+a.active{
+	background-color: #DDD;
+}
+
 a:hover, a:active {
 	color: lightgray;
 }
+
 mat-icon{
 	margin-right: 10px;
 }
