@@ -17,6 +17,7 @@ namespace DeCKR_WebAPI.Controllers
     /// Training Controller class
     /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [RoutePrefix("api/training")]
     public class TrainingController : ApiController
     {
         DomainModel model = new DomainModel();
@@ -46,7 +47,7 @@ namespace DeCKR_WebAPI.Controllers
         /// </summary>
         /// <param name="employeeID">employee ID</param>
         /// <returns>list of user trainings</returns>
-        [ActionName("UserTrainings")]
+        [Route("UserTrainings/{employeeID}")]
         public List<UserTrainingModel> GetUserTrainings(int employeeID)
         {
             return model.GetUserTrainings(employeeID).ToList();

@@ -14,6 +14,7 @@ using System.Web.Http.Cors;
 namespace DeCKR_WebAPI.Controllers
 {
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [RoutePrefix("api/userhome")]
     public class UserHomeController : ApiController
     {
         /// <summary>
@@ -22,27 +23,28 @@ namespace DeCKR_WebAPI.Controllers
         DomainModel model = new DomainModel();
 
         //Gets all Modules Data for the user
+        [Route("UserProgress/{employeeID}")]
         public List<ModuleProgressModel> Get(int employeeID)
         {
             return model.GetModulesProgress(employeeID).ToList();
         }
 
         //Gets Security Groups Progress for the user
-        [ActionName("SecurityProgress")]
+        [Route("SecurityProgress/{employeeID}")]
         public ModuleProgressModel GetSecurityProgress(int employeeID)
         {
             return model.GetSecurityProgress(employeeID);
         }
 
         //Gets Trainings Progress for the user
-        [ActionName("TrainingProgress")]
+        [Route("TrainingProgress/{employeeID}")]
         public ModuleProgressModel GetTrainingProgress(int employeeID)
         {
             return model.GetTrainingProgress(employeeID);
         }
 
         //Gets Contracts Progress for the user
-        [ActionName("ContractProgress")]
+        [Route("ContractProgress/{employeeID}")]
         public ModuleProgressModel GetContractProgress(int employeeID)
         {
             return model.GetContractProgress(employeeID);

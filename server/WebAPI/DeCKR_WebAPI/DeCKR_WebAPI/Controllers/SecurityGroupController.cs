@@ -14,6 +14,7 @@ using System.Web.Http.Cors;
 namespace DeCKR_WebAPI.Controllers
 {
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [RoutePrefix("api/securitygroup")]
     public class SecurityGroupController : ApiController
     {
         DomainModel model = new DomainModel();
@@ -39,7 +40,7 @@ namespace DeCKR_WebAPI.Controllers
         /// </summary>
         /// <param name="employeeID"></param>
         /// <returns></returns>
-        [ActionName("UserSecurityGroups")]
+        [Route("UserSecurityGroups/{employeeID}")]
         public List<UserSecurityGroupModel> GetUserSecuritys(int employeeID)
         {
             return model.GetUserSecurityGroups(employeeID).ToList();

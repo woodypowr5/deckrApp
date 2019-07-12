@@ -17,6 +17,7 @@ using System.Web.Http.Cors;
 namespace DeCKR_WebAPI.Controllers
 {
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [RoutePrefix("api/adminhome")]
     public class AdminHomeController : ApiController
     {
 
@@ -32,7 +33,7 @@ namespace DeCKR_WebAPI.Controllers
         }
 
         //Gets progress for a department
-        [ActionName("DepartmentProgress")]
+        [Route("DepartmentProgress/{departmentID}")]
         public List<AdminProgressModel> GetDepartmentProgress(int departmentID)
         {
             return model.GetDepartmentProgress(departmentID).ToList();

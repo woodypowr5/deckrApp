@@ -14,6 +14,7 @@ using System.Web.Http.Cors;
 namespace DeCKR_WebAPI.Controllers
 {
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [RoutePrefix("api/adminsettings")]
     public class AdminSettingsController : ApiController
     {
         /// <summary>
@@ -28,7 +29,7 @@ namespace DeCKR_WebAPI.Controllers
         }
 
         //Gets single user settings 
-        [ActionName("UserSettings")]
+        [Route("UserSettings/{employeeID}")]
         public List<AdminSettingsModel> GetUserSettings(int employeeID)
         {
             return model.GetUserSettings(employeeID).ToList();
@@ -36,7 +37,7 @@ namespace DeCKR_WebAPI.Controllers
 
 
         //Gets Department  settings 
-        [ActionName("DepartmentSettings")]
+        [Route("DepartmentSettings/{departmentID}")]
         public List<AdminSettingsModel> GetDepartmentSettings(int departmentID)
         {
             return model.GetDepartmentSettings(departmentID).ToList();

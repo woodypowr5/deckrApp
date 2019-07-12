@@ -1,4 +1,5 @@
 ﻿using DeCKR_WebAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -17,6 +18,7 @@ namespace DeCKR_WebAPI.Controllers
     /// user controller class
     /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [RoutePrefix("api/user")]
      public class UserController : ApiController
     {
         DomainModel model = new DomainModel(); 
@@ -40,15 +42,11 @@ namespace DeCKR_WebAPI.Controllers
             return model.GetUser(Id);
         }
 
-        /// <summary>
-        /// returns user in a department
-        /// </summary>
-        /// <param name="Id">EmployeeID</param>
-        /// <returns>single user</returns>
-        [ActionName("DepartmentUsers")]
-        public List<UserModel> GetDepartmentUsers(int departmentID)
+        [HttpGet]
+        [Route("DepartmentUsers/{departmentID}")]
+        public List<UserModel> DepartmentUsers(string departmentID)
         {
-            return model.GetDepartmentUsers(departmentID).ToList();
+            return model.GetDepartmentUsers(Convert.ToInt32(departmentID)).ToList();
         }
 
         /// <summary>

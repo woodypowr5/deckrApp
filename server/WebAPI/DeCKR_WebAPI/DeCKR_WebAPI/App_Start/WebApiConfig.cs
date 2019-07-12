@@ -62,11 +62,11 @@ namespace DeCKR_WebAPI
                  defaults: new { id = RouteParameter.Optional }
                  );
 
-            config.Routes.MapHttpRoute(
-              name: "DepartmentUsers",
-              routeTemplate: "api/{controller}/{action}/{id}",
-              defaults: new { id = RouteParameter.Optional }
-              );
+            //config.Routes.MapHttpRoute(
+            //  name: "DepartmentUsers",
+            //  routeTemplate: "api/{controller}/{action}/{id}",
+            //  defaults: new { id = RouteParameter.Optional }
+            //  );
 
 
             config.Routes.MapHttpRoute(
@@ -75,17 +75,17 @@ namespace DeCKR_WebAPI
                 defaults: new { id = RouteParameter.Optional }
                 );
 
-            config.Routes.MapHttpRoute(
-                name: "TrainingProgress",
-                routeTemplate: "api/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-                );
+            //config.Routes.MapHttpRoute(
+            //    name: "TrainingProgress",
+            //    routeTemplate: "api/{controller}/{action}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //    );
 
-            config.Routes.MapHttpRoute(
-                name: "ContractProgress",
-                routeTemplate: "api/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-                );
+            //config.Routes.MapHttpRoute(
+            //    name: "ContractProgress",
+            //    routeTemplate: "api/{controller}/{action}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //    );
 
             config.Routes.MapHttpRoute(
                 name: "DepartmentProgress",
