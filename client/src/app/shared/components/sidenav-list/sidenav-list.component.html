@@ -1,6 +1,7 @@
 <mat-nav-list>
 	<a routerLink="/signup" class="logo">DeCKR</a>
 	<mat-divider></mat-divider>
+	<a *ngIf="isAuth" routerLink="/home" class="username">user: {{ loggedInUser.name }}</a>
 	<a *ngIf="!isAuth" mat-list-item routerLink="/register" (click)="close()">
 		<mat-icon>face</mat-icon>
 		<span class="nav-caption">Register</span>
@@ -22,7 +23,7 @@
 	<a *ngIf="isAuth && !isAdmin" mat-list-item routerLink="/contracts" (click)="close()">
 		<span class="nav-caption">Contracts</span>
 	</a>
-	<mat-divider></mat-divider>
+	<mat-divider *ngIf="isAuth"></mat-divider>
 	<a *ngIf="isAuth" mat-list-item>
 		<button mat-icon-button (click)="logout()">
 			<mat-icon>eject</mat-icon>

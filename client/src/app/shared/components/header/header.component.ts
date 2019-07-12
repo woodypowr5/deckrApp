@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService } from 'src/app/modules/auth/auth.service';
 import { User } from '../../types/user.interface';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,10 @@ import { User } from '../../types/user.interface';
 	private isAdmin: boolean = false;
 	private loggedInUser: User = null;
 
-	constructor(private authService: AuthService) {
+	constructor(
+		private authService: AuthService,
+		private router: Router
+	) {
 		this.authService.loggedInUserChanged.subscribe((loggedInUser: User) => {
 			this.loggedInUser = loggedInUser;
 		});
@@ -24,7 +28,16 @@ import { User } from '../../types/user.interface';
 		this.authService.isAdminChanged.subscribe((isAdmin: boolean) => {
 			this.isAdmin = isAdmin;
 		});
+		router.events.subscribe((val) => {
+			if (val instanceof NavigationEnd) {
+				this.setActiveRoute(val.url);
+			}
+		});
 	}
+
+	// constructor(private router: Router) {
+	// 	
+	//   }
 
 	ngOnInit() {
 		this.isAuth = false;
@@ -39,6 +52,7 @@ import { User } from '../../types/user.interface';
 	}
 
 	setActiveRoute(route: string) {
+		console.log(route);
 		this.activeRoute = route;
 	}
 }
