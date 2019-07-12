@@ -1,4 +1,5 @@
 ﻿using DeCKR_WebAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -17,13 +18,14 @@ namespace DeCKR_WebAPI.Controllers
     /// user controller class
     /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [RoutePrefix("api/user")]
      public class UserController : ApiController
     {
         DomainModel model = new DomainModel(); 
         /// <summary>
-        /// 
+        /// Returns all users
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of UserModel objects</returns>
         public List<UserModel> Get()
         {
             return model.GetUsers().ToList();
@@ -40,21 +42,25 @@ namespace DeCKR_WebAPI.Controllers
             return model.GetUser(Id);
         }
 
-        /// <summary>
-        /// returns user in a department
-        /// </summary>
-        /// <param name="Id">EmployeeID</param>
-        /// <returns>single user</returns>
-        [ActionName("DepartmentUsers")]
-        public List<UserModel> GetDepartmentUsers(int departmentID)
+        [HttpGet]
+        [Route("DepartmentUsers/{departmentID}")]
+        public List<UserModel> DepartmentUsers(string departmentID)
         {
-            return model.GetDepartmentUsers(departmentID).ToList();
+            return model.GetDepartmentUsers(Convert.ToInt32(departmentID)).ToList();
         }
 
-        //public void Post(string Id, string passwordHash, string salt)
-        //{
-        //    bool result = model.SetUser(Id, passwordHash, salt);
-        //}
-
+        /// <summary>
+        /// Register a user
+        /// </summary>
+        /// <param name="name">Name of the user</param>
+        /// <param name="emailaddress">Email Address of the user</param>
+        /// <param name="jobRole">Job Role of the user</param>
+        /// <param name="password">Password of the user</param>
+        /// <returns>Status of the user registration</returns>
+        [HttpPost]
+        public int RegisterUser(string name,  string emailaddress, string jobRole, string password)
+        {
+            return model.RegisterUser(name, emailaddress, jobRole, password);
+        }
     }
 }

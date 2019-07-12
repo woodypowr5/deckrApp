@@ -1,0 +1,78 @@
+﻿@*/*****************************************************
+    * Project Name: DeCKR                                *
+    * Date: 07/09/2019                                   *
+    * Course: CSC 687 - Computer Science Project II      *
+    * Instructor: Mudasser Wyne                           *
+    ******************************************************/*@
+
+<div class="jumbotron">
+    <h1>API Home</h1>
+
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>User</h2>
+        <p>All Users - <a href="http://deckrwebapi.azurewebsites.net/api/user" target="_blank">//api/user</a></p>
+        <p>Get Single User Info - <a href="http://deckrwebapi.azurewebsites.net/api/user/SingleUser/1" target="_blank">//api/user/SingleUser/1</a> </p>
+        <p>Get Department Users Info - <a href="http://deckrwebapi.azurewebsites.net/api/user/DepartmentUsers/2" target="_blank">//api/user/DepartmentUsers/1</a> </p>
+        <p>Register User  - <a href="http://deckrwebapi.azurewebsites.net/api/user/post?name=name1&emailaddress=emailaddress1&jobrole=jobrole1&password=password1" target="_blank">//api/user/post?name=name1&emailaddress=emailaddress1&jobrole=jobrole1&password=password1</a> </p>
+    </div>
+    <div class="col-md-4">
+        <h2>User Home</h2>
+        <p>Get user Summary - <a href="http://deckrwebapi.azurewebsites.net/api/userhome/userProgress/1" target="_blank">//api/userhome/userprogress/1</a></p>
+        <p>Get Security Summary - <a href="http://deckrwebapi.azurewebsites.net/api/userhome/SecurityProgress/1" target="_blank">//api/userhome/SecurityProgress/1</a> </p>
+        <p>Get Training Summary  - <a href="http://deckrwebapi.azurewebsites.net/api/userhome/TrainingProgress/1" target="_blank">//api/userhome/TrainingProgress/1</a> </p>
+        <p>Get Contract Summary  - <a href="http://deckrwebapi.azurewebsites.net/api/userhome/ContractProgress/1" target="_blank">//api/userhome/ContractProgress/1</a> </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Department</h2>
+        <p>All Departments  - <a href="http://deckrwebapi.azurewebsites.net/api/department" target="_blank">//api/department</a> </p>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>JobRole</h2>
+        <p>All Job Roles  - <a href="http://deckrwebapi.azurewebsites.net/api/jobrole" target="_blank">//api/jobrole</a> </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Module</h2>
+        <p>All Modules  - <a href="http://deckrwebapi.azurewebsites.net/api/module" target="_blank">//api/module</a> </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Contract</h2>
+        <p>All Contracts  - <a href="http://deckrwebapi.azurewebsites.net/api/contract" target="_blank">//api/contract</a> </p>
+        <p>Get Single Contract  - <a href="http://deckrwebapi.azurewebsites.net/api/contract/SingleContract/1" target="_blank">//api/contract/SingleContract/1</a>  </p>
+        <p>Get User Contracts  - <a href="http://deckrwebapi.azurewebsites.net/api/contract/UserContracts/1" target="_blank">//api/contract//UserContracts/1</a>  </p>
+        <p>Sign/Unsign Contract  - <a href="http://deckrwebapi.azurewebsites.net/api/contract/post?Id=1&contractId=1&sign=true" target="_blank">//api/contract/post?Id=1&contractId=1&sign=true</a> </p>
+
+    </div>
+    <div class="col-md-4">
+        <h2>Security Group</h2>
+        <p>All Security Groups - <a href="http://deckrwebapi.azurewebsites.net/api/SecurityGroup" target="_blank">//api/SecurityGroup</a>  </p>
+        <p>Get Single Security Group  - <a href="http://deckrwebapi.azurewebsites.net/api/SecurityGroup/SingleSecurity/1" target="_blank">//api/SecurityGroup/SingleSecurity/1</a>  </p>
+        <p>Get User Security Groups - <a href="http://deckrwebapi.azurewebsites.net/api/SecurityGroup/UserSecurityGroups/1" target="_blank">//api/SecurityGroup/UserSecurityGroups/1</a>  </p>
+        <p>Set Security Group  - <a href="http://deckrwebapi.azurewebsites.net/api/SecurityGroup/post?employeeId=1&securityId=1&status=Pending" target="_blank">//api/SecurityGroup/post??employeeId=1&securityId=1&status=Pending</a> </p>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Training</h2>
+        <p>All Trainings  - <a href="http://deckrwebapi.azurewebsites.net/api/Training" target="_blank">//api/Training</a> </p>
+        <p>Get Single Training  - <a href="http://deckrwebapi.azurewebsites.net/api/Training/SingleTraining/1" target="_blank">//api/Training/SingleTraining/1</a>  </p>
+        <p>Get User Trainings - <a href="http://deckrwebapi.azurewebsites.net/api/Training/UserTrainings/1" target="_blank">//api/Training/UserTrainings/1</a>  </p>
+        <p>Set Training Status  - <a href="http://deckrwebapi.azurewebsites.net/api/training/post?employeeID=1&trainingId=1&status=Current&progress=10" target="_blank">//api/training/post?employeeID=1&trainingId=1&status=Current&progress=10</a> </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Admin Home</h2>
+        <p>All Users Progress  - <a href="http://deckrwebapi.azurewebsites.net/api/adminhome" target="_blank">//api/adminhome</a> </p>
+        <p>Department Progress  - <a href="http://deckrwebapi.azurewebsites.net/api/adminhome/DepartmentProgress/2" target="_blank">//api/adminhome/DepartmentProgress/2</a> </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Admin Settings</h2>
+        <p>All Users Settings  - <a href="http://deckrwebapi.azurewebsites.net/api/adminsettings" target="_blank">//api/adminsettings</a> </p>     
+        <p>Get User Settings - <a href="http://deckrwebapi.azurewebsites.net/api/adminsettings/UserSettings/1" target="_blank">//api/adminsettings/UserSettings/1</a>  </p>
+        <p>Get Department Settings  - <a href="http://deckrwebapi.azurewebsites.net/api/adminsettings/DepartmentSettings/2" target="_blank">//api/adminsettings/DepartmentSettings/2</a> </p>
+    </div>
+</div>

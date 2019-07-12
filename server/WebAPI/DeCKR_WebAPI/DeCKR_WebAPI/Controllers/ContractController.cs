@@ -16,6 +16,7 @@ namespace DeCKR_WebAPI.Controllers
     /// Contract Controller Class
     /// </summary>
     [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [RoutePrefix("api/contract")]
    public class ContractController : ApiController
     {
         /// <summary>
@@ -48,7 +49,7 @@ namespace DeCKR_WebAPI.Controllers
         /// </summary>
         /// <param name="employeeId">EmployeeId</param>
         /// <returns>List of user Contracts</returns>
-        [ActionName("UserContracts")]
+        [Route("UserContracts/{employeeId}")]
         public List<ContractModel> GetUserContracts(int employeeId)
         {
             return model.GetUserContracts(employeeId).ToList<ContractModel>();
