@@ -14,6 +14,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { WebApiService } from './shared/services/web-api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminModule } from './modules/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
 	AuthModule,
 	HomeModule,
+	AdminModule,
     TrainingModule,
     ContractsModule, 
 	SecurityGroupsModule,

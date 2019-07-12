@@ -1,28 +1,36 @@
-<mat-toolbar color="primary">
+<mat-toolbar 
+	color="primary"
+	[ngClass]="{'expanded': activeRoute === '' || activeRoute === 'login' || activeRoute === 'register' }"	
+>
     <div>
       <a class="logo" routerLink="/home">
-        DeCKR
+		DeCKR
+		{{ loggedInUser }}
+		{{ isAdmin }}
+		
       </a>
     </div>
-    <div class="navlinks-container">
+	<div 
+		class="navlinks-container"
+	>
       <ul class="navigation-items">
-        <li>
+        <li *ngIf="!isAuth">
           <a (click)="setActiveRoute('register')" routerLink="/register" [ngClass]="{'active': activeRoute === 'register'}">Register</a>
         </li>
-        <li>
+        <li *ngIf="!isAuth">
           <a (click)="setActiveRoute('login')" [ngClass]="{'active': activeRoute === 'login'}" routerLink="/login">Login</a>
         </li>
-        <li>
+        <li *ngIf="isAuth && !isAdmin">
           <a (click)="setActiveRoute('training')" [ngClass]="{'active': activeRoute === 'training'}" routerLink="/training">Training</a>
         </li>
-        <li>
+        <li *ngIf="isAuth && !isAdmin">
           <a (click)="setActiveRoute('securitygroups')" [ngClass]="{'active': activeRoute === 'securitygroups'}" routerLink="/securitygroups">Groups</a>
         </li>
-        <li>
+        <li *ngIf="isAuth && !isAdmin">
           <a (click)="setActiveRoute('contracts')" [ngClass]="{'active': activeRoute === 'contracts'}" routerLink="/contracts">Contracts</a>
         </li>
-        <li>
-          <a style="cursor: pointer" (click)="onLogout()">Logout</a>
+        <li *ngIf="isAuth && !isAdmin">
+          <a style="cursor: pointer" (click)="logout()">Logout</a>
         </li>
       </ul>
     </div>

@@ -27,5 +27,9 @@
 		</mat-form-field>
 		<button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
 		<mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+
+		<button (click)="loginAdmin()">Admin</button>
+		<button (click)="loginUser()">User</button>
+
 	</form>
 </section>
