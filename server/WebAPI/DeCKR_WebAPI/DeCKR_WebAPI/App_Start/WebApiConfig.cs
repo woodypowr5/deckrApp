@@ -25,21 +25,23 @@ namespace DeCKR_WebAPI
 
             config.Routes.MapHttpRoute(
                 name: "UserContracts",
-                routeTemplate: "api/{controller}/{action}/{employeeId}",
+                routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
                 );
 
+
             config.Routes.MapHttpRoute(
-                 name: "SingleSecurityGroup",
+                 name: "SingleSecurity",
                  routeTemplate: "api/{controller}/{action}/{id}",
                  defaults: new { id = RouteParameter.Optional }
                  );
 
             config.Routes.MapHttpRoute(
                   name: "UserSecurityGroups",
-                  routeTemplate: "api/{controller}/{action}/{employeeId}",
+                  routeTemplate: "api/{controller}/{action}/{id}",
                   defaults: new { id = RouteParameter.Optional }
                   );
+
 
             config.Routes.MapHttpRoute(
                  name: "SingleTraining",
@@ -49,7 +51,7 @@ namespace DeCKR_WebAPI
 
             config.Routes.MapHttpRoute(
               name: "UserTrainings",
-              routeTemplate: "api/{controller}/{action}/{employeeId}",
+              routeTemplate: "api/{controller}/{action}/{id}",
               defaults: new { id = RouteParameter.Optional }
               );
 
@@ -60,11 +62,61 @@ namespace DeCKR_WebAPI
                  defaults: new { id = RouteParameter.Optional }
                  );
 
+            //config.Routes.MapHttpRoute(
+            //  name: "DepartmentUsers",
+            //  routeTemplate: "api/{controller}/{action}/{id}",
+            //  defaults: new { id = RouteParameter.Optional }
+            //  );
+
+
             config.Routes.MapHttpRoute(
-              name: "DepartmentUsers",
-              routeTemplate: "api/{controller}/{action}/{employeeId}",
-              defaults: new { id = RouteParameter.Optional }
-              );
+                name: "SecurityProgress",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+                );
+
+            //config.Routes.MapHttpRoute(
+            //    name: "TrainingProgress",
+            //    routeTemplate: "api/{controller}/{action}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //    );
+
+            //config.Routes.MapHttpRoute(
+            //    name: "ContractProgress",
+            //    routeTemplate: "api/{controller}/{action}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //    );
+
+            config.Routes.MapHttpRoute(
+                name: "DepartmentProgress",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+                );
+
+            config.Routes.MapHttpRoute(
+                name: "SingleUserProgress",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+                );
+
+            config.Routes.MapHttpRoute(
+                name: "UserSettings",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+                );
+
+            config.Routes.MapHttpRoute(
+                name: "DepartmentSettings",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+                );
+
+
+            config.Routes.MapHttpRoute(
+                name: "Modules",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+                );
         }
     }
 }
