@@ -10,14 +10,15 @@ export class DestinationButtonComponent implements OnInit {
 	@Input() route: string;
 
 	constructor(
-		private router: Router
+		private router: Router,
 	) { }
 
 	ngOnInit() {
 	}
 
 	navigateToRoute() {
-		console.log(this.route);
-		this.router.navigate([this.route]);
+		if(this.route) {
+			this.router.navigate([this.route]);		
+		}
 	}
 }
