@@ -35,10 +35,6 @@ import { Router, NavigationEnd } from '@angular/router';
 		});
 	}
 
-	// constructor(private router: Router) {
-	// 	
-	//   }
-
 	ngOnInit() {
 		this.isAuth = false;
 	}
@@ -52,7 +48,6 @@ import { Router, NavigationEnd } from '@angular/router';
 	}
 
 	setActiveRoute(route: string) {
-		console.log(route);
 		this.activeRoute = route;
 	}
 }

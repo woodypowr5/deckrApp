@@ -4,7 +4,8 @@ import {
 	ActivatedRouteSnapshot,
 	RouterStateSnapshot,
 	CanLoad,
-	Route
+	Route,
+	Router
 } from '@angular/router';
 import { AuthService } from './auth.service';
 
@@ -13,19 +14,25 @@ export class AuthAdminGuard implements CanActivate, CanLoad {
 	canLoadAdmin: boolean = false; 
 
 	constructor(
-		private authService: AuthService
+		private authService: AuthService,
+		private router: Router
 	) {
 		this.authService.isAdminChanged.subscribe((isAdmin: boolean) => {
-			console.log(isAdmin);
 			this.canLoadAdmin = isAdmin;
 		});
 	}
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-		return false;
+		if (this.canLoadAdmin === false) {
+			this.router.navigateByUrl('/login');
+		}
+		return this.canLoadAdmin;
 	}
 
 	canLoad(route: Route) {
-		return false;
+		if (this.canLoadAdmin === false) {
+			this.router.navigateByUrl('/login');
+		}
+		return this.canLoadAdmin;
 	}
 }  

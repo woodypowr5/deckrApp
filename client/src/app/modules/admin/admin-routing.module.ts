@@ -6,17 +6,18 @@ import { ProgressComponent } from './components/admin/progress/progress.componen
 import { AuthAdminGuard } from '../auth/auth-admin.guard';
 
 const adminRoutes: Routes = [
-//   { path: 'admin',  component: AdminComponent, canLoad: [AuthAdminGuard]},
-//   { path: 'admin/userviews',  component: UserViewsComponent, canLoad: [AuthAdminGuard]},
-//   { path: 'admin/progress',  component: ProgressComponent, canLoad: [AuthAdminGuard]}
+  { path: 'admin',  component: AdminComponent, canActivate: [AuthAdminGuard]},
+  { path: 'admin/userviews',  component: UserViewsComponent, canActivate: [AuthAdminGuard]},
+  { path: 'admin/progress',  component: ProgressComponent, canActivate: [AuthAdminGuard]}
 ];
 
 @NgModule({
   imports: [
-    // RouterModule.forChild(adminRoutes)
+    RouterModule.forChild(adminRoutes)
   ],
   exports: [
-    // RouterModule
-  ]
+    RouterModule
+  ],
+  providers: [AuthAdminGuard]
 })
 export class AdminRoutingModule { }
