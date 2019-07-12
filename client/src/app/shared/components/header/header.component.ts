@@ -1,7 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { AuthService } from 'src/app/modules/auth/auth.service';
 import { User } from '../../types/user.interface';
-import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,29 +9,15 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 	export class HeaderComponent implements OnInit {
 	@Output() sidenavToggle = new EventEmitter<void>();
-	private activeRoute = 'login';
-	private isAuth: boolean = false;
-	private isAdmin: boolean = false;
-	private loggedInUser: User = null;
+	@Input() activeRoute = 'login';
+	@Input() isAuth: boolean = false;
+	@Input() isAdmin: boolean = false;
+	@Input() loggedInUser: User = null;
 
 	constructor(
-		private authService: AuthService,
-		private router: Router
+		private authService: AuthService
 	) {
-		this.authService.loggedInUserChanged.subscribe((loggedInUser: User) => {
-			this.loggedInUser = loggedInUser;
-		});
-		this.authService.isAuthChanged.subscribe((isAuth: boolean) => {
-			this.isAuth = isAuth;
-		});
-		this.authService.isAdminChanged.subscribe((isAdmin: boolean) => {
-			this.isAdmin = isAdmin;
-		});
-		router.events.subscribe((val) => {
-			if (val instanceof NavigationEnd) {
-				this.setActiveRoute(val.url);
-			}
-		});
+
 	}
 
 	ngOnInit() {
@@ -45,9 +30,5 @@ import { Router, NavigationEnd } from '@angular/router';
 
 	logout() {
 		this.authService.logout();
-	}
-
-	setActiveRoute(route: string) {
-		this.activeRoute = route;
 	}
 }
