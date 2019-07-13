@@ -1,4 +1,8 @@
-<mat-tab-group>
+<h1 *ngIf="tabGroup.selectedIndex === 0" class="page-title">Progress by User</h1>
+<h1 *ngIf="tabGroup.selectedIndex === 1"  class="page-title">Progress by Department</h1>
+<h1 *ngIf="tabGroup.selectedIndex === 2"  class="page-title">Progress for All Users</h1>
+
+<mat-tab-group #tabGroup>
 	<mat-tab label="Users"> 
 		<app-user-progress></app-user-progress>
 	</mat-tab>

@@ -3,8 +3,12 @@
 	[ngClass]="{'expanded': activeRoute === '' || activeRoute === '/' || activeRoute === '/login' || activeRoute === '/register' }"	
 >
     <div>
-      <a class="logo" routerLink="/home">
+      <a class="logo" *ngIf="!isAdmin" routerLink="/home">
 		DeCKR
+	  </a>
+	  <a class="logo" *ngIf="isAdmin" routerLink="/admin">
+		DeCKR
+		<span> Admin</span>
       </a>
     </div>
 	<div class="navlinks-container">
@@ -48,7 +52,23 @@
 			>
 				Contracts
 			</a>
-        </li>
+		</li>
+		<li *ngIf="isAdmin">
+			<a 
+				[ngClass]="{'active': activeRoute === '/admin/progress'}" 
+				routerLink="/admin/progress"
+			>
+				Progress
+			</a>
+		</li>
+		<li *ngIf="isAdmin">
+			<a 
+				[ngClass]="{'active': activeRoute === '/admin/userviews'}" 
+				routerLink="/admin/userviews"
+			>
+				Settings
+			</a>
+		</li>
         <li *ngIf="isAuth">
 			<a 
 				style="cursor: pointer" 
@@ -56,7 +76,8 @@
 			>
 				Logout
 			</a>
-        </li>
+		</li>
+	
       </ul>
     </div>
     <div class="menu">

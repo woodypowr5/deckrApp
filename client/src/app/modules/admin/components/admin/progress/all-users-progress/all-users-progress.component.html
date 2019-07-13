@@ -9,8 +9,6 @@
 	</mat-card>
 
 	<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-
 		<ng-container matColumnDef="employeeID">
 			<th mat-header-cell *matHeaderCellDef mat-sort-header > ID </th>
 			<td mat-cell *matCellDef="let user">{{ user.employeeID }}</td>
