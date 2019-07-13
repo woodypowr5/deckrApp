@@ -1,6 +1,4 @@
-<mat-card class="destinations admin-destinations">
-	<h2>Choose a user:</h2>
-<mat-form-field>
+<!-- <mat-form-field>
   <mat-label>User Name</mat-label>
   <mat-select>
     <mat-option *ngFor="let user of users" [value]="user.name">
@@ -8,4 +6,14 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
+</mat-card> -->
+
+<mat-card *ngFor="let module of userSettings">
+	<h2>{{ module.moduleName }} module</h2>
+	<mat-checkbox  
+		*ngFor="let setting of module.settings"
+		[(ngModel)]="checked"
+	>
+			{{ setting.settingName }}
+	</mat-checkbox>
 </mat-card>
