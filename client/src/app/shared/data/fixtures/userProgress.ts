@@ -17,10 +17,10 @@ export const userProgressFixture: UserProgress[] = [
 		completedTime: 15,
 		employeeID: 3,
 		name: "Test Sales User",
-		totalTime: 300
+		totalTime: 100
 	},
 	{
-		completedTime: 15,
+		completedTime: 95,
 		employeeID: 4,
 		name: "Test Stuff User",
 		totalTime: 300

@@ -10,7 +10,7 @@ import { MatSort, MatTableDataSource } from '@angular/material';
 })
 export class AllUsersProgressComponent implements OnInit {
 	private users: UserProgress[];
-
+	private activeUser: UserProgress;
 	displayedColumns: string[] = ['employeeID', 'name', 'completedTime', 'totalTime', 'percentComplete'];
 	dataSource = new MatTableDataSource(Fixtures.userProgress);
   
@@ -18,6 +18,9 @@ export class AllUsersProgressComponent implements OnInit {
   
 	constructor() {
 		this.users = this.addPercentComplete(Fixtures.userProgress);
+		if (this.users.length > 0) {
+			this.activeUser = this.users[0];
+		}
 	}
 
 	ngOnInit() {
@@ -29,5 +32,9 @@ export class AllUsersProgressComponent implements OnInit {
 			user.percentComplete = user.completedTime / user.totalTime;
 		});
 		return userProgress;
+	}
+
+	setActiveUser(user: UserProgress) {
+		this.activeUser = user;
 	}
 }
