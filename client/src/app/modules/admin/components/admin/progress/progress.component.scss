@@ -1,6 +1,12 @@
+@import '../../../../../styles/layout/layout.scss';
+
 mat-tab-group{
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
+}
+
+::ng-deep mat-tab-body{
+	padding: $std-padding;
 }
