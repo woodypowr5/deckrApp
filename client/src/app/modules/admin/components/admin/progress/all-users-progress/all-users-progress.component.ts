@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UserProgress } from 'src/app/shared/types/user-progress';
+import { Fixtures } from 'src/app/shared/data/fixtures';
+import { MatSort, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-all-users-progress',
@@ -6,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-users-progress.component.scss']
 })
 export class AllUsersProgressComponent implements OnInit {
-	// private allUsersProgress
-	constructor() { }
+	private users: UserProgress[];
+
+	displayedColumns: string[] = ['employeeID', 'name', 'completedTime', 'totalTime', 'percentComplete'];
+	dataSource = new MatTableDataSource(Fixtures.userProgress);
+  
+	@ViewChild(MatSort, {static: true}) sort: MatSort;
+  
+	constructor() {
+		this.users = this.addPercentComplete(Fixtures.userProgress);
+	}
 
 	ngOnInit() {
+		this.dataSource.sort = this.sort;
+	}
+
+	addPercentComplete(userProgress: UserProgress[]) {
+		userProgress.map((user: UserProgress) => {
+			user.percentComplete = user.completedTime / user.totalTime;
+		});
+		return userProgress;
 	}
 }

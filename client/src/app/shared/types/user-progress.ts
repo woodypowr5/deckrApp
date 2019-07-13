@@ -3,4 +3,5 @@ export interface UserProgress {
 	employeeID: number;
 	name: string;
 	totalTime: number;
+	percentComplete?: number;
 }

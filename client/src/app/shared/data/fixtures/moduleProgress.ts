@@ -26,10 +26,10 @@ export const moduleProgressFixture: ModuleProgress[] = [
 		totalTime: 1280
 	},
 	{
-		completedTime: 0,
+		completedTime: 5,
 		moduleID: 5,
 		moduleName: "Contracts",
-		totalTime: 0
+		totalTime: 9
 	},
 	{
 		completedTime: 0,

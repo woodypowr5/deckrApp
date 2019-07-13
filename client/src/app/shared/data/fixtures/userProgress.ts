@@ -10,13 +10,25 @@ export const userProgressFixture: UserProgress[] = [
 	{
 		completedTime: 195,
 		employeeID: 2,
-		name: "Test Personell User",
+		name: "Test Personnel User",
 		totalTime: 800
 	},
 	{
 		completedTime: 15,
 		employeeID: 3,
 		name: "Test Sales User",
+		totalTime: 300
+	},
+	{
+		completedTime: 15,
+		employeeID: 4,
+		name: "Test Stuff User",
+		totalTime: 300
+	},
+	{
+		completedTime: 15,
+		employeeID: 5,
+		name: "Test Support User",
 		totalTime: 300
 	}	
 ]
