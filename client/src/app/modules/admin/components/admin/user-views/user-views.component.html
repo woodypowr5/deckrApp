@@ -1,3 +1,11 @@
-<p>
-  user-views works!
-</p>
+<mat-card class="destinations admin-destinations">
+	<h2>Choose a user:</h2>
+<mat-form-field>
+  <mat-label>User Name</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let user of users" [value]="user.name">
+      {{ user.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</mat-card>

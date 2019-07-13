@@ -2,7 +2,7 @@
 @import "../../../../styles/layout/layout.scss";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-mat-card {
+::ng-deep mat-card.admin-destinations {
 	@include item_container(2 * $std-padding);
 	max-width: $content-box-max-width;
 	margin-left: auto;

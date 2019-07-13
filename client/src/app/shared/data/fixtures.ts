@@ -7,6 +7,7 @@ import { trainingsFixture } from './fixtures/trainings';
 import { moduleProgressFixture } from './fixtures/moduleProgress';
 import { userProgressFixture } from './fixtures/userProgress';
 import { departmentProgressFixture } from './fixtures/departmentProgress';
+import { userSettingsFixture } from './fixtures/userSettings';
 
 export const Fixtures = {
     user: userFixture,
@@ -17,5 +18,6 @@ export const Fixtures = {
 	trainings: trainingsFixture,
 	moduleProgress: moduleProgressFixture,
 	userProgress: userProgressFixture,
-	departmentProgress: departmentProgressFixture
+	departmentProgress: departmentProgressFixture,
+	userSettings: userSettingsFixture
 }
