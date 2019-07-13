@@ -6,10 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-users-progress.component.scss']
 })
 export class AllUsersProgressComponent implements OnInit {
+	// private allUsersProgress
+	constructor() { }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+	ngOnInit() {
+	}
 }

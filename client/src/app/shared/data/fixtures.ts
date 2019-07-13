@@ -4,6 +4,8 @@ import { contractsFixture } from './fixtures/contracts';
 import { securityGroupsFixture } from './fixtures/securityGroups';
 import { approvedSecurityGroupsFixture } from './fixtures/approvedSecurityGroups';
 import { trainingsFixture } from './fixtures/trainings';
+import { moduleProgressFixture } from './fixtures/moduleProgress';
+import { userProgressFixture } from './fixtures/userProgress';
 
 export const Fixtures = {
     user: userFixture,
@@ -11,5 +13,7 @@ export const Fixtures = {
     contracts: contractsFixture,
     securityGroups: securityGroupsFixture,
 	approvedSecurityGroups: approvedSecurityGroupsFixture,
-    trainings: trainingsFixture
+	trainings: trainingsFixture,
+	moduleProgress: moduleProgressFixture,
+	userProgress: userProgressFixture
 }

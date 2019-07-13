@@ -1,3 +1,7 @@
-<p>
-  user-progress works!
-</p>
+<mat-card *ngFor="let module of modules">
+	<h2>{{ module.moduleName }} module</h2>
+	<app-progress-indicator
+		[complete]="module.completedTime"
+		[total]="module.totalTime"
+	></app-progress-indicator>
+</mat-card>
