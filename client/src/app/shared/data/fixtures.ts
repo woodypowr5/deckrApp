@@ -8,9 +8,12 @@ import { moduleProgressFixture } from './fixtures/moduleProgress';
 import { userProgressFixture } from './fixtures/userProgress';
 import { departmentProgressFixture } from './fixtures/departmentProgress';
 import { userSettingsFixture } from './fixtures/userSettings';
+import { usersFixture } from './fixtures/users';
+
 
 export const Fixtures = {
-    user: userFixture,
+	user: userFixture,
+	users: usersFixture,
 	adminUser: adminUserFixture,
     contracts: contractsFixture,
     securityGroups: securityGroupsFixture,

@@ -80,7 +80,7 @@ export const userSettingsFixture: UserSettings[] = [
 		]
 	},	
 	{
-		moduleName: "Securirty Groups",
+		moduleName: "Security Groups",
 		moduleID: 1,
 		settings: [
 			{
