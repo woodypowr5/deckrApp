@@ -16,16 +16,17 @@ namespace DeCKR_WebAPI.Controllers
     /// <summary>
     /// Training Controller class
     /// </summary>
-    [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     [RoutePrefix("api/training")]
     public class TrainingController : ApiController
     {
         DomainModel model = new DomainModel();
-        
+
         /// <summary>
         /// Get all trainings
         /// </summary>
         /// <returns>Trainings List</returns>
+        [Authorize]
         public List<TrainingModel> Get()
         {
             return model.GetTrainings().ToList();
@@ -37,6 +38,7 @@ namespace DeCKR_WebAPI.Controllers
         /// <param name="Id">trainingid</param>
         /// <returns>single training</returns>
         [ActionName("SingleTraining")]
+        [Authorize]
         public TrainingModel GetTraining(int Id)
         {
             return model.GetTraining(Id);
@@ -48,6 +50,7 @@ namespace DeCKR_WebAPI.Controllers
         /// <param name="employeeID">employee ID</param>
         /// <returns>list of user trainings</returns>
         [Route("UserTrainings/{employeeID}")]
+        [Authorize]
         public List<UserTrainingModel> GetUserTrainings(int employeeID)
         {
             return model.GetUserTrainings(employeeID).ToList();
@@ -61,6 +64,7 @@ namespace DeCKR_WebAPI.Controllers
         /// <param name="status"></param>
         /// <param name="completion"></param>
         [HttpPost]
+        [Authorize]
         public void Post(int employeeID, int trainingId, string status, int progress)
         {
             bool result = model.SetTrainingStatus(employeeID, trainingId,status, progress);

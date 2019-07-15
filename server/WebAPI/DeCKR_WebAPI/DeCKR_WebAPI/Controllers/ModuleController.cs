@@ -13,7 +13,7 @@ using System.Web.Http.Cors;
 
 namespace DeCKR_WebAPI.Controllers
 {
-    [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class ModuleController : ApiController
     {
         DomainModel model = new DomainModel();
@@ -22,6 +22,7 @@ namespace DeCKR_WebAPI.Controllers
         /// Gets all Modules list
         /// </summary>
         /// <returns>Modules List</returns>
+        [Authorize]
         public List<ModuleModel> Get()
         {
             return model.GetModules().ToList();
