@@ -55,6 +55,46 @@ namespace DeCKR_WebAPI.Models
         }
 
         /// <summary>
+        /// Returns user with the specified userId
+        /// </summary>
+        /// <param name="EmployeeId">EmployeeId</param>
+        /// <returns>user model object</returns>
+        public UserModel GetUserLogin(int EmployeeId)
+        {
+            UserModel user = new UserModel();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString))
+                {
+                    conn.Open();
+                    string sqlStr = "GetUser";
+                    SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@EmployeeId", EmployeeId));
+                    SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
+                    while (dr.Read())
+                    {
+                        user.EmployeeID = Convert.ToInt32(dr["EmployeeID"]);
+                        user.Name = Convert.ToString(dr["Name"]);
+                        user.JobRole = Convert.ToString(dr["JobRoleName"]);
+                        user.Department = Convert.ToString(dr["DepartmentName"]);
+                        user.EmailAddress = Convert.ToString(dr["EmailAddress"]);
+                    }
+
+                    cmd.Parameters.Clear();
+                    cmd.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return user;
+        }
+
+        /// <summary>
         /// Returns users list
         /// </summary>
         /// <returns>List of UserModel</returns>
@@ -936,7 +976,7 @@ namespace DeCKR_WebAPI.Models
         /// <param name="jobRole">Job Role of the user</param>
         /// <param name="password">Password of the user</param>
         /// <returns>EmployeeID</returns>
-        public int RegisterUser(string name, string emailaddress, string jobRole, string password)
+        public int RegisterUser(string name, string emailaddress, string jobRole)
         {
             int EmployeeID = 0;
             try
@@ -951,7 +991,7 @@ namespace DeCKR_WebAPI.Models
                     cmd.Parameters.Add(new SqlParameter("@Name", name));
                     cmd.Parameters.Add(new SqlParameter("@EmailAddress", emailaddress));
                     cmd.Parameters.Add(new SqlParameter("@JobRole", jobRole));
-                    cmd.Parameters.Add(new SqlParameter("@Password", password));
+                   
                     SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
                     while (dr.Read())
                     {

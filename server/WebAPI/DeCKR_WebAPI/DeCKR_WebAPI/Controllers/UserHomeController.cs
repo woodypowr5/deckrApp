@@ -13,7 +13,7 @@ using System.Web.Http.Cors;
 
 namespace DeCKR_WebAPI.Controllers
 {
-    [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     [RoutePrefix("api/userhome")]
     public class UserHomeController : ApiController
     {
@@ -24,6 +24,7 @@ namespace DeCKR_WebAPI.Controllers
 
         //Gets all Modules Data for the user
         [Route("UserProgress/{employeeID}")]
+        [Authorize]
         public List<ModuleProgressModel> Get(int employeeID)
         {
             return model.GetModulesProgress(employeeID).ToList();
@@ -31,6 +32,7 @@ namespace DeCKR_WebAPI.Controllers
 
         //Gets Security Groups Progress for the user
         [Route("SecurityProgress/{employeeID}")]
+        [Authorize]
         public ModuleProgressModel GetSecurityProgress(int employeeID)
         {
             return model.GetSecurityProgress(employeeID);
@@ -38,6 +40,7 @@ namespace DeCKR_WebAPI.Controllers
 
         //Gets Trainings Progress for the user
         [Route("TrainingProgress/{employeeID}")]
+        [Authorize]
         public ModuleProgressModel GetTrainingProgress(int employeeID)
         {
             return model.GetTrainingProgress(employeeID);
@@ -45,6 +48,7 @@ namespace DeCKR_WebAPI.Controllers
 
         //Gets Contracts Progress for the user
         [Route("ContractProgress/{employeeID}")]
+        [Authorize]
         public ModuleProgressModel GetContractProgress(int employeeID)
         {
             return model.GetContractProgress(employeeID);
