@@ -9,7 +9,17 @@ export const Fixtures = {
 		salt: 'a',
 		createdAt: new Date(),
 		updatedAt: new Date()
-    },
+	},
+	adminUser: {
+		id: 1,
+		name: 'Test User',
+		email: 'test@test.com',
+		hashedPassword: 'a',
+		salt: 'a',
+		createdAt: new Date(),
+		updatedAt: new Date(),
+		isAdmin: true
+	},
     contracts: [
         {   
             id: 1,
