@@ -1,5 +1,5 @@
 <div class="security-groups">
-	<div *ngFor="let securityGroup of securityGroups" class="security-group-wrapper">
+	<div *ngFor="let securityGroup of securityGroups" class="security-group-wrapper" [ngClass]="{'pending': securityGroup.pending === true}">
 		<mat-card >
 			<mat-card-title class="name">
 				{{ securityGroup.name }}

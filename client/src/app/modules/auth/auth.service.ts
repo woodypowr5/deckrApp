@@ -59,7 +59,7 @@ export class AuthService {
 
 	getIsAdmin(): boolean {
 		if (!this.loggedInUser || this.loggedInUser === null) {
-			return false;
+			return true;
 		}
 		return this.loggedInUser.isAdmin === true;
 	}

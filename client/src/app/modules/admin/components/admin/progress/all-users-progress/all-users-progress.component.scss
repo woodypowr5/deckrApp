@@ -2,7 +2,12 @@
 	display: flex;
 	flex-direction: column;
 }
-
+mat-form-field.select{
+    position: absolute;
+    z-index: 10;
+    top: 40px;
+    right: 60px;
+}
 mat-card{
 	margin-bottom: 25px;
 }

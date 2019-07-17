@@ -1,8 +1,17 @@
 export const usersFixture = [
 	{
-		id: 1,
+		id: 0,
 		name: 'Chris Woodwward',
-		email: 'test@test.com',
+		email: 'test@deckr.com',
+		hashedPassword: 'a',
+		salt: 'a',
+		createdAt: new Date(),
+		updatedAt: new Date()
+	},
+	{
+		id: 1,
+		name: 'Dejohn Kinnermon',
+		email: 'test1@test.com',
 		hashedPassword: 'a',
 		salt: 'a',
 		createdAt: new Date(),
@@ -10,8 +19,8 @@ export const usersFixture = [
 	},
 	{
 		id: 2,
-		name: 'Dejohn Kinnermon',
-		email: 'test@test.com',
+		name: 'Krisha Kurapati',
+		email: 'test2@test.com',
 		hashedPassword: 'a',
 		salt: 'a',
 		createdAt: new Date(),
@@ -19,17 +28,8 @@ export const usersFixture = [
 	},
 	{
 		id: 3,
-		name: 'Krisha Kurapati',
-		email: 'test@test.com',
-		hashedPassword: 'a',
-		salt: 'a',
-		createdAt: new Date(),
-		updatedAt: new Date()
-	},
-	{
-		id: 4,
 		name: 'Bill Gates',
-		email: 'test@test.com',
+		email: 'test3@test.com',
 		hashedPassword: 'a',
 		salt: 'a',
 		createdAt: new Date(),
