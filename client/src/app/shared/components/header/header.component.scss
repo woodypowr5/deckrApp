@@ -2,11 +2,21 @@
 
 .expanded{
 	height: 150px;
+	.logo, .menu {
+		position: absolute;
+		top: 10px;
+	}
+	.menu {
+		right: 10px;
+	}
+	.navlinks-container{
+		margin-top: 85px;
+	}
 }
 
-.expanded .navlinks-container{
-	margin-top: 85px;
-}
+.expanded 
+
+
 
 .logo > span {
 	font-size: 0.8em;
