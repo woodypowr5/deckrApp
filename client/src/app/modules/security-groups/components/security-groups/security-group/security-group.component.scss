@@ -10,6 +10,21 @@ mat-card{
 	justify-content: space-between;
 	text-align: center;
 	margin: 0 auto;
+	border-radius: 3px;
+
+	&.pending{
+		--webkit-box-shadow: 3px 3px 12px -7px rgba(196,196,22,1);
+		-moz-box-shadow: 3px 3px 12px -7px rgba(196,196,22,1);
+		box-shadow: 3px 3px 12px -7px rgba(196,196,22,1);
+		border: 1px solid rgba(196,196,22,1);
+	}
+
+	&.approved{
+		--webkit-box-shadow: 3px 3px 12px -7px rgba(54,171,43,1);
+		-moz-box-shadow: 3px 3px 12px -7px rgba(54,171,43,1);
+		box-shadow: 3px 3px 12px -7px rgba(54,171,43,1);
+		border: 1px solid rgba(54,171,43,1);
+	}
 }
 
 mat-card-title.name{

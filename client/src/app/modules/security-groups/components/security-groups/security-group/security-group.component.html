@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card [ngClass]="{'pending': pending, 'approved': approved}">
 	<mat-card-title class="name">
 		{{ securityGroup.name }}
 	</mat-card-title>
