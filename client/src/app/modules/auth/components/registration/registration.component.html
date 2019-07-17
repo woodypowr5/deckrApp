@@ -24,6 +24,17 @@
 			<mat-error>Please enter a valid email.</mat-error>
 		</mat-form-field>
 		<mat-form-field>
+				<mat-select 
+					placeholder="Department"
+				   	matInput formControlName="department"     
+				  	required
+				>
+				 <mat-option *ngFor="let department of ['IT', 'Personnel', 'Sales', 'HR', 'Support']" [value]="department">
+				   {{ department }}
+				 </mat-option>
+				</mat-select>
+			 </mat-form-field>
+		<mat-form-field>
 			<input
 				type="password"
 				matInput

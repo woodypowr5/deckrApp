@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
 	private contracts: Contract[] = [];
 	private trainings: Training[] = [];
 	private userSettings: UserSettings;
+	private allUserSettings: any;
 
 
 	constructor(
@@ -35,18 +36,42 @@ export class HomeComponent implements OnInit {
 		this.authService.loggedInUserChanged.subscribe((user: User) => {
 			this.user = user;
 		});
+		this.userSettingsService.userSettingsChanged.subscribe( (settings: UserSettings[]) => {
+			this.userSettings = settings[1];
+			this.allUserSettings = settings;
+		});	
 		this.trainingService.trainingsChanged.subscribe((trainings: Training[]) => {
 			this.trainings = trainings;
+
+			if (this.allUserSettings[0].settings[2].settingValue !== true) {
+				this.trainings = this.trainings.filter((training: Training) => training.id !== 6);
+			} 
 		});
 		this.securityGroupsService.approvedGroupsChanged.subscribe((securityGroups: SecurityGroup[]) => {
 			this.securityGroups = securityGroups;
 		});
 		this.contractsService.contractsChanged.subscribe((contracts: Contract[]) => {
 			this.contracts = contracts;
+
+			if (this.allUserSettings[2].settings[0].settingValue === false) {
+				this.contracts = this.contracts.filter((contract: Contract) => contract.id !== 1);
+			}	
+			if (this.allUserSettings[2].settings[1].settingValue === false) {
+				this.contracts = this.contracts.filter((contract: Contract) => contract.id !== 2);
+			}	
+			if (this.allUserSettings[2].settings[2].settingValue === false) {
+				this.contracts = this.contracts.filter((contract: Contract) => contract.id !== 3);
+			}	
+			if (this.allUserSettings[2].settings[3].settingValue === false) {
+				this.contracts = this.contracts.filter((contract: Contract) => contract.id !== 4);
+			}	
+			if (this.allUserSettings[2].settings[4].settingValue === false) {
+				this.contracts = this.contracts.filter((contract: Contract) => contract.id !== 5);
+			}	
 		});
-		this.userSettingsService.userSettingsChanged.subscribe( (settings: UserSettings[]) => {
-			this.userSettings = settings[1];
-		});	
+		
+
+		
 	}
 
 	logout(): void {

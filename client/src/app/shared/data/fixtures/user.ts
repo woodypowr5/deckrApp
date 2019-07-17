@@ -2,7 +2,7 @@ import { User } from '../../types/user.interface';
 
 export const userFixture: User =  {
 	id: 1,
-	name: 'Test User',
+	name: 'Chris Woodward',
 	email: 'test@test.com',
 	hashedPassword: 'a',
 	salt: 'a',
