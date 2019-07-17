@@ -7,6 +7,8 @@ import { User } from 'src/app/shared/types/user.interface';
 import { SecurityGroup } from 'src/app/shared/types/security-group.class';
 import { Contract } from 'src/app/shared/types/contract';
 import { Training } from 'src/app/shared/types/training.interface';
+import { UserSettings } from 'src/app/shared/types/user-settings';
+import { UserSettingsService } from 'src/app/shared/services/user-settings.service';
 
 @Component({
   selector: 'app-home',
@@ -18,12 +20,15 @@ export class HomeComponent implements OnInit {
 	private securityGroups: SecurityGroup[] = [];
 	private contracts: Contract[] = [];
 	private trainings: Training[] = [];
+	private userSettings: UserSettings;
+
 
 	constructor(
 		private authService: AuthService,
 		private trainingService: TrainingService,
 		private securityGroupsService: SecurityGroupsService,
-		private contractsService: ContractsService
+		private contractsService: ContractsService,
+		private userSettingsService: UserSettingsService
 	) { }
 
 	ngOnInit() {
@@ -39,6 +44,9 @@ export class HomeComponent implements OnInit {
 		this.contractsService.contractsChanged.subscribe((contracts: Contract[]) => {
 			this.contracts = contracts;
 		});
+		this.userSettingsService.userSettingsChanged.subscribe( (settings: UserSettings[]) => {
+			this.userSettings = settings[1];
+		});	
 	}
 
 	logout(): void {

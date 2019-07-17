@@ -5,6 +5,8 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { Overlay } from '@angular/cdk/overlay';
 import { MarkCompleteComponent } from './mark-complete/mark-complete.component';
 import { UpdateProgressComponent } from './update-progress/update-progress.component';
+import { UserSettings } from 'src/app/shared/types/user-settings';
+import { UserSettingsService } from 'src/app/shared/services/user-settings.service';
 
 @Component({
 	selector: 'app-training',
@@ -15,15 +17,26 @@ export class TrainingComponent implements OnInit {
 	private trainings: Training[] = [];
 	markCompleteDialogRef: MatDialogRef<MarkCompleteComponent>;
 	updateProgressDialogRef: MatDialogRef<UpdateProgressComponent>;
+	private userSettings: UserSettings;
 	
   	constructor(
-		  private trainingService: TrainingService,
-		  public dialog: MatDialog, 
-		  private overlay: Overlay
+		private trainingService: TrainingService,
+		public dialog: MatDialog, 
+		private overlay: Overlay,
+		private userSettingsService: UserSettingsService
   	) { 
+		this.userSettingsService.userSettingsChanged.subscribe( (settings: UserSettings[]) => {
+			this.userSettings = settings[0];
+		});	
 		this.trainingService.trainingsChanged.subscribe( (newTrainings: Training[]) => {
-			this.trainings = newTrainings;
-		});		
+			console.log(newTrainings)
+			if (this.userSettings.settings[2].settingValue === 0) {
+				console.log(newTrainings)
+				this.trainings = newTrainings.filter((training: Training) => training.id !== 6);
+			} else {
+				this.trainings = newTrainings;
+			}			
+		});	
 	}
 
   	ngOnInit() {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SecurityGroupsService } from '../../security-groups.service';
 import { SecurityGroup } from 'src/app/shared/types/security-group.class';
+import { UserSettingsService } from 'src/app/shared/services/user-settings.service';
+import { UserSettings } from 'src/app/shared/types/user-settings';
 
 @Component({
   selector: 'app-security-groups',
@@ -12,9 +14,11 @@ export class SecurityGroupsComponent implements OnInit {
 	private deniedGroups: SecurityGroup[] = [];
 	private pendingGroupNumbers: number[] = [];
 	private approvedGroupNumbers: number[] = [];
+	private userSettings: UserSettings;
 
 	constructor(
-		private securityGroupsService: SecurityGroupsService
+		private securityGroupsService: SecurityGroupsService,
+		private userSettingsService: UserSettingsService
 	) { }
 
 	ngOnInit() {
@@ -30,6 +34,10 @@ export class SecurityGroupsComponent implements OnInit {
 		this.securityGroupsService.approvedGroupNumbersChanged.subscribe((groupNumbers: number[]) => {
 			this.approvedGroupNumbers = groupNumbers;
 		});
+		this.userSettingsService.userSettingsChanged.subscribe( (settings: UserSettings[]) => {
+			this.userSettings = settings[3];
+		});
+		
 	}
 
 	raiseAccessRequest(group: SecurityGroup): void {
