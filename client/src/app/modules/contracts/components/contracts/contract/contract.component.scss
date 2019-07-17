@@ -1,3 +1,11 @@
+:host{
+	text-align: center !important;
+}
+
+.mat-card-content>:first-child, .mat-card>:first-child{
+	height: 30px;
+}
+
 ::ng-deep .mat-card-header-text{
 	width: 100%;
 	text-align: center;
@@ -5,6 +13,11 @@
 
 .image-wrapper{
 	padding: 30px;
+	height: 260px;
+	img{
+		display: inherit;
+		margin: 0 auto;
+	}
 }
 
 mat-card-actions > .mat-button{
@@ -14,4 +27,13 @@ mat-card-actions > .mat-button{
 
 ::ng-deep button > span > span{
 	vertical-align: baseline !important;
+}
+
+.signed-image{
+	width: 150px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: -75px;
+	margin-left: -75px;
 }

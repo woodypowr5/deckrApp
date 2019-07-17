@@ -1,14 +1,15 @@
-<mat-card>
-	<mat-card-header>
+<mat-card [ngClass]="{'signed': contract.signed === true}">
+	<mat-card-header class="title">
 		<mat-card-title>{{ contract.name }}</mat-card-title>
 	</mat-card-header>
 	<div class="image-wrapper" mat-card-image>
-		<img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+		<img src="{{contract.thumbnailUrl}}" alt="Photo of a Shiba Inu">
 	</div>
 	<mat-card-content>
 		<p>
 			{{ contract.description }}
 		</p>
+		<img class="signed-image" *ngIf="contract.signed === true" src="/assets/check.svg" alt="">
 	</mat-card-content>
 	<mat-card-actions>
 		<button 

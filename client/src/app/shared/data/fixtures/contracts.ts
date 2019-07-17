@@ -6,7 +6,7 @@ export const contractsFixture: Contract[] = [
 		name: 'Non Disclosure Agreement',
 		signed: false,
 		description: 'An agreement to not share proprietary information',
-		thumbnailUrl: 'test',
+		thumbnailUrl: '/assets/nda.png',
 		instanceUrl: '/assets/nda.pdf'
 	},
 	{
