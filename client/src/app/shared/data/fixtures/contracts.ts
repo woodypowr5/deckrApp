@@ -3,41 +3,41 @@ import { Contract } from '../../types/contract';
 export const contractsFixture: Contract[] = [
 	{   
 		id: 1,
-		name: 'Test Contract 1',
-		signed: true,
-		description: 'Just a test contract',
+		name: 'Non Disclosure Agreement',
+		signed: false,
+		description: 'An agreement to not share proprietary information',
 		thumbnailUrl: 'test',
 		instanceUrl: 'test'
 	},
 	{
 		id: 2,
-		name: 'Test Contract 2',
+		name: 'Non-Compete Agreement',
 		signed: false,
-		description: 'Just another test contract',
+		description: 'An agreement governing the rights of job seekers and employers',
 		thumbnailUrl: 'test',
 		instanceUrl: 'test'
 	},
 	{
 		id: 3,
-		name: 'Test Contract 3',
+		name: 'Roles & Responsibilities',
 		signed: false,
-		description: 'Just the third test contract',
+		description: 'Your duties and responsibilities',
 		thumbnailUrl: 'test',
 		instanceUrl: 'test'
 	},
 	{
 		id: 4,
-		name: 'Test Contract 3',
-		signed: true,
-		description: 'Just the third test contract',
+		name: 'Compensation & Benefits Contract',
+		signed: false,
+		description: '',
 		thumbnailUrl: 'test',
 		instanceUrl: 'test'
 	},
 	{
 		id: 5,
-		name: 'Test Contract 3',
+		name: 'Terms of Employment',
 		signed: false,
-		description: 'Just the third test contract',
+		description: 'For legal purposes regarding your employment here',
 		thumbnailUrl: 'test',
 		instanceUrl: 'test'
 	}
