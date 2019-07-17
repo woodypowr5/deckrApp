@@ -4,6 +4,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { SharedModule } from 'src/app/shared/modules/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { WelcomeComponent } from './components/registration/welcome/welcome.component';
+import { LoginErrorComponent } from './components/login/login-error/login-error.component';
 
 @NgModule({
 	imports: [
@@ -12,9 +13,9 @@ import { WelcomeComponent } from './components/registration/welcome/welcome.comp
 	],
 	declarations: [
 		LoginComponent, 
-		RegistrationComponent, WelcomeComponent
+		RegistrationComponent, WelcomeComponent, LoginErrorComponent
 	],
-	entryComponents: [WelcomeComponent]
+	entryComponents: [WelcomeComponent, LoginErrorComponent]
 })
 export class AuthModule {
 

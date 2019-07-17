@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Contract } from 'src/app/shared/types/contract';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Fixtures } from 'src/app/shared/data/fixtures';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ContractsService {
 		this.contractsChanged.subscribe( (contracts: Contract[]) => {
 			this.contracts = contracts;
 		});
-		this.getContracts();
+		this.contractsChanged.next(Fixtures.contracts);
 		
 	}
 

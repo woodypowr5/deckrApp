@@ -38,7 +38,7 @@ export class AuthService {
 			this.isAdmin = newIsAdmin;
 		});
 		// this.loggedInUserChanged.next(Fixtures.user);
-		this.getUsers();
+		// this.getUsers();
 	}
 
 	getUsers() {

@@ -3,6 +3,7 @@ import { Training } from 'src/app/shared/types/training.interface';
 import { BehaviorSubject } from 'rxjs';
 import { TrainingStatus } from 'src/app/shared/types/training-status';
 import { HttpClient } from '@angular/common/http';
+import { Fixtures } from 'src/app/shared/data/fixtures';
 
 @Injectable({
 	providedIn: 'root'
@@ -16,7 +17,8 @@ export class TrainingService {
 		this.trainingsChanged.subscribe( (trainings: Training[]) => {
 			this.trainings = trainings;
 		});
-		this.getTrainings();
+		// this.getTrainings();
+		this.trainingsChanged.next(Fixtures.trainings);
 	}
 
 	getTrainings(): void {

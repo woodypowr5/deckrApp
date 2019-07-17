@@ -15,7 +15,7 @@ const trainingRoutes: Routes = [
     RouterModule
   ], 
   providers: [
-	  AuthUserGuard
+	AuthUserGuard
   ]
 })
 export class TrainingRoutingModule { }
