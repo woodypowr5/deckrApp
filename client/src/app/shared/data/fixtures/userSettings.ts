@@ -2,25 +2,19 @@ import { UserSettings } from '../../types/user-settings';
 
 export const userSettingsFixture: UserSettings[] = [
 	{
-		moduleName: "Registration",
-		moduleID: 1,
-		settings: [
-			{
-				settingID: 1,
-				settingName: "Filter Options",
-				settingDescription: "Filter options when selected change the user progress view",
-				settingValue: 0
-			}
-		]
-	},	
-	{
-		moduleName: "Login",
+		moduleName: "Trainings",
 		moduleID: 2,
 		settings: [
 			{
 				settingID: 1,
-				settingName: "Filter Options",
-				settingDescription: "Filter options when selected change the user progress view",
+				settingName: "Modify Completed Trainigns",
+				settingDescription: "Allow the user to modify the progress of already completed trainings",
+				settingValue: 1
+			},
+			{
+				settingID: 2,
+				settingName: "Show completed trainings",
+				settingDescription: "Allow user to view already-completed trainings",
 				settingValue: 0
 			}
 		]
@@ -55,27 +49,33 @@ export const userSettingsFixture: UserSettings[] = [
 		settings: [
 			{
 				settingID: 1,
-				settingName: "Filter Options",
-				settingDescription: "Filter options when selected change the user progress view",
-				settingValue: 0
-			},
-			{
-				settingID: 2,
-				settingName: "Navigation Options",
-				settingDescription: "Navigation options that allow the user to navigate to other modules",
+				settingName: "NDA",
+				settingDescription: "Access to non-disclosure agreement",
 				settingValue: 1
 			},
 			{
-				settingID: 1,
+				settingID: 2,
+				settingName: "Non-Compete",
+				settingDescription: "Access to non-compete agreement",
+				settingValue: 1
+			},
+			{
+				settingID: 3,
 				settingName: "Terms of Employment",
-				settingDescription: "Contract for Terms of Employment",
+				settingDescription: "Access to terms of employement contract",
 				settingValue: 1
 			},
 			{		
-				settingID: 2,
-				settingName: "Non-Disclosure Agreement",
-				settingDescription: "Contract for Non-Disclosure Agreement",
-				settingValue: 0
+				settingID: 4,
+				settingName: "Roles & Responsibilities",
+				settingDescription: "Access to the job roles and responsibilities agreeement",
+				settingValue: 1
+			},
+			{		
+				settingID: 5,
+				settingName: "Compensation",
+				settingDescription: "Access to the contract goverrning compensation and pay policies",
+				settingValue: 1
 			}
 		]
 	},	
@@ -85,8 +85,8 @@ export const userSettingsFixture: UserSettings[] = [
 		settings: [
 			{
 				settingID: 1,
-				settingName: "Filter Options",
-				settingDescription: "Filter options when selected change the user progress view",
+				settingName: "Show Non-Approved Groups",
+				settingDescription: "Show security groups for which the user is not approved so that he or she may request access",
 				settingValue: 0
 			}
 		]
