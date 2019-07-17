@@ -3,6 +3,7 @@ import { User } from '../../shared/types/user.interface';
 import { BehaviorSubject } from 'rxjs';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 import { Router } from '@angular/router';
+import { UsersApiService } from 'src/app/shared/api/users-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,14 @@ export class AuthService {
 	isAuthChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
 	private isAdmin: boolean = false;
 	isAdminChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
+	
 
   	constructor(
-		  private router: Router
-	  ) { 
+		  private router: Router,
+		  private usersApi: UsersApiService 
+	) { 
 		this.loggedInUserChanged.subscribe((user: User) => {
 			this.loggedInUser = user;
-			console.log(user);
 			if (user && user !== null){
 				this.isAuthChanged.next(true);
 			} else {
@@ -35,8 +37,14 @@ export class AuthService {
 		this.isAdminChanged.subscribe( (newIsAdmin: boolean) => {
 			this.isAdmin = newIsAdmin;
 		});
-
 		// this.loggedInUserChanged.next(Fixtures.user);
+		this.getUsers();
+	}
+
+	getUsers() {
+		this.usersApi.getUsers().subscribe(data =>{
+			console.log(data);
+		})
 	}
 
 	loginAdmin() {

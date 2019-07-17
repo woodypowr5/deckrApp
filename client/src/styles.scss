@@ -1,7 +1,6 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "./app/styles/index.scss";
 
-
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -12,13 +11,25 @@ img{
 }
 
 html, body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Monsterrat', sans-serif;
 	height: 100%;
 	box-sizing: border-box;	
+}
+
+h1, h2 {
+	font-family: 'Raleway';
 }
 
 body {
 	margin: 0;
 	color: text-colors(primary);
+}
+
+.mat-body-1 {
+	font-family: 'Monsterrat';
+}
+
+.mat-body-2 {
+	font-family: 'Monsterrat'
 }
 
