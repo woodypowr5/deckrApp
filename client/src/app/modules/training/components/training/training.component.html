@@ -11,14 +11,14 @@
 					{{ training.name }}
 				</div>
 			</div>
-			<div class="description">
+			<!-- <div class="description">
 				<div class="key">
 					Description
 				</div>
 				<div class="value">
 					{{ training.description }}
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<div 
 			class="progress"
@@ -34,6 +34,14 @@
 
 	<div class="details">
 		<h1 class="details-title">Training Details:</h1>
+		<div class="detail-block">
+			<div class="detail-key">
+				Training Description: 
+			</div>
+			<div class="detail-value">
+				{{ training.description }}
+			</div>
+		</div>
 		<div class="detail-block">
 			<div class="detail-key">
 				Total Completion Time (est):
