@@ -24,22 +24,21 @@ export class ContractsComponent implements OnInit {
 	});
 	this.contractsService.contractsChanged.subscribe( (newContracts: Contract[]) => {
 		this.contracts = newContracts;
-		if (this.userSettings.settings[0].settingValue === 0) {
+		if (this.userSettings.settings[0].settingValue === false) {
 			this.contracts = this.contracts.filter((contract: Contract) => contract.id !== 1);
 		}	
-		if (this.userSettings.settings[1].settingValue === 0) {
+		if (this.userSettings.settings[1].settingValue === false) {
 			this.contracts = this.contracts.filter((contract: Contract) => contract.id !== 2);
 		}	
-		if (this.userSettings.settings[2].settingValue === 0) {
+		if (this.userSettings.settings[2].settingValue === false) {
 			this.contracts = this.contracts.filter((contract: Contract) => contract.id !== 3);
 		}	
-		if (this.userSettings.settings[3].settingValue === 0) {
+		if (this.userSettings.settings[3].settingValue === false) {
 			this.contracts = this.contracts.filter((contract: Contract) => contract.id !== 4);
 		}	
-		if (this.userSettings.settings[4].settingValue === 0) {
+		if (this.userSettings.settings[4].settingValue === false) {
 			this.contracts = this.contracts.filter((contract: Contract) => contract.id !== 5);
 		}	
 	});
-	
   }
 }

@@ -29,14 +29,14 @@ export class TrainingComponent implements OnInit {
 			this.userSettings = settings[0];
 		});	
 		this.trainingService.trainingsChanged.subscribe( (newTrainings: Training[]) => {
-			if (this.userSettings.settings[2].settingValue === 0) {
+			if (this.userSettings.settings[2].settingValue !== true) {
 				this.trainings = newTrainings.filter((training: Training) => training.id !== 6);
 			} else {
 				this.trainings = newTrainings;
 			}	
 			
-			if (this.userSettings.settings[1].settingValue === 0) {
-				this.trainings = newTrainings.filter((training: Training) => training.progress !== 100);
+			if (this.userSettings.settings[1].settingValue === false) {
+				this.trainings = this.trainings.filter((training: Training) => training.progress !== 100);
 			}
 		});	
 	}

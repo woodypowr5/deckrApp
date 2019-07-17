@@ -29,7 +29,7 @@
 
 <mat-card class="summary">
 	<div class="home-container">
-		<div class="home-section" *ngIf="userSettings.settings[1].settingValue === 1" >
+		<div class="home-section" *ngIf="userSettings.settings[1].settingValue === true" >
 			<h2>Your Required Contracts</h2>
 
 			<mat-card>
@@ -39,7 +39,7 @@
 			</mat-card>
 		</div>
 
-		<div class="home-section" *ngIf="userSettings.settings[0].settingValue === 1" >
+		<div class="home-section" *ngIf="userSettings.settings[0].settingValue === true" >
 			<h2>Your Required Trainings</h2>
 
 			<mat-card>
@@ -49,7 +49,7 @@
 			</mat-card>
 		</div>
 
-		<div class="home-section" *ngIf="userSettings.settings[2].settingValue === 1" >
+		<div class="home-section" *ngIf="userSettings.settings[2].settingValue === true" >
 			<h2>Your Security Groups</h2>
 			<mat-card class="security-groups-card">
 				<app-security-groups-summary

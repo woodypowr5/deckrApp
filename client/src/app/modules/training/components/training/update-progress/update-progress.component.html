@@ -11,7 +11,7 @@
 	<h2> {{ training.name }}</h2>
 
 	<mat-slider 
-		*ngIf="userSettings.settings[0].settingValue === 1"
+		*ngIf="userSettings.settings[0].settingValue === true"
 		min="0" 
 		max="100" 
 		step="10"
@@ -22,7 +22,7 @@
 	
 	<h3>{{ sliderValue }} % complete</h3>
 
-	<button *ngIf="userSettings.settings[0].settingValue === 1" mat-button (click)="confirm()">Confirm</button>
-	<button *ngIf="userSettings.settings[0].settingValue === 1" mat-button matDialogClose>Cancel</button>
-	<button *ngIf="userSettings.settings[0].settingValue === 0" mat-button matDialogClose>Ok</button>
+	<button *ngIf="userSettings.settings[0].settingValue === true" mat-button (click)="confirm()">Confirm</button>
+	<button *ngIf="userSettings.settings[0].settingValue === true" mat-button matDialogClose>Cancel</button>
+	<button *ngIf="userSettings.settings[0].settingValue === false" mat-button matDialogClose>Ok</button>
 </mat-card>

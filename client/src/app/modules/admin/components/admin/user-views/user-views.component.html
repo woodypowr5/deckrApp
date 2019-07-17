@@ -1,6 +1,5 @@
 <h1 class="page-title">User View Settings</h1>
 
-
 <mat-card>
 	<div class="modules-header">
 		<p class="description">Select which features are available for each module in your users' experience</p>
@@ -19,6 +18,7 @@
 			<div *ngFor="let setting of module.settings">
 				<mat-checkbox  
 					[(ngModel)]="setting.settingValue"
+					(ngModelChange)="updateSettings($event)"
 				>
 						{{ setting.settingName }}
 				</mat-checkbox>

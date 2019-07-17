@@ -16,4 +16,18 @@ export class UserSettingsService  {
 		});
 		this.userSettingsChanged.next(Fixtures.userSettings);
 	}
+
+	updateUserSettings(newSettings: UserSettings[]): void {
+		console.log(newSettings)
+		// newSettings.map(module => {
+		// 	module.settings.map(setting => {
+		// 		if (setting.settingValue === true) {
+		// 			setting.settingValue = 1;
+		// 		} else {
+		// 			setting.settingValue = 0;s
+		// 		}
+		// 	});
+		// });
+		this.userSettingsChanged.next(newSettings);
+	}
 }
