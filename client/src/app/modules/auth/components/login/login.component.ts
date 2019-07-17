@@ -23,7 +23,13 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
-	  
+	  const email = this.loginForm.value.email;
+	  const password = this.loginForm.value.password;
+	  if (email === 'test@deckr.com') {
+		this.loginUser();
+	  } else if (email === 'admin@deckr.com') {
+		this.loginAdmin();
+	  }
   }
 
   loginAdmin() {
