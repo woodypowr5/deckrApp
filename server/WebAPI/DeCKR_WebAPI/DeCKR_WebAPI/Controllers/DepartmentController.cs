@@ -16,7 +16,7 @@ namespace DeCKR_WebAPI.Controllers
     /// <summary>
     /// Department Controller class
     /// </summary>
-    [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class DepartmentController : ApiController
     {
         DomainModel model = new DomainModel();
@@ -24,6 +24,7 @@ namespace DeCKR_WebAPI.Controllers
         /// Gets all departments list
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         public List<DepartmentModel> Get()
         {
             return model.GetDepartments().ToList();

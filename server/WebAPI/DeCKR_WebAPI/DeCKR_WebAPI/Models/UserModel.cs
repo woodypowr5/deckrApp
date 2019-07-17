@@ -22,7 +22,7 @@ namespace DeCKR_WebAPI.Models
         /// <summary>
         /// Password of the User
         /// </summary>
-       // public string Password { get; set; }
+        public string Password { get; set; }
 
         /// <summary>
         /// Name of the user

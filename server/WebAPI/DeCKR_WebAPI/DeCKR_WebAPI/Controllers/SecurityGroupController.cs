@@ -13,23 +13,25 @@ using System.Web.Http.Cors;
 
 namespace DeCKR_WebAPI.Controllers
 {
-    [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     [RoutePrefix("api/securitygroup")]
     public class SecurityGroupController : ApiController
     {
         DomainModel model = new DomainModel();
 
+        [Authorize]
         public List<SecurityGroupModel> Get()
         {
             return model.GetSecurityGroups().ToList();
         }
-
+      
         /// <summary>
         /// Returns a contract
         /// </summary>
         /// <param name="Id">ContractId</param>
         /// <returns>List of user Contracts</returns>
         [ActionName("SingleSecurity")]
+        [Authorize]
         public SecurityGroupModel GetSecurity(int Id)
         {
             return model.GetSecurityGroup(Id);
@@ -41,12 +43,14 @@ namespace DeCKR_WebAPI.Controllers
         /// <param name="employeeID"></param>
         /// <returns></returns>
         [Route("UserSecurityGroups/{employeeID}")]
+        [Authorize]
         public List<UserSecurityGroupModel> GetUserSecuritys(int employeeID)
         {
             return model.GetUserSecurityGroups(employeeID).ToList();
         }
 
         [HttpPost]
+        [Authorize]
         public void Post(int employeeId, int securityId, string status)
         {
             bool result = model.SetSecurityGroup(employeeId, securityId, status);

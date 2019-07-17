@@ -16,7 +16,7 @@ namespace DeCKR_WebAPI.Controllers
     /// <summary>
     /// Job Role Controller class
     /// </summary>
-    [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class JobRoleController : ApiController
     {
         DomainModel model = new DomainModel();
@@ -25,6 +25,7 @@ namespace DeCKR_WebAPI.Controllers
         /// Gets all Job Roles list
         /// </summary>
         /// <returns>Job Roles List</returns>
+        [Authorize]
         public List<JobRoleModel> Get()
         {
             return model.GetJobRoles().ToList();

@@ -15,7 +15,7 @@ namespace DeCKR_WebAPI.Controllers
     /// <summary>
     /// Contract Controller Class
     /// </summary>
-    [EnableCors(origins: "http://localhost:1433", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     [RoutePrefix("api/contract")]
    public class ContractController : ApiController
     {
@@ -23,11 +23,12 @@ namespace DeCKR_WebAPI.Controllers
         /// object for the domain model class
         /// </summary>
         DomainModel model = new DomainModel();
-        
+
         /// <summary>
         /// Returns all the contracts
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         public List<ContractModel> Get()
         {
             return model.GetContracts().ToList();
