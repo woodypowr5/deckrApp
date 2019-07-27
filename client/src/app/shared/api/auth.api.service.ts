@@ -77,7 +77,5 @@ export class AuthApiService {
 				console.log(token);
 			});
 		});
-
-		
 	}
 }	  
