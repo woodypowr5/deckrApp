@@ -22,7 +22,7 @@ interface AuthLoginRequest {
   providedIn: 'root'
 })
 export class AuthApiService {
-	private apiUrl: string = ApiUrls.base + ApiUrls.auth.base;
+	private apiUrl: string = ApiUrls.base + ApiUrls.auth;
 	private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 	private options = { headers: this.headers };
 
@@ -36,7 +36,7 @@ export class AuthApiService {
 		return {
 			Email: user.email,
 			Name: user.name,
-			JobRole: user.role,
+			JobRole: user.role, // what are valid roles?
 			password: user.hashedPassword,
 			confirmpassword: user.hashedPassword
 		}
@@ -44,7 +44,7 @@ export class AuthApiService {
 
 	makeLoginRequest(email: string, password: string): AuthLoginRequest {
 		return {
-			Grant_type: "?",
+			Grant_type: "?", // what's a valid grant var?
 			Username: email,
 			Password: password
 		}

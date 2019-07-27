@@ -2,22 +2,65 @@ export const ApiUrls = {
 	base: "http://deckrwebapi.azurewebsites.net/api/",
 	auth: {
 		base: "account",
-		slugs: {
-			register: "register"
-		}
-	},
+	},	
 	users: {
 		base: "user",
-		slugs: {
-			getUsers: "",
-			getUserById: "SingleUser",
-			getUsersByDepartmentId: "DepartmentUsers",
-			createUser: ""
+		segments: {
+			single: "SingleUser",
+			byDepartment: "DepartmentUsers"
 		}
-	}
+	},	
+	userHome: {
+		base: "userhome",
+		segments: {
+			summary: "",
+			securityGroupsProgress: "SecurityProgress",
+			trainingProgress: "TrainingProgress",
+			contractsProgress: "ContractsProgress"
+		}
+	},
+	adminHome: {
+		base: "adminhome",
+		segments: {
+			progressByUser: "SingleUserProgress",
+			progressByDepartment: "DepartmentProgress"
+		}
+	},
+	securityGroups: {
+		base: "SecurityGroup",
+		segments: {
+			single: "SingleSecurity",
+			byUser: "UserSecurityGroups"
+		}
+	},
+	trainings: {
+		base: "Training",
+		segments: {
+			single: "SingleTraining",
+			byUser: "UserTrainings"
+		}
+	},
+	contracts: {
+		base: "contract",
+		segments: {
+			single: "SingleContract",
+			byUser: "UserContract"
+		}
+	},
+	departments: {
+		base: "department",
+	},
+	jobRoles: {
+		base: "jobrole",
+	},
+	modules: {
+		base: "module",
+	},
+	adminSettings: {
+		base: "adminsettings",
+		segments: {
+			byUser: "UserSettings",
+			byDepartment: "DepartmentSettings"
+		}
+	}	
 }
-
-// 1)All Users - http://deckrwebapi.azurewebsites.net/api/user
-// 2)Get Single User Info - http://deckrwebapi.azurewebsites.net/api/user/SingleUser/1
-// 3)Get Department Users Info - http://deckrwebapi.azurewebsites.net/api/user/DepartmentUsers/2
-// 4)Register User - http://deckrwebapi.azurewebsites.net/api/user/post?name=name1&emailaddress=emailaddress1&jobrole=jobrole1&password=password1

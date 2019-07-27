@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 import { Router } from '@angular/router';
 import { UsersApiService } from 'src/app/shared/api/users-api.service';
-import { AuthApiService } from 'src/app/shared/api/auth.api';
+import { AuthApiService } from 'src/app/shared/api/auth.api.service';
 
 @Injectable({
   providedIn: 'root'
