@@ -62,5 +62,5 @@ export const ApiUrls = {
 			byUser: "UserSettings",
 			byDepartment: "DepartmentSettings"
 		}
-	}	
+	}
 }
