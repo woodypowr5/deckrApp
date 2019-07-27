@@ -20,7 +20,7 @@ export class SecurityGroupsApiService {
 		return this.http.get<SecurityGroup[]>(this.apiUrl);
 	}
 	
-	getSecurityGroupById(userId: number): Observable<SecurityGroup> {
+	getSecurityGroupById(id: number): Observable<SecurityGroup> {
 		const url = this.apiUrl + `/${ApiUrls.securityGroups.segments.single}/${id}`;
 		return this.http.get<SecurityGroup>(url);
 	}
