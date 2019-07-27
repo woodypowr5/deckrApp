@@ -20,9 +20,13 @@ export class ContractsApiService {
 		return this.http.get<Contract[]>(this.apiUrl);
 	}
 	
-	getContractsByUserId(id: number): Observable<Contract> {
-		const url = this.apiUrl + `/${ApiUrls.contracts}/${id}`;
+	getContractById(id: number): Observable<Contract> {
+		const url = this.apiUrl + `/${ApiUrls.contracts.segments.single}/${id}`;
 		return this.http.get<Contract>(url);
 	}
-
+		
+	getContractsByUserId(userId: number): Observable<Contract[]> {
+		const url = this.apiUrl + `/${ApiUrls.contracts.segments.byUser}/${userId}`;
+		return this.http.get<Contract[]>(url);
+	}
 }
