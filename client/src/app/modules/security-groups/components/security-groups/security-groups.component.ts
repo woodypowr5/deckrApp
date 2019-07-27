@@ -10,11 +10,11 @@ import { UserSettings } from 'src/app/shared/types/user-settings';
   styleUrls: ['./security-groups.component.scss']
 })
 export class SecurityGroupsComponent implements OnInit {
-	private approvedGroups: SecurityGroup[] = [];
-	private deniedGroups: SecurityGroup[] = [];
-	private pendingGroupNumbers: number[] = [];
-	private approvedGroupNumbers: number[] = [];
-	private userSettings: UserSettings;
+	approvedGroups: SecurityGroup[] = [];
+	deniedGroups: SecurityGroup[] = [];
+	pendingGroupNumbers: number[] = [];
+	approvedGroupNumbers: number[] = [];
+	userSettings: UserSettings;
 
 	constructor(
 		private securityGroupsService: SecurityGroupsService,

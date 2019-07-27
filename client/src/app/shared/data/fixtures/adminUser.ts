@@ -5,8 +5,8 @@ export const adminUserFixture: User = {
 	name: 'Admin',
 	email: 'test@test.com',
 	hashedPassword: 'a',
-	salt: 'a',
 	createdAt: new Date(),
 	updatedAt: new Date(),
-	isAdmin: true
+	isAdmin: true,
+	role: "test"
 }

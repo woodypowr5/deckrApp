@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 import { Router } from '@angular/router';
 import { UsersApiService } from 'src/app/shared/api/users-api.service';
+import { AuthApiService } from 'src/app/shared/api/auth.api';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class AuthService {
 
   	constructor(
 		  private router: Router,
-		  private usersApi: UsersApiService 
+		  private usersApi: UsersApiService,
+		  private authApi: AuthApiService
 	) { 
 		this.loggedInUserChanged.subscribe((user: User) => {
 			this.loggedInUser = user;

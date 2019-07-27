@@ -1,5 +1,11 @@
 export const ApiUrls = {
 	base: "http://deckrwebapi.azurewebsites.net/api/",
+	auth: {
+		base: "account",
+		slugs: {
+			register: "register"
+		}
+	},
 	users: {
 		base: "user",
 		slugs: {

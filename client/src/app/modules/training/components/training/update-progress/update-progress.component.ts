@@ -13,7 +13,7 @@ export class UpdateProgressComponent implements OnInit {
 	@Output() closeDialog: EventEmitter<number> = new EventEmitter();
 	sliderValue: number;
 	training: Training;
-	private userSettings: UserSettings;
+	userSettings: UserSettings;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) data,

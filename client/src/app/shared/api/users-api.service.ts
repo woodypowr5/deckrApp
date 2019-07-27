@@ -4,18 +4,19 @@ import { User } from '../types/user.interface';
 import { ApiUrls } from './api-urls';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class UsersApiService {
 	private apiUrl: string = ApiUrls.base + ApiUrls.users.base;
-
+	
 	constructor(
 		private http: HttpClient
 	) { 
 		this.test();
 	}
-	
+
 	getUsers(): Observable<User[]> {
 		return this.http.get<User[]>(this.apiUrl);
 	}
@@ -31,6 +32,7 @@ export class UsersApiService {
 	}
 
 	test() {
+
 		// this.getUsers().subscribe((users: User[]) => {
 		// 	console.log("getUsers");
 		// 	console.log(users);

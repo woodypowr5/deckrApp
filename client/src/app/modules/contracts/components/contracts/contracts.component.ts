@@ -10,8 +10,8 @@ import { UserSettingsService } from 'src/app/shared/services/user-settings.servi
   styleUrls: ['./contracts.component.scss']
 })
 export class ContractsComponent implements OnInit {
-	private contracts: Contract[] = [];
-	private userSettings: UserSettings;
+	contracts: Contract[] = [];
+	userSettings: UserSettings;
 
   constructor(
 	  private contractsService: ContractsService,

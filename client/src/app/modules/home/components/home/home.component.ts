@@ -16,12 +16,12 @@ import { UserSettingsService } from 'src/app/shared/services/user-settings.servi
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-	private user: User;
-	private securityGroups: SecurityGroup[] = [];
-	private contracts: Contract[] = [];
-	private trainings: Training[] = [];
-	private userSettings: UserSettings;
-	private allUserSettings: any;
+	user: User;
+	securityGroups: SecurityGroup[] = [];
+	contracts: Contract[] = [];
+	trainings: Training[] = [];
+	userSettings: UserSettings;
+	allUserSettings: any;
 
 
 	constructor(

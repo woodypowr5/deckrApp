@@ -10,8 +10,8 @@ import { DepartmentProgress } from 'src/app/shared/types/deparment-progress';
   styleUrls: ['./department-progress.component.scss']
 })
 export class DepartmentProgressComponent implements OnInit {
-	private departments: DepartmentProgress[];
-	private activeDepartment: DepartmentProgress;
+	departments: DepartmentProgress[];
+	activeDepartment: DepartmentProgress;
 	displayedColumns: string[] = ['departmentID', 'name', 'completedTime', 'totalTime', 'percentComplete'];
 	dataSource = new MatTableDataSource(Fixtures.departmentProgress);
   

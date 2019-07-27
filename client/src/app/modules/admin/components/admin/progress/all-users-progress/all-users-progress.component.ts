@@ -9,8 +9,8 @@ import { MatSort, MatTableDataSource } from '@angular/material';
   styleUrls: ['./all-users-progress.component.scss']
 })
 export class AllUsersProgressComponent implements OnInit {
-	private users: UserProgress[];
-	private activeUser: UserProgress;
+	users: UserProgress[];
+	activeUser: UserProgress;
 	displayedColumns: string[] = ['employeeID', 'name', 'completedTime', 'totalTime', 'percentComplete'];
 	dataSource = new MatTableDataSource(Fixtures.userProgress);
   

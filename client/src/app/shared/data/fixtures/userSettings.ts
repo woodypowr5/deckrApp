@@ -58,7 +58,7 @@ export const userSettingsFixture: UserSettings[] = [
 				settingID: 1,
 				settingName: "NDA",
 				settingDescription: "Access to non-disclosure agreement",
-				settingValue: false
+				settingValue: true
 			},
 			{
 				settingID: 2,

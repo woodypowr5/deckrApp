@@ -36,16 +36,6 @@ export class RegistrationComponent implements OnInit {
 	) { }
   
 	ngOnInit() {
-		// this.registerForm = this.formBuilder.group({
-		// 	name: ['', Validators.required],
-		// 	email: ['', [Validators.required, Validators.email]],
-		// 	password: ['', [Validators.required, Validators.minLength(6)]],
-		// 	confirmPassword: ['', Validators.required],
-		// 	agree: ['', Validators.required]
-		// }, {
-		// 	validator: MustMatch('password', 'confirmPassword'),
-		// });
-
 		this.registerForm = new FormGroup({
 			name: new FormControl('', {
 				validators: [Validators.required]
@@ -58,8 +48,7 @@ export class RegistrationComponent implements OnInit {
 			  }),
 			password: new FormControl('', { validators: [Validators.required, Validators.minLength(6)] }),
 			confirmPassword: new FormControl('', { validators: [Validators.required, Validators.minLength(6)] }),
-			agree: new FormControl('', { validators: [Validators.required] }),
-			
+			agree: new FormControl('', { validators: [Validators.required] })
 		  });
 	}
 

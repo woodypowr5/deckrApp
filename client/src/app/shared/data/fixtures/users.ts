@@ -6,7 +6,8 @@ export const usersFixture = [
 		hashedPassword: 'a',
 		salt: 'a',
 		createdAt: new Date(),
-		updatedAt: new Date()
+		updatedAt: new Date(),
+		role: "test"
 	},
 	{
 		id: 1,
@@ -15,7 +16,8 @@ export const usersFixture = [
 		hashedPassword: 'a',
 		salt: 'a',
 		createdAt: new Date(),
-		updatedAt: new Date()
+		updatedAt: new Date(),
+		role: "test"
 	},
 	{
 		id: 2,
@@ -24,7 +26,8 @@ export const usersFixture = [
 		hashedPassword: 'a',
 		salt: 'a',
 		createdAt: new Date(),
-		updatedAt: new Date()
+		updatedAt: new Date(),
+		role: "test"
 	},
 	{
 		id: 3,
@@ -33,6 +36,7 @@ export const usersFixture = [
 		hashedPassword: 'a',
 		salt: 'a',
 		createdAt: new Date(),
-		updatedAt: new Date()
+		updatedAt: new Date(),
+		role: "test"
 	}
 ]

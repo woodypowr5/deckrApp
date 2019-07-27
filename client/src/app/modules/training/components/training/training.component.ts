@@ -14,10 +14,10 @@ import { UserSettingsService } from 'src/app/shared/services/user-settings.servi
 	styleUrls: ['./training.component.scss']
 })
 export class TrainingComponent implements OnInit {
-	private trainings: Training[] = [];
+	trainings: Training[] = [];
 	markCompleteDialogRef: MatDialogRef<MarkCompleteComponent>;
 	updateProgressDialogRef: MatDialogRef<UpdateProgressComponent>;
-	private userSettings: UserSettings;
+	userSettings: UserSettings;
 	
   	constructor(
 		private trainingService: TrainingService,

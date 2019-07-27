@@ -10,8 +10,8 @@ import { UserSettingsService } from 'src/app/shared/services/user-settings.servi
   styleUrls: ['./user-views.component.scss']
 })
 export class UserViewsComponent implements OnInit {
-	private userSettings: UserSettings[] = [];
-	private allUsers: User[] = [] 
+	userSettings: UserSettings[] = [];
+	allUsers: User[] = [] 
 
 	constructor(
 		private userSettingsService: UserSettingsService

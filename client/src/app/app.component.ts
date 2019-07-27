@@ -10,10 +10,10 @@ import { Router, NavigationEnd } from '@angular/router';
   
 })
 export class AppComponent {
-	private activeRoute = 'login';
-	private isAuth: boolean = false;
-	private isAdmin: boolean = false;
-	private loggedInUser: User = null;
+	activeRoute = 'login';
+	isAuth: boolean = false;
+	isAdmin: boolean = false;
+	loggedInUser: User = null;
 
 	constructor(
 		private authService: AuthService,

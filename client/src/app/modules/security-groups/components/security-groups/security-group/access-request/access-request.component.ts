@@ -9,7 +9,7 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 })
 export class AccessRequestComponent implements OnInit {
 	@Output() closeDialog: EventEmitter<void> = new EventEmitter();
-	private securityGroup: SecurityGroup;
+	securityGroup: SecurityGroup;
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) data
