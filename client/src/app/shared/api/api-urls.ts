@@ -15,7 +15,7 @@ export const ApiUrls = {
 		segments: {
 			summary: "",
 			securityGroupsProgress: "SecurityProgress",
-			trainingProgress: "TrainingProgress",
+			trainingsProgress: "TrainingProgress",
 			contractsProgress: "ContractsProgress"
 		}
 	},
