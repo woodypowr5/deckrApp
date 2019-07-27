@@ -4,7 +4,6 @@ import { User } from '../types/user.interface';
 import { ApiUrls } from './api-urls';
 import { Observable } from 'rxjs';
 
-
 interface AuthUser {
 	Email: string;
 	Name: string;
@@ -12,6 +11,12 @@ interface AuthUser {
 	password: string;
 	confirmpassword: string;	
 };
+
+interface AuthLoginRequest {
+	Grant_type: string,
+	Username: string,
+	Password: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -37,9 +42,22 @@ export class AuthApiService {
 		}
 	}
 
+	makeLoginRequest(email: string, password: string): AuthLoginRequest {
+		return {
+			Grant_type: "?",
+			Username: email,
+			Password: password
+		}
+	}
+
 	registerUser(user: User): Observable<number> {
 		const url = this.apiUrl + "/register";
 		return this.http.post<number>(url ,JSON.stringify(this.makeAuthUser(user)), this.options);
+	}
+
+	loginUser(email: string, password: string): Observable<string> {
+		const url = this.apiUrl + "/token";
+		return this.http.post<string>(url ,JSON.stringify(this.makeLoginRequest(email, password)), this.options);
 	}
 
 	test() {
@@ -55,6 +73,11 @@ export class AuthApiService {
 
 		this.registerUser(newUser).subscribe((id: number) => {
 			console.log(id);
+			this.loginUser(newUser.email, newUser.hashedPassword).subscribe((token: string) => {
+				console.log(token);
+			});
 		});
+
+		
 	}
 }	  
