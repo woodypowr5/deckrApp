@@ -53,7 +53,7 @@ export class RegistrationComponent implements OnInit {
 			email: new FormControl('', {
 			  validators: [Validators.required, Validators.email]
 			}),
-			department: new FormControl('', {
+			role: new FormControl('', {
 				validators: [Validators.required]
 			  }),
 			password: new FormControl('', { validators: [Validators.required, Validators.minLength(6)] }),
@@ -67,19 +67,18 @@ export class RegistrationComponent implements OnInit {
 	submitForm() {
 		this.authService.registerUser({
 			name: this.registerForm.controls.name.value,
-			email: this.registerForm.controls.name.value,
-			role: this.registerForm.controls.name.value,
-			hashedPassword: this.registerForm.controls.name.value
+			email: this.registerForm.controls.email.value,
+			role: this.registerForm.controls.role.value,
+			hashedPassword: this.registerForm.controls.password.value
 		}).subscribe((newUserId: number) => {
 			this.userId = newUserId;
-		});
-
-		this.welcomeRef = this.dialog.open(WelcomeComponent, {
-			data: this.userId,
-			scrollStrategy: this.overlay.scrollStrategies.noop()
-		});
-		const sub = this.welcomeRef.componentInstance.closeDialog.subscribe(() => {
-			this.dialog.closeAll();
+			this.welcomeRef = this.dialog.open(WelcomeComponent, {
+				data: this.userId,
+				scrollStrategy: this.overlay.scrollStrategies.noop()
+			});
+			const sub = this.welcomeRef.componentInstance.closeDialog.subscribe(() => {
+				this.dialog.closeAll();
+			});
 		});
 	}
 }

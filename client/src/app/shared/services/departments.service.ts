@@ -12,8 +12,8 @@ export class DepartmentsService {
   	constructor(
 		private departmentsApi: DepartmentsApiService	 
 	) {
-		this.departmentsApi.getDepartments().subscribe((departments: string[]) => {
-			this.departmentsChanged.next(departments);
-		});
+		// this.departmentsApi.getDepartments().subscribe((departments: string[]) => {
+		// 	this.departmentsChanged.next(departments);
+		// });
 	}	
 }

@@ -35,11 +35,11 @@ export class AuthApiService {
 
 	}
 
-	makeAuthUser(user: User): AuthUser {
+	makeAuthUser(user: User): any {
 		return {
 			Email: user.email,
 			Name: user.name,
-			JobRole: user.role,
+			JobRole: 3,
 			password: user.hashedPassword,
 			confirmpassword: user.hashedPassword
 		}
@@ -47,6 +47,7 @@ export class AuthApiService {
 
 	registerUser(user: User): Observable<number> {
 		const url = this.apiUrl + "/register/";
+		console.log(user);
 		return this.http.post<number>(url ,JSON.stringify(this.makeAuthUser(user)), { headers: this.headers });
 	}
 

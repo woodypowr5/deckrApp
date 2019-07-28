@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, Inject, EventEmitter } from '@angular/core';
-import { User } from 'src/app/shared/types/user.interface';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 
@@ -9,7 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome.component.scss']
 })
 export class WelcomeComponent implements OnInit {
-
 	@Input() userId: number;
 	@Output() closeDialog: EventEmitter<void> = new EventEmitter();
 
@@ -17,6 +15,7 @@ export class WelcomeComponent implements OnInit {
 		@Inject(MAT_DIALOG_DATA) data,
 		private router: Router
 	) { 
+		console.log(data);
 		this.userId = data;
 	}
 
