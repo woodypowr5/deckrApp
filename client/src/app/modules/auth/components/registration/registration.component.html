@@ -29,8 +29,8 @@
 				   	matInput formControlName="department"     
 				  	required
 				>
-				 <mat-option *ngFor="let department of ['IT', 'Personnel', 'Sales', 'HR', 'Support']" [value]="department">
-				   {{ department }}
+				 <mat-option *ngFor="let role of jobRoles" [value]="role">
+				   {{ role }}
 				 </mat-option>
 				</mat-select>
 			 </mat-form-field>

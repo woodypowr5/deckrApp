@@ -4,7 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 import { Router } from '@angular/router';
 import { UsersApiService } from 'src/app/shared/api/users-api.service';
-import { AuthApiService } from 'src/app/shared/api/auth.api.service';
+import { AuthApiService } from 'src/app/shared/api/auth-api.service';
+import { JobRolesApiService } from 'src/app/shared/api/job-roles-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,14 @@ export class AuthService {
 	isAuthChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
 	private isAdmin: boolean = false;
 	isAdminChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
-	
+	private jobRoles: string[];
+	jobRolesChanged: BehaviorSubject<string[]> = new BehaviorSubject([]);
 
   	constructor(
 		  private router: Router,
 		  private usersApi: UsersApiService,
-		  private authApi: AuthApiService
+		  private authApi: AuthApiService,
+		  private jobRolesApi: JobRolesApiService
 	) { 
 		this.loggedInUserChanged.subscribe((user: User) => {
 			this.loggedInUser = user;
@@ -39,13 +42,21 @@ export class AuthService {
 		this.isAdminChanged.subscribe( (newIsAdmin: boolean) => {
 			this.isAdmin = newIsAdmin;
 		});
-		// this.loggedInUserChanged.next(Fixtures.user);
-		// this.getUsers();
+		this.jobRolesChanged.subscribe( (newJobRoles: string[]) => {
+			this.jobRoles = newJobRoles;
+		});
+		this.getJobRoles();
 	}
 
 	getUsers() {
 		this.usersApi.getUsers().subscribe(data =>{
 			console.log(data);
+		})
+	}
+
+	getJobRoles() {
+		this.jobRolesApi.getJobRoles().subscribe(data =>{
+			this.jobRoles = this.jobRoles;
 		})
 	}
 

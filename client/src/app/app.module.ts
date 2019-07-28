@@ -14,7 +14,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { WebApiService } from './shared/services/web-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminModule } from './modules/admin/admin.module';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
     ContractsModule, 
 	SecurityGroupsModule,
 	PdfViewerModule,
-	HttpClientModule,
-	HttpClientInMemoryWebApiModule.forRoot(WebApiService, { dataEncapsulation: false })
+	HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

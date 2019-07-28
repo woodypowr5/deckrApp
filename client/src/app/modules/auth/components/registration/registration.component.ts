@@ -7,6 +7,7 @@ import { Overlay } from '@angular/cdk/overlay';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 import { User } from 'src/app/shared/types/user.interface';
+import { AuthService } from '../../auth.service';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -27,13 +28,19 @@ export class RegistrationComponent implements OnInit {
 	submitted = false;
 	matcher = new MyErrorStateMatcher();
 	welcomeRef: MatDialogRef<WelcomeComponent>;
+	jobRoles: string[] = [];
 
 	constructor(
 		private formBuilder: FormBuilder,
 		private router: Router,
 		public dialog: MatDialog, 
-		private overlay: Overlay
-	) { }
+		private overlay: Overlay,
+		private authService: AuthService
+	) { 
+		this.authService.jobRolesChanged.subscribe((jobRoles: string[]) => {
+			this.jobRoles = jobRoles;
+		})
+	}
   
 	ngOnInit() {
 		this.registerForm = new FormGroup({
@@ -53,7 +60,7 @@ export class RegistrationComponent implements OnInit {
 	}
 
 	get f() { return this.registerForm }
-  
+
 	submitForm() {
 		this.user = Fixtures.user;
 		this.welcomeRef = this.dialog.open(WelcomeComponent, {
