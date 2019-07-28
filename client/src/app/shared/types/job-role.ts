@@ -4,7 +4,7 @@ export interface JobRole {
 }
 
 export class JobRoleSerializer {
-	fromJson(json: any): JobRole {
+	fromJson(json: any): JobRole[] {
 		if (json.constructor === Array) {
 			return json.map( item => {
 				return {
@@ -12,10 +12,6 @@ export class JobRoleSerializer {
 					name: item.Name
 				}
 			});
-		}
-		return {
-			id: json.ID,
-			name: json.Name
 		}
 	}
   

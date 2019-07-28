@@ -4,6 +4,7 @@ import { User } from '../types/user.interface';
 import { ApiUrls } from './api-urls';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 interface AuthUser {
 	Email: string;
@@ -28,7 +29,8 @@ export class AuthApiService {
 	private encodedHeaders = new  HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded'});
 
 	constructor(
-		private http: HttpClient
+		private http: HttpClient,
+		private jwtHelper: JwtHelperService
 	) { 
 
 	}
@@ -37,7 +39,7 @@ export class AuthApiService {
 		return {
 			Email: user.email,
 			Name: user.name,
-			JobRole: user.role, // what are valid roles?
+			JobRole: user.role,
 			password: user.hashedPassword,
 			confirmpassword: user.hashedPassword
 		}
@@ -69,22 +71,16 @@ export class AuthApiService {
 		);
 	}
 
-	// test() {
-	// 	const newUser: User = {
-	// 		id: 1,
-	// 		name: 'Chris Woodward',
-	// 		email: 'test19@test.com',
-	// 		hashedPassword: 'asdasd123123!!AA',
-	// 		createdAt: new Date(),
-	// 		updatedAt: new Date(),
-	// 		role: "stuff"
-	// 	}
-
-	// 	this.registerUser(newUser).subscribe((id: number) => {
-	// 		console.log(id);
-	// 		this.loginUser(newUser.email, newUser.hashedPassword).subscribe((token: string) => {
-	// 			console.log(token);
-	// 		});
-	// 	});
-	// }
+	isAuthenticated() {
+		const token = localStorage.getItem('token');
+		return !this.jwtHelper.isTokenExpired(token);
+	}
+	
+	getToken() {
+		return this.jwtHelper.tokenGetter();
+	}
+	
+	logout() {
+		localStorage.removeItem('token');
+	}
 }	  

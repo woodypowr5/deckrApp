@@ -11,9 +11,9 @@ import { SecurityGroupsModule } from './modules/security-groups/security-groups.
 import { SharedModule } from './shared/modules/shared.module';
 import { HomeModule } from './modules/home/home.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { WebApiService } from './shared/services/web-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminModule } from './modules/admin/admin.module';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,12 @@ import { AdminModule } from './modules/admin/admin.module';
     ContractsModule, 
 	SecurityGroupsModule,
 	PdfViewerModule,
-	HttpClientModule
+	HttpClientModule,
+	JwtModule.forRoot({
+		config: {
+		  tokenGetter: () => localStorage.getItem('token')
+		}
+	  })
   ],
   providers: [],
   bootstrap: [AppComponent]

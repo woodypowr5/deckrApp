@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
 })
 export class WelcomeComponent implements OnInit {
 
-	@Input() user: User;
+	@Input() userId: number;
 	@Output() closeDialog: EventEmitter<void> = new EventEmitter();
 
 	constructor(
 		@Inject(MAT_DIALOG_DATA) data,
 		private router: Router
 	) { 
-		this.user = data;
+		this.userId = data;
 	}
 
 	ngOnInit() {

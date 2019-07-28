@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersApiService {
-	private apiUrl: string = ApiUrls.base + ApiUrls.users;
+	private apiUrl: string = ApiUrls.base + ApiUrls.users.base;
 	
 	constructor(
 		private http: HttpClient

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../shared/types/user.interface';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 import { Router } from '@angular/router';
 import { UsersApiService } from 'src/app/shared/api/users-api.service';
 import { AuthApiService } from 'src/app/shared/api/auth-api.service';
 import { JobRolesApiService } from 'src/app/shared/api/job-roles-api.service';
+import { JobRole } from 'src/app/shared/types/job-role';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class AuthService {
 	isAuthChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
 	private isAdmin: boolean = false;
 	isAdminChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
-	private jobRoles: string[];
-	jobRolesChanged: BehaviorSubject<string[]> = new BehaviorSubject([]);
+	private jobRoles: JobRole[];
+	jobRolesChanged: BehaviorSubject<JobRole[]> = new BehaviorSubject([]);
 
   	constructor(
 		  private router: Router,
@@ -42,7 +43,7 @@ export class AuthService {
 		this.isAdminChanged.subscribe( (newIsAdmin: boolean) => {
 			this.isAdmin = newIsAdmin;
 		});
-		this.jobRolesChanged.subscribe( (newJobRoles: string[]) => {
+		this.jobRolesChanged.subscribe( (newJobRoles: JobRole[]) => {
 			this.jobRoles = newJobRoles;
 		});
 		this.getJobRoles();
@@ -55,8 +56,8 @@ export class AuthService {
 	}
 
 	getJobRoles() {
-		this.jobRolesApi.getJobRoles().subscribe(data =>{
-			this.jobRoles = this.jobRoles;
+		this.jobRolesApi.getJobRoles().subscribe((jobRoles: JobRole[]) => {
+			this.jobRolesChanged.next(jobRoles);
 		})
 	}
 
@@ -65,9 +66,18 @@ export class AuthService {
 		this.router.navigate(["/admin"]);
 	}
 
-	loginUser() {
-		this.loggedInUserChanged.next(Fixtures.user);
+	loginUser(email: string, password: string): void {
+		this.authApi.loginUser(email, password).subscribe((userId: number) => {
+			console.log("log in userID: " + userId);
+			this.usersApi.getUserById(userId).subscribe((user: User) => {
+				console.log(user);
+			});
+		});
 		this.router.navigate(["home"]);
+	}
+
+	registerUser(newUser: User): Observable<number> {
+		return this.authApi.registerUser(newUser);
 	}
 
 	getIsAdmin(): boolean {

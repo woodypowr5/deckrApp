@@ -8,6 +8,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 import { User } from 'src/app/shared/types/user.interface';
 import { AuthService } from '../../auth.service';
+import { DepartmentsService } from 'src/app/shared/services/departments.service';
+import { JobRole } from 'src/app/shared/types/job-role';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -23,21 +25,22 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-	user: User
+	userId: number;
 	registerForm: FormGroup;
 	submitted = false;
 	matcher = new MyErrorStateMatcher();
 	welcomeRef: MatDialogRef<WelcomeComponent>;
-	jobRoles: string[] = [];
+	jobRoles: JobRole[] = [];
 
 	constructor(
 		private formBuilder: FormBuilder,
 		private router: Router,
 		public dialog: MatDialog, 
 		private overlay: Overlay,
-		private authService: AuthService
+		private authService: AuthService,
+		private departmentsService: DepartmentsService
 	) { 
-		this.authService.jobRolesChanged.subscribe((jobRoles: string[]) => {
+		this.authService.jobRolesChanged.subscribe((jobRoles: JobRole[]) => {
 			this.jobRoles = jobRoles;
 		})
 	}
@@ -62,9 +65,17 @@ export class RegistrationComponent implements OnInit {
 	get f() { return this.registerForm }
 
 	submitForm() {
-		this.user = Fixtures.user;
+		this.authService.registerUser({
+			name: this.registerForm.controls.name.value,
+			email: this.registerForm.controls.name.value,
+			role: this.registerForm.controls.name.value,
+			hashedPassword: this.registerForm.controls.name.value
+		}).subscribe((newUserId: number) => {
+			this.userId = newUserId;
+		});
+
 		this.welcomeRef = this.dialog.open(WelcomeComponent, {
-			data: this.user,
+			data: this.userId,
 			scrollStrategy: this.overlay.scrollStrategies.noop()
 		});
 		const sub = this.welcomeRef.componentInstance.closeDialog.subscribe(() => {

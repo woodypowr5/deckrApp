@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DepartmentsApiService {
-	private apiUrl: string = ApiUrls.base + ApiUrls.departments;
+	private apiUrl: string = ApiUrls.base + ApiUrls.departments.base;
 	
 	constructor(
 		private http: HttpClient
