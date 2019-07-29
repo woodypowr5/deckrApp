@@ -5,6 +5,7 @@ import { ApiUrls } from './api-urls';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import * as jwt_decode from "jwt-decode";
 
 interface AuthUser {
 	Email: string;
@@ -74,7 +75,17 @@ export class AuthApiService {
 		);
 	}
 
-	isAuthenticated() {
+	getDecodedAccessToken(token: string): any {
+		try{
+			return jwt_decode(token);
+		}
+		catch(Error){
+			// console.log(Error);
+			return null;
+		}
+	}
+	
+	isAuthenticated(): boolean {
 		const token = this.getToken();
 		if (token !== null && token !== undefined) {return true};
 	}

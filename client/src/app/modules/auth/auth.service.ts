@@ -7,15 +7,15 @@ import { UsersApiService } from 'src/app/shared/api/users-api.service';
 import { AuthApiService } from 'src/app/shared/api/auth-api.service';
 import { JobRolesApiService } from 'src/app/shared/api/job-roles-api.service';
 import { JobRole } from 'src/app/shared/types/job-role';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-	private loggedInUserId: number = 435;
 	private loggedInUser: User;
 	loggedInUserChanged: BehaviorSubject<User> = new BehaviorSubject(null);
+	private users: User[];
+	usersChanged: BehaviorSubject<User[]> = new BehaviorSubject(null);
 	private isAuth: boolean = false;
 	isAuthChanged: BehaviorSubject<boolean> = new BehaviorSubject(false);
 	private isAdmin: boolean = false;
@@ -27,8 +27,7 @@ export class AuthService {
 		private router: Router,
 		private usersApi: UsersApiService,
 		private authApi: AuthApiService,
-		private jobRolesApi: JobRolesApiService,
-		private jwtHelper: JwtHelperService
+		private jobRolesApi: JobRolesApiService
 	) { 
 		this.loggedInUserChanged.subscribe((user: User) => {
 			this.loggedInUser = user;
@@ -50,20 +49,25 @@ export class AuthService {
 			this.jobRoles = newJobRoles;
 		});
 		this.getJobRoles();
-		this.getUsers();
 	}
 
 	getUsers() {
-		this.usersApi.getUsers().subscribe(data =>{
-			console.log(data);
+		this.usersApi.getUsers().subscribe(data => {
+			this.usersChanged.next(this.users = data);
 		})
 	}
 
-	getLoggedInUser() {
-		this.usersApi.getUserById(1).subscribe(data =>{
-			console.log(data);
-			this.loggedInUserChanged.next(data);
+	getLoggedInUser(): void {
+		const token = this.authApi.getToken();
+		const parts = token.split(",");
+		const emailPart = parts[3].replace(/['"]+/g, '');
+		const email = emailPart.split(":")[1];
+		this.usersChanged.subscribe((users: User[]) => {
+			this.usersApi.getUserById(365).subscribe(data =>{
+				this.loggedInUserChanged.next(this.users.find((currentUser: User) => currentUser.email === email));
+			});	
 		});
+		this.getUsers();
 	}
 
 	getJobRoles() {
@@ -81,7 +85,6 @@ export class AuthService {
 		return new Promise<any>((resolve, reject) => {
 			this.authApi.authenticate(email, password).subscribe(() => {
 				this.getLoggedInUser();
-				this.getUsers();
 				const url = '/home';
 				this.router.navigate([url]);
 				resolve(null);
@@ -92,7 +95,6 @@ export class AuthService {
 	}
 
 	registerUser(newUser: User): Observable<number> {
-		console.log(newUser);
 		return this.authApi.registerUser(newUser);
 	}
 
