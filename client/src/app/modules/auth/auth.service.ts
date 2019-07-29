@@ -32,6 +32,7 @@ export class AuthService {
 		this.loggedInUserChanged.subscribe((user: User) => {
 			this.loggedInUser = user;
 			if (user && user !== null){
+				this.router.navigate(["home"]);
 				this.isAuthChanged.next(true);
 			} else {
 				this.isAuthChanged.next(false);
@@ -49,6 +50,7 @@ export class AuthService {
 			this.jobRoles = newJobRoles;
 		});
 		this.getJobRoles();
+		this.getLoggedInUser();
 	}
 
 	getUsers() {
@@ -59,14 +61,16 @@ export class AuthService {
 
 	getLoggedInUser(): void {
 		const token = this.authApi.getToken();
-		const parts = token.split(",");
-		const emailPart = parts[3].replace(/['"]+/g, '');
-		const email = emailPart.split(":")[1];
-		this.usersChanged.subscribe((users: User[]) => {
-			this.usersApi.getUserById(365).subscribe(data =>{
-				this.loggedInUserChanged.next(this.users.find((currentUser: User) => currentUser.email === email));
-			});	
-		});
+		if (token) {
+			const parts = token.split(",");
+			const emailPart = parts[3].replace(/['"]+/g, '');
+			const email = emailPart.split(":")[1];
+			this.usersChanged.subscribe((users: User[]) => {
+				this.usersApi.getUserById(365).subscribe(data =>{
+					this.loggedInUserChanged.next(this.users.find((currentUser: User) => currentUser.email === email));
+				});
+			});
+		}
 		this.getUsers();
 	}
 
@@ -85,8 +89,9 @@ export class AuthService {
 		return new Promise<any>((resolve, reject) => {
 			this.authApi.authenticate(email, password).subscribe(() => {
 				this.getLoggedInUser();
-				const url = '/home';
-				this.router.navigate([url]);
+				// const url = '/home';
+				// this.router.navigate([url]);
+				this.router.navigate(["/home"]);
 				resolve(null);
 			}, (error) => {
 				resolve(error);
@@ -99,14 +104,16 @@ export class AuthService {
 	}
 
 	getIsAdmin(): boolean {
-		if (!this.loggedInUser || this.loggedInUser === null) {
-			return false;
-		}
-		return this.loggedInUser.isAdmin === true;
+		return false;
+		// if (!this.loggedInUser || this.loggedInUser === null) {
+		// 	return false;
+		// }
+		// return this.loggedInUser.isAdmin === true;
 	}
 	
 	logout() {
+		this.isAuthChanged.next(false);
 		localStorage.removeItem('token');
-		this.router.navigate([""]);
+		this.router.navigate(["login"]);
 	}
 }

@@ -81,7 +81,7 @@ export class AuthApiService {
 		}
 		catch(Error){
 			// console.log(Error);
-			return null;
+			return undefined;
 		}
 	}
 	
