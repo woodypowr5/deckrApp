@@ -17,6 +17,7 @@ export class UsersApiService {
 	constructor(
 		private http: HttpClient
 	) { 
+		
 	}
 
 	getUsers(): Observable<User[]> {
@@ -32,5 +33,4 @@ export class UsersApiService {
 		const url = this.apiUrl + `/DepartmentUsers/${id}`;
 		return this.http.get<User[]>(url);
 	}
-
 }

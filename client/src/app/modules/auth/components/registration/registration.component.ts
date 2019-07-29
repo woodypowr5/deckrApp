@@ -68,7 +68,7 @@ export class RegistrationComponent implements OnInit {
 		this.authService.registerUser({
 			name: this.registerForm.controls.name.value,
 			email: this.registerForm.controls.email.value,
-			role: this.registerForm.controls.role.value,
+			role: this.registerForm.controls.role.value.name,
 			hashedPassword: this.registerForm.controls.password.value
 		}).subscribe((newUserId: number) => {
 			this.userId = newUserId;

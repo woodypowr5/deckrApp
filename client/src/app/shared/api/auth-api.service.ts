@@ -43,7 +43,7 @@ export class AuthApiService {
 		return {
 			Email: user.email,
 			Name: user.name,
-			JobRole: 3,
+			JobRole: user.role,
 			password: user.hashedPassword,
 			confirmpassword: user.hashedPassword
 		}

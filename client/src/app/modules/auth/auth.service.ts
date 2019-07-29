@@ -50,6 +50,7 @@ export class AuthService {
 			this.jobRoles = newJobRoles;
 		});
 		this.getJobRoles();
+		this.getUsers();
 	}
 
 	getUsers() {
@@ -91,6 +92,7 @@ export class AuthService {
 	}
 
 	registerUser(newUser: User): Observable<number> {
+		console.log(newUser);
 		return this.authApi.registerUser(newUser);
 	}
 
