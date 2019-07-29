@@ -30,6 +30,6 @@ export class TrainingsApiService {
 		
 	getTrainingsByUserId(userId: number): Observable<Training[]> {
 		const url = this.apiUrl + `/${ApiUrls.trainings.segments.byUser}/${userId}`;
-		return this.http.get<Training[]>(url);
+		return this.http.get<Training[]>(url).pipe(map(data => this.trainingsSerializer.fromJson(data)));
 	}
 }

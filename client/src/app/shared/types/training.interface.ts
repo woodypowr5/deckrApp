@@ -16,14 +16,14 @@ export class TrainingsSerializer {
 		if (json.constructor === Array) {
 			return json.map( item => {
 				return {
-					description: item.Description,
-					dueDate: item.DueDate,
-					timeToComplete: item.Duration,
-					id: item.Id,
-					name: item.Name,
-					url: item.TrainingURL,
-					status: TrainingStatus.notStarted,
-					progress: 0
+					description: item.Training.Description,
+					dueDate: item.Training.DueDate,
+					timeToComplete: item.Training.Duration,
+					id: item.Training.Id,
+					name: item.Training.Name,
+					url: item.Training.TrainingURL,
+					status: item.Status,
+					progress: item.Progress
 				}
 			});
 		}
@@ -37,18 +37,17 @@ export class TrainingsSerializer {
 	}
 }
 
-
 export class TrainingSerializer {
 	fromJson(item: any): Training {		
 				return {
-					description: item.Description,
-					dueDate: item.DueDate,
-					timeToComplete: item.Duration,
-					id: item.Id,
-					name: item.Name,
-					url: item.TrainingURL,
-					status: TrainingStatus.notStarted,
-					progress: 0
+					description: item.Training.Description,
+					dueDate: item.Training.DueDate,
+					timeToComplete: item.Training.Duration,
+					id: item.Training.Id,
+					name: item.Training.Name,
+					url: item.Training.TrainingURL,
+					status: item.Status,
+					progress: item.Progress
 				}		
 	}
 
