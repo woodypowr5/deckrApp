@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { TrainingStatus } from 'src/app/shared/types/training-status';
 import { HttpClient } from '@angular/common/http';
 import { Fixtures } from 'src/app/shared/data/fixtures';
+import { TrainingsApiService } from 'src/app/shared/api/trainings-api.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,16 +14,19 @@ export class TrainingService {
 	private trainings: Training[];
 	trainingsChanged: BehaviorSubject<Training[]> = new BehaviorSubject([]); 
 
-  	constructor(private http: HttpClient) { 
+  	constructor(
+		  private trainingApi: TrainingsApiService
+	) { 
 		this.trainingsChanged.subscribe( (trainings: Training[]) => {
 			this.trainings = trainings;
 		});
-		// this.getTrainings();
-		this.trainingsChanged.next(Fixtures.trainings);
+		this.getTrainings();
+		// this.trainingsChanged.next(Fixtures.trainings);
 	}
 
 	getTrainings(): void {
-		this.http.get(this.url).subscribe((trainings: Training[]) => {
+		this.trainingApi.getTrainings().subscribe((trainings: Training[]) => {
+			console.log(trainings);
 			this.trainingsChanged.next(trainings);
 		});
 	}
