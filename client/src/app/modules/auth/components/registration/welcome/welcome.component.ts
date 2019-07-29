@@ -15,7 +15,6 @@ export class WelcomeComponent implements OnInit {
 		@Inject(MAT_DIALOG_DATA) data,
 		private router: Router
 	) { 
-		console.log(data);
 		this.userId = data;
 	}
 

@@ -13,6 +13,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class AuthService {
+	private loggedInUserId: number = 435;
 	private loggedInUser: User;
 	loggedInUserChanged: BehaviorSubject<User> = new BehaviorSubject(null);
 	private isAuth: boolean = false;
@@ -51,14 +52,18 @@ export class AuthService {
 		this.getJobRoles();
 	}
 
-	init() {
-		
-	}
-
 	getUsers() {
 		this.usersApi.getUsers().subscribe(data =>{
 			console.log(data);
+			// this.loggedInUserChanged()
 		})
+	}
+
+	getLoggedInUser() {
+		this.usersApi.getUserById(435).subscribe(data =>{
+			console.log(data);
+			this.loggedInUserChanged.next(data);
+		});
 	}
 
 	getJobRoles() {
@@ -75,6 +80,7 @@ export class AuthService {
 	loginUser(email: string, password: string): Promise<any> {
 		return new Promise<any>((resolve, reject) => {
 			this.authApi.authenticate(email, password).subscribe(() => {
+				this.getLoggedInUser();
 				const url = '/home';
 				this.router.navigate([url]);
 				resolve(null);
@@ -97,9 +103,6 @@ export class AuthService {
 	
 	logout() {
 		localStorage.removeItem('token');
+		this.router.navigate([""]);
 	}
-	// logout() {
-	// 	this.loggedInUserChanged.next(null);
-	// 	this.router.navigate([""]);
-	// }
 }
