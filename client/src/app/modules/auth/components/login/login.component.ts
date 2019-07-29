@@ -29,27 +29,17 @@ export class LoginComponent implements OnInit {
 		});
 	}
 
-	submitForm() {
-		const email = this.loginForm.value.email;
-		const password = this.loginForm.value.password;
-		this.authService.loginUser(email, password);
-		// if (email === 'test@deckr.com') {
-		// 	this.loginUser();
-		// } else if (email === 'admin@deckr.com') {
-		// 	this.loginAdmin();
-		// } 
-		// else {
-		// 	this.error();
-		// }
-	}
-
 	loginAdmin() {
 		this.authService.loginAdmin();
 	}
 
-	// loginUser() {
-	// 	this.authService.loginUser();
-	// }
+	loginUser() {
+		const email = this.loginForm.value.email;
+		const password = this.loginForm.value.password;
+		this.authService.loginUser(email, password).subscribe(() => {
+			this.error();
+		});
+	}
 
 	error() {
 		this.loginErrorRef = this.dialog.open(LoginErrorComponent, {

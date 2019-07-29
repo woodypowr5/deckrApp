@@ -66,14 +66,14 @@ export class AuthService {
 		this.router.navigate(["/admin"]);
 	}
 
-	loginUser(email: string, password: string): void {
-		this.authApi.loginUser(email, password).subscribe((userId: number) => {
-			console.log("log in userID: " + userId);
-			this.usersApi.getUserById(userId).subscribe((user: User) => {
-				console.log(user);
-			});
+	loginUser(email: string, password: string): Observable<any> {
+		this.authApi.authenticate(email, password).subscribe(() => {
+			const url = '/home';
+			this.router.navigate([url]);
+		}, (error) => {
+			return null;
 		});
-		this.router.navigate(["home"]);
+		return undefined;	
 	}
 
 	registerUser(newUser: User): Observable<number> {

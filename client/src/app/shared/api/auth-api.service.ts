@@ -51,7 +51,7 @@ export class AuthApiService {
 		return this.http.post<number>(url ,JSON.stringify(this.makeAuthUser(user)), { headers: this.headers });
 	}
 
-	loginUser(username: string, password: string): Observable<any> {
+	authenticate(username: string, password: string): Observable<any> {
 		const url = "http://deckrwebapi.azurewebsites.net/token";
 		let headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
 		let body = new URLSearchParams();
@@ -60,7 +60,6 @@ export class AuthApiService {
 		body.set('grant_type', "password");
 		body.set('client_id', "angular.client");
 		body.set('client_secret', "secret");
-	  
 		return this.http.post<any>(url, body.toString(), {
 		  headers: headers
 		}).pipe(
