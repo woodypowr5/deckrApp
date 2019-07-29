@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../shared/types/user.interface';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 import { Router } from '@angular/router';
 import { UsersApiService } from 'src/app/shared/api/users-api.service';
 import { AuthApiService } from 'src/app/shared/api/auth-api.service';
 import { JobRolesApiService } from 'src/app/shared/api/job-roles-api.service';
 import { JobRole } from 'src/app/shared/types/job-role';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -66,14 +67,16 @@ export class AuthService {
 		this.router.navigate(["/admin"]);
 	}
 
-	loginUser(email: string, password: string): Observable<any> {
-		this.authApi.authenticate(email, password).subscribe(() => {
-			const url = '/home';
-			this.router.navigate([url]);
-		}, (error) => {
-			return null;
+	loginUser(email: string, password: string): Promise<any> {
+		return new Promise<any>((resolve, reject) => {
+			this.authApi.authenticate(email, password).subscribe(() => {
+				const url = '/home';
+				this.router.navigate([url]);
+				resolve(null);
+			}, (error) => {
+				resolve(error);
+			});
 		});
-		return undefined;	
 	}
 
 	registerUser(newUser: User): Observable<number> {

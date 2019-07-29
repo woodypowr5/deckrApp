@@ -33,11 +33,14 @@ export class LoginComponent implements OnInit {
 		this.authService.loginAdmin();
 	}
 
-	loginUser() {
+	submitForm() {
 		const email = this.loginForm.value.email;
 		const password = this.loginForm.value.password;
-		this.authService.loginUser(email, password).subscribe(() => {
-			this.error();
+		
+		this.authService.loginUser(email, password).then((response) => {
+			if (response !== null) {
+				this.error();
+			}
 		});
 	}
 
