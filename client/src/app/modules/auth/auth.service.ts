@@ -63,11 +63,11 @@ export class AuthService {
 		const token = this.authApi.getToken();
 		if (token) {
 			const parts = token.split(",");
-			const emailPart = parts[3].replace(/['"]+/g, '');
-			const email = emailPart.split(":")[1];
+			const idPart = parts[4].replace(/['"]+/g, '');
+			const id = idPart.split(":")[1];
 			this.usersChanged.subscribe((users: User[]) => {
-				this.usersApi.getUserById(365).subscribe(data =>{
-					this.loggedInUserChanged.next(this.users.find((currentUser: User) => currentUser.email === email));
+				this.usersApi.getUserById(parseInt(id)).subscribe((data: User) =>{
+					this.loggedInUserChanged.next(data);
 				});
 			});
 		}
@@ -89,8 +89,6 @@ export class AuthService {
 		return new Promise<any>((resolve, reject) => {
 			this.authApi.authenticate(email, password).subscribe(() => {
 				this.getLoggedInUser();
-				// const url = '/home';
-				// this.router.navigate([url]);
 				this.router.navigate(["/home"]);
 				resolve(null);
 			}, (error) => {
