@@ -55,12 +55,11 @@ export class AuthService {
 	getUsers() {
 		this.usersApi.getUsers().subscribe(data =>{
 			console.log(data);
-			// this.loggedInUserChanged()
 		})
 	}
 
 	getLoggedInUser() {
-		this.usersApi.getUserById(435).subscribe(data =>{
+		this.usersApi.getUserById(1).subscribe(data =>{
 			console.log(data);
 			this.loggedInUserChanged.next(data);
 		});
@@ -81,6 +80,7 @@ export class AuthService {
 		return new Promise<any>((resolve, reject) => {
 			this.authApi.authenticate(email, password).subscribe(() => {
 				this.getLoggedInUser();
+				this.getUsers();
 				const url = '/home';
 				this.router.navigate([url]);
 				resolve(null);
