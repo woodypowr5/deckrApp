@@ -7,7 +7,7 @@ import { UsersApiService } from 'src/app/shared/api/users-api.service';
 import { AuthApiService } from 'src/app/shared/api/auth-api.service';
 import { JobRolesApiService } from 'src/app/shared/api/job-roles-api.service';
 import { JobRole } from 'src/app/shared/types/job-role';
-import { of } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +23,11 @@ export class AuthService {
 	jobRolesChanged: BehaviorSubject<JobRole[]> = new BehaviorSubject([]);
 
   	constructor(
-		  private router: Router,
-		  private usersApi: UsersApiService,
-		  private authApi: AuthApiService,
-		  private jobRolesApi: JobRolesApiService
+		private router: Router,
+		private usersApi: UsersApiService,
+		private authApi: AuthApiService,
+		private jobRolesApi: JobRolesApiService,
+		private jwtHelper: JwtHelperService
 	) { 
 		this.loggedInUserChanged.subscribe((user: User) => {
 			this.loggedInUser = user;
@@ -48,6 +49,10 @@ export class AuthService {
 			this.jobRoles = newJobRoles;
 		});
 		this.getJobRoles();
+	}
+
+	init() {
+		
 	}
 
 	getUsers() {
@@ -89,9 +94,12 @@ export class AuthService {
 		}
 		return this.loggedInUser.isAdmin === true;
 	}
-
+	
 	logout() {
-		this.loggedInUserChanged.next(null);
-		this.router.navigate([""]);
+		localStorage.removeItem('token');
 	}
+	// logout() {
+	// 	this.loggedInUserChanged.next(null);
+	// 	this.router.navigate([""]);
+	// }
 }

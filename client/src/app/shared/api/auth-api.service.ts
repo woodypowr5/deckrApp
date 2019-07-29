@@ -35,6 +35,10 @@ export class AuthApiService {
 
 	}
 
+	getToken() {
+		return this.jwtHelper.tokenGetter();
+	}
+
 	makeAuthUser(user: User): any {
 		return {
 			Email: user.email,
@@ -47,7 +51,6 @@ export class AuthApiService {
 
 	registerUser(user: User): Observable<number> {
 		const url = this.apiUrl + "/register/";
-		console.log(user);
 		return this.http.post<number>(url ,JSON.stringify(this.makeAuthUser(user)), { headers: this.headers });
 	}
 
@@ -72,15 +75,7 @@ export class AuthApiService {
 	}
 
 	isAuthenticated() {
-		const token = localStorage.getItem('token');
-		return !this.jwtHelper.isTokenExpired(token);
-	}
-	
-	getToken() {
-		return this.jwtHelper.tokenGetter();
-	}
-	
-	logout() {
-		localStorage.removeItem('token');
+		const token = this.getToken();
+		if (token !== null && token !== undefined) {return true};
 	}
 }	  

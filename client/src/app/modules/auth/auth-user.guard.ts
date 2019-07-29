@@ -8,6 +8,8 @@ import {
   Router
 } from '@angular/router';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
+import { AuthApiService } from 'src/app/shared/api/auth-api.service';
 
 @Injectable()
 export class AuthUserGuard implements CanActivate, CanLoad {
@@ -15,6 +17,7 @@ export class AuthUserGuard implements CanActivate, CanLoad {
 
 	constructor(
 		private authService: AuthService,
+		private authApiService: AuthApiService,
 		private router: Router
 	) {
 		this.authService.isAuthChanged.subscribe((isAuth: boolean) => {
@@ -22,11 +25,14 @@ export class AuthUserGuard implements CanActivate, CanLoad {
 		});
 	}
 
-	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-		if (this.canLoadUser === false) {
-			this.router.navigateByUrl('/login');
+	canActivate(
+		next: ActivatedRouteSnapshot,
+		state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+		if(this.authApiService.isAuthenticated()) {
+			return true;
 		}
-		return this.canLoadUser
+		this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+		return false;
 	}
 
 	canLoad(route: Route) {
@@ -35,4 +41,6 @@ export class AuthUserGuard implements CanActivate, CanLoad {
 		}
 		return this.canLoadUser;
 	}
+
+	
 }  

@@ -11,9 +11,10 @@ import { SecurityGroupsModule } from './modules/security-groups/security-groups.
 import { SharedModule } from './shared/modules/shared.module';
 import { HomeModule } from './modules/home/home.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminModule } from './modules/admin/admin.module';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AuthInterceptor } from './modules/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,11 +35,18 @@ import { JwtModule } from '@auth0/angular-jwt';
 	HttpClientModule,
 	JwtModule.forRoot({
 		config: {
-		  tokenGetter: () => localStorage.getItem('token')
+			tokenGetter: () => localStorage.getItem('token'),
+			whitelistedDomains: ['localhost:4200', '*'],
 		}
 	  })
   ],
-  providers: [],
+  providers: [
+	{
+		provide: HTTP_INTERCEPTORS,
+		useClass: AuthInterceptor,
+		multi: true
+	  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
