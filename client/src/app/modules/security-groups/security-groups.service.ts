@@ -11,14 +11,8 @@ import { SecurityGroupsApiService } from 'src/app/shared/api/security-groups-api
   providedIn: 'root'
 })
 export class SecurityGroupsService {
-	private allGroupsUrl = 'api/securityGroups';
-	private approvedGroupsNumbersUrl = 'api/approvedGroupNumbers';
 	private allGroups: SecurityGroup[] = [];
 	allGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
-	private userGroups: SecurityGroup[] = [];
-	userGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
-
-
 	private deniedGroups: SecurityGroup[] = [];
 	deniedGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
 	private approvedGroups: SecurityGroup[] = [];
@@ -74,15 +68,15 @@ export class SecurityGroupsService {
 
 	getAllGroups(): void {
 		this.securityGroupsApi.getSecurityGroups().subscribe((securityGroups: SecurityGroup[]) => {
-			// console.log(securityGroups);
+			console.log(securityGroups);
 			this.allGroupsChanged.next(securityGroups);
 		});
 	}
 
 	getUserGroups(userId: number): void {
 		this.securityGroupsApi.getSecurityGroupsByUserId(userId).subscribe((securityGroups: SecurityGroup[]) => {
-			// console.log(securityGroups)
-			this.userGroupsChanged.next(securityGroups);
+			console.log(securityGroups)
+			this.approvedGroupsChanged.next(securityGroups);
 		});		
 	}
 

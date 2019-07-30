@@ -10,6 +10,7 @@ import { UserSettings } from 'src/app/shared/types/user-settings';
   styleUrls: ['./security-groups.component.scss']
 })
 export class SecurityGroupsComponent implements OnInit {
+	allGroups: SecurityGroup[] = [];
 	approvedGroups: SecurityGroup[] = [];
 	deniedGroups: SecurityGroup[] = [];
 	pendingGroupNumbers: number[] = [];
@@ -22,22 +23,18 @@ export class SecurityGroupsComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.securityGroupsService.deniedGroupsChanged.subscribe((newSecurityGroups: SecurityGroup[]) => {
-			this.deniedGroups = newSecurityGroups;
+		this.securityGroupsService.allGroupsChanged.subscribe((newSecurityGroups: SecurityGroup[]) => {
+			this.allGroups = newSecurityGroups;
 		});
 		this.securityGroupsService.approvedGroupsChanged.subscribe((newSecurityGroups: SecurityGroup[]) => {
 			this.approvedGroups = newSecurityGroups;
-		});
-		this.securityGroupsService.pendingGroupNumbersChanged.subscribe((groupNumbers: number[]) => {
-			this.pendingGroupNumbers = groupNumbers;
-		});
-		this.securityGroupsService.approvedGroupNumbersChanged.subscribe((groupNumbers: number[]) => {
-			this.approvedGroupNumbers = groupNumbers;
+			this.deniedGroups = this.allGroups.filter((securityGroup: SecurityGroup) => {
+				return this.approvedGroups.filter((approvedGroup: SecurityGroup) => approvedGroup.id === securityGroup.id).length === 0;
+			});
 		});
 		this.userSettingsService.userSettingsChanged.subscribe( (settings: UserSettings[]) => {
 			this.userSettings = settings[3];
 		});
-		
 	}
 
 	raiseAccessRequest(group: SecurityGroup): void {
