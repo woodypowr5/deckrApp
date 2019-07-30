@@ -9,16 +9,14 @@ export interface Contract {
 
 export class ContractsSerializer {
 	fromJson(json: any): Contract[] {
-		console.log(json);
 		if (json.constructor === Array) {
 			return json.map( item => {
 				return {
-					id: item,
-					name: item,
-					signed: item,
-					description: item,
-					thumbnailUrl: item,
-					instanceUrl: item
+					id: item.Id,
+					name: item.Name,
+					signed: item.Date,
+					thumbnailUrl: item.ThumbnailURL,
+					instanceUrl: item.ContentURL
 				}
 			});
 		}
@@ -35,12 +33,11 @@ export class ContractsSerializer {
 export class ContractSerializer {
 	fromJson(item: any): Contract {		
 				return {
-					id: item,
-					name: item,
-					signed: item,
-					description: item,
-					thumbnailUrl: item,
-					instanceUrl: item
+					id: item.Id,
+					name: item.Name,
+					signed: item.Date,
+					thumbnailUrl: item.ThumbnailURL,
+					instanceUrl: item.ContentURL
 				}		
 	}
 

@@ -31,6 +31,7 @@ export class ContractsService {
 
 	getContractsForUser(userId: number): void {
 		this.contractsApi.getContractsByUserId(userId).subscribe((contracts: Contract[]) => {
+			console.log(contracts);
 			this.contractsChanged.next(contracts);
 		});
 	}

@@ -30,6 +30,6 @@ export class ContractsApiService {
 		
 	getContractsByUserId(userId: number): Observable<Contract[]> {
 		const url = this.apiUrl + `/${ApiUrls.contracts.segments.byUser}/${userId}`;
-		return this.http.get<Contract[]>(url);
+		return this.http.get<Contract[]>(url).pipe(map(data => this.contractsSerializer.fromJson(data)));
 	}
 }

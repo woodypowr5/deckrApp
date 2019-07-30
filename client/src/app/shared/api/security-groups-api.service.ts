@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiUrls } from './api-urls';
 import { Observable } from 'rxjs';
-import { SecurityGroup, SecurityGroupSerializer, SecurityGroupsSerializer } from '../types/security-group.class';
+import { SecurityGroup, SecurityGroupSerializer, SecurityGroupsSerializer, UserSecurityGroupsSerializer } from '../types/security-group.class';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
@@ -12,6 +12,7 @@ export class SecurityGroupsApiService {
 	private apiUrl: string = ApiUrls.base + ApiUrls.securityGroups.base;
 	private securityGroupSerializer = new SecurityGroupSerializer();
 	private securityGroupsSerializer = new SecurityGroupsSerializer();
+	private userSecurityGroupsSerializer = new UserSecurityGroupsSerializer();
 
 	constructor(
 		private http: HttpClient
@@ -30,6 +31,6 @@ export class SecurityGroupsApiService {
 
 	getSecurityGroupsByUserId(userId: number): Observable<SecurityGroup[]> {
 		const url = this.apiUrl + `/${ApiUrls.securityGroups.segments.byUser}/${userId}`;
-		return this.http.get<SecurityGroup[]>(url).pipe(map(data => this.securityGroupsSerializer.fromJson(data)));;
+		return this.http.get<SecurityGroup[]>(url).pipe(map(data => this.userSecurityGroupsSerializer.fromJson(data)));;
 	}
 }

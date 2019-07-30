@@ -15,6 +15,10 @@ export class SecurityGroupsService {
 	private approvedGroupsNumbersUrl = 'api/approvedGroupNumbers';
 	private allGroups: SecurityGroup[] = [];
 	allGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
+	private userGroups: SecurityGroup[] = [];
+	userGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
+
+
 	private deniedGroups: SecurityGroup[] = [];
 	deniedGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
 	private approvedGroups: SecurityGroup[] = [];
@@ -59,34 +63,28 @@ export class SecurityGroupsService {
 				pendingGroupNumbers.indexOf(group.id) === -1)
 			);	
 		});
-	
 
 		this.authService.loggedInUserChanged.subscribe((user: User) => {
 			if (user !== null) {
 				this.getAllGroups();
-				// this.getTrainingsForUser(user.id);
+				this.getUserGroups(user.id);
 			}
-		});	
-		
-		
-		// this.getApprovedGroupNumbers();	
+		});			
 	}
 
 	getAllGroups(): void {
 		this.securityGroupsApi.getSecurityGroups().subscribe((securityGroups: SecurityGroup[]) => {
+			// console.log(securityGroups);
 			this.allGroupsChanged.next(securityGroups);
 		});
-		// this.securityGroupsApi.getSecurityGroupsByUserId(userId).subscribe((securityGroups: SecurityGroup[]) => {
-		// 	this.allGroupsChanged.next(trainings);
-		// });
-		
 	}
 
-	// getApprovedGroupNumbers(): void {
-	// 	this.http.get(this.approvedGroupsNumbersUrl).subscribe((approvedGroupNumbers: number[]) => {
-	// 		this.approvedGroupNumbersChanged.next(approvedGroupNumbers);
-	// 	});
-	// }
+	getUserGroups(userId: number): void {
+		this.securityGroupsApi.getSecurityGroupsByUserId(userId).subscribe((securityGroups: SecurityGroup[]) => {
+			// console.log(securityGroups)
+			this.userGroupsChanged.next(securityGroups);
+		});		
+	}
 
 	raiseAccessRequest(group: SecurityGroup): void {
 		this.pendingGroupNumbersChanged.next([...this.pendingGroupNumbers, group.id]);
