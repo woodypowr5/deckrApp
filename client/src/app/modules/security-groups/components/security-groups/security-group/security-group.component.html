@@ -14,7 +14,7 @@
 		<button 
 			mat-button
 			mat-raised-button 
-			*ngIf="pending === false && approved === false"
+			*ngIf="securityGroup.status !== 'Approved'"
 			(click)="raiseAccessRequest()"
 		>
 			Request Access

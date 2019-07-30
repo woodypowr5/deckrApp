@@ -32,7 +32,7 @@ export class SecurityGroupsComponent implements OnInit {
 				return this.approvedGroups.filter((approvedGroup: SecurityGroup) => approvedGroup.id === securityGroup.id).length === 0;
 			});
 		});
-		this.userSettingsService.userSettingsChanged.subscribe( (settings: UserSettings[]) => {
+		this.userSettingsService.userSettingsChanged.subscribe((settings: UserSettings[]) => {
 			this.userSettings = settings[3];
 		});
 	}

@@ -33,31 +33,6 @@ export class SecurityGroupsService {
 			this.approvedGroups = newApprovedGroups;	
 		});
 
-		this.approvedGroupNumbersChanged.subscribe((approvedGroupNumbers: number[]) => {
-			this.approvedGroupNumbers = approvedGroupNumbers; 
-			
-			this.approvedGroupsChanged.next(this.allGroups.filter((group: SecurityGroup) => 
-				approvedGroupNumbers.indexOf(group.id) > -1 || 
-				this.pendingGroupNumbers.indexOf(group.id) > -1)
-			);
-			this.deniedGroupsChanged.next(this.allGroups.filter((group: SecurityGroup) => 
-				approvedGroupNumbers.indexOf(group.id) === -1 && 
-				this.pendingGroupNumbers.indexOf(group.id) === -1)
-			);
-		});
-		this.pendingGroupNumbersChanged.subscribe((pendingGroupNumbers: number[]) => {
-			this.pendingGroupNumbers = pendingGroupNumbers;
-			
-			this.approvedGroupsChanged.next(this.allGroups.filter((group: SecurityGroup) => 
-				this.approvedGroupNumbers.indexOf(group.id) > -1 || 
-				pendingGroupNumbers.indexOf(group.id) > -1)
-			);
-			this.deniedGroupsChanged.next(this.allGroups.filter((group: SecurityGroup) => 
-				this.approvedGroupNumbers.indexOf(group.id) === -1 && 
-				pendingGroupNumbers.indexOf(group.id) === -1)
-			);	
-		});
-
 		this.authService.loggedInUserChanged.subscribe((user: User) => {
 			if (user !== null) {
 				this.getAllGroups();
@@ -68,14 +43,12 @@ export class SecurityGroupsService {
 
 	getAllGroups(): void {
 		this.securityGroupsApi.getSecurityGroups().subscribe((securityGroups: SecurityGroup[]) => {
-			console.log(securityGroups);
 			this.allGroupsChanged.next(securityGroups);
 		});
 	}
 
 	getUserGroups(userId: number): void {
 		this.securityGroupsApi.getSecurityGroupsByUserId(userId).subscribe((securityGroups: SecurityGroup[]) => {
-			console.log(securityGroups)
 			this.approvedGroupsChanged.next(securityGroups);
 		});		
 	}
