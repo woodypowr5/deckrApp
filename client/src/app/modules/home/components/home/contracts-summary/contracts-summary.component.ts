@@ -12,15 +12,15 @@ export class ContractsSummaryComponent implements OnInit {
 	constructor() { }
 
 	get numSignedContracts(): number {
-        return this.contracts.filter((contract: Contract) => contract.signed === true).length;
+        return this.contracts.filter((contract: Contract) => contract.signed !== null).length;
 	}
 	
 	get numUnsignedContracts(): number {
-		return this.contracts.filter((contract: Contract) => contract.signed === false).length;
+		return this.contracts.filter((contract: Contract) => contract.signed === null).length;
 	}
 
 	get unsignedContracts(): Contract[] {
-		return this.contracts.filter((contract: Contract) => contract.signed === false);
+		return this.contracts.filter((contract: Contract) => contract.signed === null);
 	}
 
 	ngOnInit() {

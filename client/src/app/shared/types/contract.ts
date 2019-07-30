@@ -1,7 +1,7 @@
 export interface Contract {
     id: number;
 	name: string; 
-	signed: boolean;
+	signed: Date;
 	description?: string;
 	thumbnailUrl?: string;
 	instanceUrl?: string;

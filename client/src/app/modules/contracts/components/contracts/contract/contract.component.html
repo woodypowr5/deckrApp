@@ -1,4 +1,4 @@
-<mat-card [ngClass]="{'signed': contract.signed === true}">
+<mat-card [ngClass]="{'signed': contract.signed !== null}">
 	<mat-card-header class="title">
 		<mat-card-title>{{ contract.name }}</mat-card-title>
 	</mat-card-header>
@@ -9,7 +9,7 @@
 		<p>
 			{{ contract.description }}
 		</p>
-		<img class="signed-image" *ngIf="contract.signed === true" src="/assets/check.svg" alt="">
+		<img class="signed-image" *ngIf="contract.signed !== null" src="/assets/check.svg" alt="">
 	</mat-card-content>
 	<mat-card-actions>
 		<button 
@@ -19,7 +19,7 @@
 			class="view-sign-button"
 		>
 			VIEW 
-			<span *ngIf="contract.signed === false">
+			<span *ngIf="contract.signed === null">
 				& SIGN
 			</span>
 		</button>

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Contract } from 'src/app/shared/types/contract';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { Fixtures } from 'src/app/shared/data/fixtures';
 import { AuthService } from '../auth/auth.service';
 import { User } from 'src/app/shared/types/user.interface';
 import { ContractsApiService } from 'src/app/shared/api/contracts-api.service';
@@ -31,7 +29,6 @@ export class ContractsService {
 
 	getContractsForUser(userId: number): void {
 		this.contractsApi.getContractsByUserId(userId).subscribe((contracts: Contract[]) => {
-			console.log(contracts);
 			this.contractsChanged.next(contracts);
 		});
 	}
@@ -40,7 +37,7 @@ export class ContractsService {
 		const contracts: Contract[] = this.contracts;
 		this.contracts.map((currentContract: Contract) => {
 			if (currentContract.id === contract.id) {
-				currentContract.signed = true;
+				currentContract.signed = new Date();
 			}
 		});
 		this.contractsChanged.next(contracts);

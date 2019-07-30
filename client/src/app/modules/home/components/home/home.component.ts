@@ -52,7 +52,6 @@ export class HomeComponent implements OnInit {
 		});
 		this.contractsService.contractsChanged.subscribe((contracts: Contract[]) => {
 			this.contracts = contracts;
-
 			if (this.allUserSettings[2].settings[0].settingValue === false) {
 				this.contracts = this.contracts.filter((contract: Contract) => contract.id !== 1);
 			}	

@@ -31,7 +31,6 @@ export class ContractComponent implements OnInit {
 		const sub = this.viewContractRef.componentInstance.closeDialog.subscribe(() => {
 			this.dialog.closeAll();
 			this.contractsService.signContract(contract);
-
 		});
 	}
 }
