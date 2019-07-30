@@ -52,7 +52,7 @@ export class TrainingComponent implements OnInit {
 		});
 		const sub = this.markCompleteDialogRef.componentInstance.closeDialog.subscribe(() => {
 			this.dialog.closeAll();
-			this.trainingService.completeTraining(training.id);			
+			this.trainingService.completeTraining(training);			
 		});
 	}
 
@@ -63,7 +63,7 @@ export class TrainingComponent implements OnInit {
 		});
 		const sub = this.updateProgressDialogRef.componentInstance.closeDialog.subscribe((newProgress: number) => {
 			this.dialog.closeAll();
-			this.trainingService.setTrainingProgress(training.id, newProgress);			
+			this.trainingService.setTrainingProgress(training, newProgress);			
 		});
 	}
 }

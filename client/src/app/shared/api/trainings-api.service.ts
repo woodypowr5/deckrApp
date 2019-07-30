@@ -32,4 +32,13 @@ export class TrainingsApiService {
 		const url = this.apiUrl + `/${ApiUrls.trainings.segments.byUser}/${userId}`;
 		return this.http.get<Training[]>(url).pipe(map(data => this.trainingsSerializer.fromJson(data)));
 	}
+
+	updateTraining(employeeId: number, training: Training): void {
+		console.log(training)
+		const url = this.apiUrl + `/post?employeeID=${employeeId}&trainingId=${training.id}&status=${training.status}&progress=${training.progress}`;
+		console.log(url);
+		this.http.post(url, {}).subscribe(data => {
+			console.log(data)
+		});
+	}
 }

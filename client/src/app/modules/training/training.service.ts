@@ -14,6 +14,7 @@ import { User } from 'src/app/shared/types/user.interface';
 export class TrainingService {
 	private url = 'api/trainings';
 	private trainings: Training[];
+	private loggedInUser: User;
 	trainingsChanged: BehaviorSubject<Training[]> = new BehaviorSubject([]); 
 
   	constructor(
@@ -25,6 +26,7 @@ export class TrainingService {
 		});
 		this.authService.loggedInUserChanged.subscribe((user: User) => {
 			if (user !== null) {
+				this.loggedInUser = user;
 				this.getTrainingsForUser(user.id);
 			}
 		});	
@@ -36,31 +38,23 @@ export class TrainingService {
 		});
 	}
 
-	completeTraining(trainingId: number): void {
-		let updatedTrainings: Training[] = this.trainings;
-		updatedTrainings.map( (training: Training) => {
-			if (training.id === trainingId) {
-				training.status = TrainingStatus.complete;
-				training.progress = 100;
-			}
-		});
-		this.trainingsChanged.next(updatedTrainings);
+	completeTraining(training: Training): void {
+		this.setTrainingProgress(training, 100);
 	}
 
-	setTrainingProgress(trainingId: number, progress: number): void {
-		let updatedTrainings: Training[] = this.trainings;
-		updatedTrainings.map( (training: Training) => {
-			if (training.id === trainingId) {
-				if (progress == 0) {
-					training.status = TrainingStatus.notStarted;
-				} else if (progress == 100) {
-					training.status = TrainingStatus.complete;
-				} else {
-					training.status = TrainingStatus.inProgress;
-				}
-				training.progress = progress;
-			}
-		});
-		this.trainingsChanged.next(updatedTrainings);
+	setTrainingProgress(training: Training, progress: number): void {
+		if (progress == 0) {
+			training.status = TrainingStatus.notStarted;
+		} else if (progress == 100) {
+			training.status = TrainingStatus.complete;
+		} else {
+			training.status = TrainingStatus.inProgress;
+		}
+		training.progress = progress;
+		this.updateTraining(training);
+	}
+
+	updateTraining(training: Training) {
+		this.trainingApi.updateTraining(this.loggedInUser.id, training);
 	}
 }
