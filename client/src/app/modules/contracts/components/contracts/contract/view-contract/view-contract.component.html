@@ -4,7 +4,7 @@
 	</mat-card-title>
 
 	<mat-card-content>
-		<pdf-viewer [src]="contract.instanceUrl" 
+		<pdf-viewer [src]="'../../../../../../assets' + contract.instanceUrl + '.pdf'" 
 					[render-text]="true"
 				
 		></pdf-viewer>
