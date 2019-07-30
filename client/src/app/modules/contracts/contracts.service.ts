@@ -9,6 +9,7 @@ import { ContractsApiService } from 'src/app/shared/api/contracts-api.service';
   providedIn: 'root'
 })
 export class ContractsService {
+	private loggedInUser: User;
 	private url = 'api/contracts';
 	private contracts: Contract[] = [];
 	contractsChanged: BehaviorSubject<Contract[]> = new BehaviorSubject([]);
@@ -22,6 +23,7 @@ export class ContractsService {
 		});
 		this.authService.loggedInUserChanged.subscribe((user: User) => {
 			if (user !== null) {
+				this.loggedInUser = user;
 				this.getContractsForUser(user.id);
 			}
 		});		
@@ -34,12 +36,7 @@ export class ContractsService {
 	}
 
 	signContract(contract: Contract) {
-		const contracts: Contract[] = this.contracts;
-		this.contracts.map((currentContract: Contract) => {
-			if (currentContract.id === contract.id) {
-				currentContract.signed = new Date();
-			}
-		});
-		this.contractsChanged.next(contracts);
+		contract.signed = new Date();
+		this.contractsApi.signContract(this.loggedInUser.id, contract);
 	}
 }

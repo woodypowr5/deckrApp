@@ -19,7 +19,7 @@ export class ProgressIndicatorComponent implements OnInit, OnChanges {
 	ngOnInit() {
 		this.data = [{
 			name: "",
-			value: this.complete / this.total * 100
+			value: Math.round(this.complete / this.total * 100)
 		}];
 	}
 
@@ -27,17 +27,17 @@ export class ProgressIndicatorComponent implements OnInit, OnChanges {
 		if (changes.complete && changes.total) {
 			this.data = [{
 				name: "",
-				value: changes.complete.currentValue / changes.total.currentValue * 100
+				value: Math.round(changes.complete.currentValue / changes.total.currentValue * 100)
 			}];
 		} else if (changes.complete) {
 			this.data = [{
 				name: "",
-				value: changes.complete.currentValue / this.total * 100
+				value: Math.round(changes.complete.currentValue / this.total * 100)
 			}];
 		} else if (changes.total) {
 			this.data = [{
 				name: "",
-				value: this.complete / changes.total.currentValue * 100
+				value: Math.round(this.complete / changes.total.currentValue * 100)
 			}];
 		}
 	}	

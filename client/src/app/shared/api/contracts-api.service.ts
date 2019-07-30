@@ -32,4 +32,9 @@ export class ContractsApiService {
 		const url = this.apiUrl + `/${ApiUrls.contracts.segments.byUser}/${userId}`;
 		return this.http.get<Contract[]>(url).pipe(map(data => this.contractsSerializer.fromJson(data)));
 	}
+
+	signContract(employeeId: number, contract: Contract): void {
+		const url = this.apiUrl + `/post?Id=${employeeId}&contractId=${contract.id}&sign=true`;
+		this.http.post(url, {}).subscribe(data => {});
+	}
 }
