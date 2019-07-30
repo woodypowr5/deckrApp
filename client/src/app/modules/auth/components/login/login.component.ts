@@ -29,10 +29,6 @@ export class LoginComponent implements OnInit {
 		});
 	}
 
-	loginAdmin() {
-		this.authService.loginAdmin();
-	}
-
 	submitForm() {
 		const email = this.loginForm.value.email;
 		const password = this.loginForm.value.password;

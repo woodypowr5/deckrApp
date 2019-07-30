@@ -55,14 +55,6 @@ export class AuthService {
 		this.loggedInUserChanged.subscribe((user: User) => {
 			console.log(user)
 			this.loggedInUser = user;
-			if (user && user !== null){
-				this.router.navigate(["home"]);
-				this.isAuthChanged.next(true);
-			} else {
-				this.isAuthChanged.next(false);
-				this.isAdminChanged.next(false);
-			}	
-			this.isAdminChanged.next(this.getIsAdmin());
 		});
 		this.isAuthChanged.subscribe( (newIsAuth: boolean) => {
 			this.isAuth = newIsAuth;
@@ -92,8 +84,23 @@ export class AuthService {
 			const parts = token.split(",");
 			const idPart = parts[4].replace(/['"]+/g, '');
 			const id = idPart.split(":")[1];
-			this.usersApi.getUserById(parseInt(id)).subscribe((data: User) =>{		
-				this.loggedInUserChanged.next(data);
+			this.usersApi.getUserById(parseInt(id)).subscribe((user: User) =>{		
+				if (user && user !== null){
+					console.log(user.id);
+					if (user.id === 284) {
+						this.router.navigate(["admin"]);
+						this.isAuthChanged.next(true);
+						this.isAdminChanged.next(true);
+					} else {
+						this.router.navigate(["home"]);
+						this.isAuthChanged.next(true);
+						this.isAdminChanged.next(false);
+					}		
+				} else {
+					this.isAuthChanged.next(false);
+					this.isAdminChanged.next(false);
+				}	
+				this.loggedInUserChanged.next(user);
 			});
 		}
 	}
@@ -102,11 +109,6 @@ export class AuthService {
 		this.jobRolesApi.getJobRoles().subscribe((jobRoles: JobRole[]) => {
 			this.jobRolesChanged.next(jobRoles);
 		})
-	}
-
-	loginAdmin() {
-		// this.loggedInUserChanged.next(Fixtures.adminUser);
-		// this.router.navigate(["/admin"]);
 	}
 
 	loginUser(email: string, password: string): Promise<any> {
@@ -119,14 +121,6 @@ export class AuthService {
 				resolve(error);
 			});
 		});
-	}
-
-	getIsAdmin(): boolean {
-		return false;
-		// if (!this.loggedInUser || this.loggedInUser === null) {
-		// 	return false;
-		// }
-		// return this.loggedInUser.isAdmin === true;
 	}
 	
 	logout() {
