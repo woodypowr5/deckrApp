@@ -31,6 +31,7 @@ export class SecurityGroupsComponent implements OnInit {
 			this.deniedGroups = this.allGroups.filter((securityGroup: SecurityGroup) => {
 				return this.approvedGroups.filter((approvedGroup: SecurityGroup) => approvedGroup.id === securityGroup.id).length === 0;
 			});
+			this.securityGroupsService.deniedGroupsChanged.next(this.deniedGroups);
 		});
 		this.userSettingsService.userSettingsChanged.subscribe((settings: UserSettings[]) => {
 			this.userSettings = settings[3];

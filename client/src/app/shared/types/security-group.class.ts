@@ -19,13 +19,6 @@ export class SecurityGroupsSerializer {
 			});
 		}
 	}
-
-	toJson(jobRole: SecurityGroup): any {
-		return {
-			ID: jobRole.id,
-			Name: jobRole.name
-		};
-	}
 }
 
 
@@ -43,13 +36,6 @@ export class UserSecurityGroupsSerializer {
 			});
 		}
 	}
-
-	toJson(jobRole: SecurityGroup): any {
-		return {
-			ID: jobRole.id,
-			Name: jobRole.name
-		};
-	}
 }
 
 
@@ -61,12 +47,5 @@ export class SecurityGroupSerializer {
 			iconName: item,
 			description: item
 		}		
-	}
-
-	toJson(jobRole: SecurityGroup): any {
-		return {
-			ID: jobRole.id,
-			Name: jobRole.name
-		};
 	}
 }

@@ -33,4 +33,9 @@ export class SecurityGroupsApiService {
 		const url = this.apiUrl + `/${ApiUrls.securityGroups.segments.byUser}/${userId}`;
 		return this.http.get<SecurityGroup[]>(url).pipe(map(data => this.userSecurityGroupsSerializer.fromJson(data)));;
 	}
+
+	updateSecurityGroup(employeeId: number, securityGroup: SecurityGroup): void {
+		const url = this.apiUrl + `/post?employeeID=${employeeId}&securityId=${securityGroup.id}&status=Pending`;
+		this.http.post(url, {}).subscribe(data => {});
+	}
 }

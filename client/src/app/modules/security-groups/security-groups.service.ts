@@ -11,17 +11,14 @@ import { SecurityGroupsApiService } from 'src/app/shared/api/security-groups-api
   providedIn: 'root'
 })
 export class SecurityGroupsService {
+	private loggedInUser: User;
 	private allGroups: SecurityGroup[] = [];
 	allGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
 	private deniedGroups: SecurityGroup[] = [];
 	deniedGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
 	private approvedGroups: SecurityGroup[] = [];
 	approvedGroupsChanged: BehaviorSubject<SecurityGroup[]> = new BehaviorSubject([]);
-	private approvedGroupNumbers: number[] = [];
-	approvedGroupNumbersChanged: BehaviorSubject<number[]> = new BehaviorSubject([]);
-	private pendingGroupNumbers: number[] = [];
-	pendingGroupNumbersChanged: BehaviorSubject<number[]> = new BehaviorSubject([]);
-
+	
   	constructor(
 		private authService: AuthService,
 		private securityGroupsApi: SecurityGroupsApiService
@@ -35,6 +32,7 @@ export class SecurityGroupsService {
 
 		this.authService.loggedInUserChanged.subscribe((user: User) => {
 			if (user !== null) {
+				this.loggedInUser = user;
 				this.getAllGroups();
 				this.getUserGroups(user.id);
 			}
@@ -54,6 +52,8 @@ export class SecurityGroupsService {
 	}
 
 	raiseAccessRequest(group: SecurityGroup): void {
-		this.pendingGroupNumbersChanged.next([...this.pendingGroupNumbers, group.id]);
+		group.status = "Pending";
+		this.approvedGroupsChanged.next([...this.approvedGroups, group]);
+		this.securityGroupsApi.updateSecurityGroup(this.loggedInUser.id, group);
 	}
 }

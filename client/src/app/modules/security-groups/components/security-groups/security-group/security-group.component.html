@@ -14,12 +14,13 @@
 		<button 
 			mat-button
 			mat-raised-button 
-			*ngIf="securityGroup.status !== 'Approved'"
+			*ngIf="securityGroup.status !== 'Approved' && securityGroup.status !== 'Pending'"
 			(click)="raiseAccessRequest()"
 		>
 			Request Access
+			{{ securityGroup.status }}
 		</button>
-		<div *ngIf="pending" class="waiting-message">
+		<div *ngIf="securityGroup.status === 'Pending'" class="waiting-message">
 			awaiting admin approval...
 		</div>
 	</mat-card-actions>

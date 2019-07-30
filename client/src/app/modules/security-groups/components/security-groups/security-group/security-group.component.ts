@@ -11,8 +11,6 @@ import { SecurityGroupsService } from '../../../security-groups.service';
   styleUrls: ['./security-group.component.scss']
 })
 export class SecurityGroupComponent implements OnInit {
-	@Input() pending: boolean;
-	@Input() approved: boolean;
 	@Input() securityGroup: SecurityGroup;
 	@Output() accessRequestRaised: EventEmitter<void> = new EventEmitter();
 	accessRequestDialogRef: MatDialogRef<AccessRequestComponent>;
