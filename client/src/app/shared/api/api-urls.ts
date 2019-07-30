@@ -44,7 +44,7 @@ export const ApiUrls = {
 		base: "contract",
 		segments: {
 			single: "SingleContract",
-			byUser: "UserContract"
+			byUser: "UserContracts"
 		}
 	},
 	departments: {

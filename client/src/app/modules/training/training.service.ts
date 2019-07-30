@@ -24,7 +24,6 @@ export class TrainingService {
 			this.trainings = trainings;
 		});
 		this.authService.loggedInUserChanged.subscribe((user: User) => {
-			console.log(user);
 			if (user !== null) {
 				this.getTrainingsForUser(user.id);
 			}
@@ -33,7 +32,6 @@ export class TrainingService {
 
 	getTrainingsForUser(userId: number): void {
 		this.trainingApi.getTrainingsByUserId(userId).subscribe((trainings: Training[]) => {
-			console.log(trainings);
 			this.trainingsChanged.next(trainings);
 		});
 	}

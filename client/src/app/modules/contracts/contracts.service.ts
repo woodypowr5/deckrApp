@@ -3,6 +3,9 @@ import { Contract } from 'src/app/shared/types/contract';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Fixtures } from 'src/app/shared/data/fixtures';
+import { AuthService } from '../auth/auth.service';
+import { User } from 'src/app/shared/types/user.interface';
+import { ContractsApiService } from 'src/app/shared/api/contracts-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +15,22 @@ export class ContractsService {
 	private contracts: Contract[] = [];
 	contractsChanged: BehaviorSubject<Contract[]> = new BehaviorSubject([]);
 
-  	constructor(private http: HttpClient) {
+  	constructor(
+		private authService: AuthService,
+		private contractsApi: ContractsApiService
+	) {
 		this.contractsChanged.subscribe( (contracts: Contract[]) => {
 			this.contracts = contracts;
 		});
-		this.contractsChanged.next(Fixtures.contracts);
-		
+		this.authService.loggedInUserChanged.subscribe((user: User) => {
+			if (user !== null) {
+				this.getContractsForUser(user.id);
+			}
+		});		
 	}
 
-	getContracts(): void {
-		this.http.get(this.url).subscribe((contracts: Contract[]) => {
+	getContractsForUser(userId: number): void {
+		this.contractsApi.getContractsByUserId(userId).subscribe((contracts: Contract[]) => {
 			this.contractsChanged.next(contracts);
 		});
 	}

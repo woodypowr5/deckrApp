@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ApiUrls } from './api-urls';
 import { Observable } from 'rxjs';
-import { Contract } from '../types/contract';
+import { Contract, ContractSerializer, ContractsSerializer } from '../types/contract';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContractsApiService {
-	private apiUrl: string = ApiUrls.base + ApiUrls.users;
+	private apiUrl: string = ApiUrls.base + ApiUrls.contracts.base;
+	private contractSerializer = new ContractSerializer();
+	private contractsSerializer = new ContractsSerializer();
 	
 	constructor(
 		private http: HttpClient
@@ -17,7 +20,7 @@ export class ContractsApiService {
 	}
 
 	getContracts(): Observable<Contract[]> {
-		return this.http.get<Contract[]>(this.apiUrl);
+		return this.http.get<Contract[]>(this.apiUrl).pipe(map(data => this.contractsSerializer.fromJson(data)));
 	}
 	
 	getContractById(id: number): Observable<Contract> {
