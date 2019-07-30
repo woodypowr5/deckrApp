@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../shared/types/user.interface';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { Fixtures } from 'src/app/shared/data/fixtures';
 import { Router } from '@angular/router';
 import { UsersApiService } from 'src/app/shared/api/users-api.service';
 import { AuthApiService } from 'src/app/shared/api/auth-api.service';
@@ -31,6 +30,7 @@ export class AuthService {
 	) { 
 		this.loggedInUserChanged.subscribe((user: User) => {
 			this.loggedInUser = user;
+			console.log(user.id);
 			if (user && user !== null){
 				this.router.navigate(["home"]);
 				this.isAuthChanged.next(true);
@@ -50,28 +50,15 @@ export class AuthService {
 			this.jobRoles = newJobRoles;
 		});
 		this.getJobRoles();
-		this.getLoggedInUser();
+		this.authApi.loggedInUserChanged.subscribe((user: User) => {
+			this.loggedInUserChanged.next(user);
+		});
 	}
 
 	getUsers() {
 		this.usersApi.getUsers().subscribe(data => {
 			this.usersChanged.next(this.users = data);
 		})
-	}
-
-	getLoggedInUser(): void {
-		const token = this.authApi.getToken();
-		if (token) {
-			const parts = token.split(",");
-			const idPart = parts[4].replace(/['"]+/g, '');
-			const id = idPart.split(":")[1];
-			this.usersChanged.subscribe((users: User[]) => {
-				this.usersApi.getUserById(parseInt(id)).subscribe((data: User) =>{
-					this.loggedInUserChanged.next(data);
-				});
-			});
-		}
-		this.getUsers();
 	}
 
 	getJobRoles() {
@@ -81,14 +68,14 @@ export class AuthService {
 	}
 
 	loginAdmin() {
-		this.loggedInUserChanged.next(Fixtures.adminUser);
-		this.router.navigate(["/admin"]);
+		// this.loggedInUserChanged.next(Fixtures.adminUser);
+		// this.router.navigate(["/admin"]);
 	}
 
 	loginUser(email: string, password: string): Promise<any> {
 		return new Promise<any>((resolve, reject) => {
 			this.authApi.authenticate(email, password).subscribe(() => {
-				this.getLoggedInUser();
+				this.authApi.getLoggedInUser();
 				this.router.navigate(["/home"]);
 				resolve(null);
 			}, (error) => {
@@ -111,6 +98,7 @@ export class AuthService {
 	
 	logout() {
 		this.isAuthChanged.next(false);
+		this.loggedInUserChanged.next(null);
 		localStorage.removeItem('token');
 		this.router.navigate(["login"]);
 	}

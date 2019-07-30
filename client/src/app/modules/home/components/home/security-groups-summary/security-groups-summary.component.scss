@@ -6,11 +6,28 @@
 .security-group-wrapper{
 	width: 135px;
 
-	&.pending{
+	& > mat-card {
+		--webkit-box-shadow: 3px 3px 12px -7px green;
+		-moz-box-shadow: 3px 3px 12px -7px rgreen;
+		box-shadow: 3px 3px 12px -7px green;
+		border: 1px solid green;
+	}
+
+	& > mat-card.pending{
 		--webkit-box-shadow: 3px 3px 12px -7px rgba(196,196,22,1);
 		-moz-box-shadow: 3px 3px 12px -7px rgba(196,196,22,1);
 		box-shadow: 3px 3px 12px -7px rgba(196,196,22,1);
 		border: 1px solid rgba(196,196,22,1);
+
+		.pending {
+			position: absolute; 
+			bottom: 5px;
+			left: 0px;
+			font-size: 0.8em;
+			color: green;
+			width: 100%;
+			text-align: center;
+		}
 	}
 }
 

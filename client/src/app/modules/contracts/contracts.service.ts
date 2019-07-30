@@ -25,6 +25,9 @@ export class ContractsService {
 			if (user !== null) {
 				this.loggedInUser = user;
 				this.getContractsForUser(user.id);
+			} else {
+				this.loggedInUser = null;
+				this.contractsChanged.next([]);
 			}
 		});		
 	}

@@ -28,6 +28,9 @@ export class TrainingService {
 			if (user !== null) {
 				this.loggedInUser = user;
 				this.getTrainingsForUser(user.id);
+			} else {
+				this.loggedInUser = null;
+				this.trainingsChanged.next([]);
 			}
 		});	
 	}

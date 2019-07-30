@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SecurityGroup } from 'src/app/shared/types/security-group.class';
 import { BehaviorSubject } from 'rxjs';
-import { Fixtures } from 'src/app/shared/data/fixtures';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { User } from 'src/app/shared/types/user.interface';
 import { SecurityGroupsApiService } from 'src/app/shared/api/security-groups-api.service';
@@ -35,6 +33,10 @@ export class SecurityGroupsService {
 				this.loggedInUser = user;
 				this.getAllGroups();
 				this.getUserGroups(user.id);
+			} else {
+				this.loggedInUser = null;
+				this.allGroupsChanged.next([]);
+				this.approvedGroupsChanged.next([]);
 			}
 		});			
 	}

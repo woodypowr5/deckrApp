@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../types/user.interface';
 import { ApiUrls } from './api-urls';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import * as jwt_decode from "jwt-decode";
+import { UsersApiService } from './users-api.service';
 
 interface AuthUser {
 	Email: string;
@@ -25,13 +26,16 @@ interface AuthLoginRequest {
   providedIn: 'root'
 })
 export class AuthApiService {
+	private loggedInUser: User;
+	loggedInUserChanged: BehaviorSubject<User> = new BehaviorSubject(null);
 	private apiUrl: string = ApiUrls.base + ApiUrls.auth.base;
 	private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 	private encodedHeaders = new  HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded'});
 
 	constructor(
 		private http: HttpClient,
-		private jwtHelper: JwtHelperService
+		private jwtHelper: JwtHelperService,
+		private usersApi: UsersApiService
 	) { 
 
 	}
@@ -53,6 +57,18 @@ export class AuthApiService {
 	registerUser(user: User): Observable<number> {
 		const url = this.apiUrl + "/register/";
 		return this.http.post<number>(url ,JSON.stringify(this.makeAuthUser(user)), { headers: this.headers });
+	}
+
+	getLoggedInUser(): void {
+		const token = this.getToken();
+		if (token) {
+			const parts = token.split(",");
+			const idPart = parts[4].replace(/['"]+/g, '');
+			const id = idPart.split(":")[1];
+			this.usersApi.getUserById(parseInt(id)).subscribe((data: User) =>{
+				this.loggedInUserChanged.next(data);
+			});
+		}
 	}
 
 	authenticate(username: string, password: string): Observable<any> {
@@ -80,7 +96,6 @@ export class AuthApiService {
 			return jwt_decode(token);
 		}
 		catch(Error){
-			// console.log(Error);
 			return undefined;
 		}
 	}
