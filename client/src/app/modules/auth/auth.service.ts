@@ -91,6 +91,7 @@ export class AuthService {
 						this.router.navigate(["admin"]);
 						this.isAuthChanged.next(true);
 						this.isAdminChanged.next(true);
+						
 					} else {
 						this.router.navigate(["home"]);
 						this.isAuthChanged.next(true);
@@ -101,6 +102,7 @@ export class AuthService {
 					this.isAdminChanged.next(false);
 				}	
 				this.loggedInUserChanged.next(user);
+				
 			});
 		}
 	}
@@ -127,11 +129,13 @@ export class AuthService {
 	}
 	
 	logout() {
+		this.loadingService.isLoading();
 		this.isAuthChanged.next(false);
 		this.isAdminChanged.next(false);
 		this.loggedInUserChanged.next(null);
 		localStorage.removeItem('token');
 		this.router.navigate(["login"]);
+		this.loadingService.isFinishedLoading();
 	}
 
 

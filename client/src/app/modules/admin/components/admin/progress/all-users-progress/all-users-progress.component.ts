@@ -3,6 +3,7 @@ import { UserProgress } from 'src/app/shared/types/user-progress';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { AdminHomeApiService } from 'src/app/shared/api/admin-home-api.service';
+import { GlobalLoadingService } from 'src/app/shared/services/global-loading.service';
 
 @Component({
   selector: 'app-all-users-progress',
@@ -18,7 +19,8 @@ export class AllUsersProgressComponent implements OnInit {
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
   
 	constructor(
-		private adminHomeApi: AdminHomeApiService
+		private adminHomeApi: AdminHomeApiService,
+		private loadingService: GlobalLoadingService
 	) {
 		this.users = this.addPercentComplete(Fixtures.userProgress);
 		if (this.users.length > 0) {
@@ -42,7 +44,9 @@ export class AllUsersProgressComponent implements OnInit {
 	}
 
 	getAllUsersProgress() {
+		this.loadingService.isLoading();
 		this.adminHomeApi.getAllUsersProgress().subscribe((allUsersProgress: UserProgress[]) => {
+			this.loadingService.isFinishedLoading();
 			this.dataSource = new MatTableDataSource(allUsersProgress);
 			this.dataSource.sort = this.sort;
 		});

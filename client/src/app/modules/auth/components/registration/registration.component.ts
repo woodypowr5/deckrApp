@@ -10,6 +10,7 @@ import { User } from 'src/app/shared/types/user.interface';
 import { AuthService } from '../../auth.service';
 import { DepartmentsService } from 'src/app/shared/services/departments.service';
 import { JobRole } from 'src/app/shared/types/job-role';
+import { GlobalLoadingService } from 'src/app/shared/services/global-loading.service';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -38,7 +39,8 @@ export class RegistrationComponent implements OnInit {
 		public dialog: MatDialog, 
 		private overlay: Overlay,
 		private authService: AuthService,
-		private departmentsService: DepartmentsService
+		private departmentsService: DepartmentsService,
+		private loadingService: GlobalLoadingService
 	) { 
 		this.authService.jobRolesChanged.subscribe((jobRoles: JobRole[]) => {
 			this.jobRoles = jobRoles;
@@ -65,12 +67,14 @@ export class RegistrationComponent implements OnInit {
 	get f() { return this.registerForm }
 
 	submitForm() {
+		this.loadingService.isLoading();
 		this.authService.registerUser({
 			name: this.registerForm.controls.name.value,
 			email: this.registerForm.controls.email.value,
 			role: this.registerForm.controls.role.value.name,
 			hashedPassword: this.registerForm.controls.password.value
 		}).subscribe((newUserId: number) => {
+			this.loadingService.isFinishedLoading();
 			this.userId = newUserId;
 			this.welcomeRef = this.dialog.open(WelcomeComponent, {
 				data: this.userId,

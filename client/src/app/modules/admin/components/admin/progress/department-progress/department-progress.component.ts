@@ -6,6 +6,7 @@ import { DepartmentProgress } from 'src/app/shared/types/deparment-progress';
 import { DepartmentsApiService } from 'src/app/shared/api/departments-api.service';
 import { Department } from 'src/app/shared/types/department.interface';
 import { AdminHomeApiService } from 'src/app/shared/api/admin-home-api.service';
+import { GlobalLoadingService } from 'src/app/shared/services/global-loading.service';
 
 @Component({
   selector: 'app-department-progress',
@@ -25,11 +26,14 @@ export class DepartmentProgressComponent implements OnInit {
   
 	constructor(
 		private departmentsApi: DepartmentsApiService,
-		private adminHomeApi: AdminHomeApiService
+		private adminHomeApi: AdminHomeApiService,
+		private loadingService: GlobalLoadingService
 	) {
+		this.loadingService.isLoading();
 		this.departmentsApi.getDepartments().subscribe((departments: Department[]) => {
 			this.availableDepartments = departments;
 			this.setActiveDepartment(this.availableDepartments[0]);
+			this.loadingService.isFinishedLoading();
 		});	
 	}
 
@@ -50,6 +54,7 @@ export class DepartmentProgressComponent implements OnInit {
 
 
 	setActiveDepartment(department: Department) {
+		this.loadingService.isLoading();
 		this.adminHomeApi.getProgressByDepartmentId(department.id).subscribe((userProgressData: UserProgress[]) => {
 			console.log(userProgressData)
 			this.activeProgressData = userProgressData;
@@ -57,6 +62,7 @@ export class DepartmentProgressComponent implements OnInit {
 			this.dataSource.sort = this.sort;
 			this.activeDepartment = department;
 			this.computeDepartmentProgress();
+			this.loadingService.isFinishedLoading();
 		});
 	}
 
