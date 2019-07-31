@@ -14,12 +14,12 @@ export class AdminHomeApiService {
 		private http: HttpClient
 	) { 
 		this.getAllUsersProgress();		
-		this.getProgressByDepartmentId(0);
+		this.getProgressByDepartmentId(1);
 		this.getProgressByUserId(365);
 	}	
 
 	getAllUsersProgress()  {
-		const url = this.apiUrl;
+		const url =  'http://deckrwebapi.azurewebsites.net/api/adminhome';
 		this.http.get<any>(this.apiUrl + '').subscribe(data =>{
 			console.log(data)
 		});
@@ -27,7 +27,7 @@ export class AdminHomeApiService {
 	}
 	
 	getProgressByUserId(id: number) {
-		const url = this.apiUrl + `/userhome/${id}`;
+		const url = `http://deckrwebapi.azurewebsites.net/api/userhome/userProgress/${id}`;
 		this.http.get<any>(url).subscribe(data =>{
 			console.log(data)
 		});
