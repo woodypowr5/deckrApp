@@ -13,7 +13,7 @@ export class SecurityGroupsSerializer {
 				return {
 					id: item.Id,
 					name: item.Name,
-					iconName: item.IconName,
+					iconName: item.iconName,
 					description: item.Description
 				}
 			});
@@ -29,7 +29,7 @@ export class UserSecurityGroupsSerializer {
 				return {
 					id: item.SecurityGroup.Id,
 					name: item.SecurityGroup.Name,
-					iconName: item.SecurityGroup.IconName,
+					iconName: item.SecurityGroup.iconName,
 					description: item.SecurityGroup.Description,
 					status: item.Status
 				}

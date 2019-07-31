@@ -32,7 +32,7 @@ export class SecurityGroupsService {
 			if (user !== null) {
 				this.loggedInUser = user;
 				this.getAllGroups();
-				this.getUserGroups(user.id);
+				
 			} else {
 				this.loggedInUser = null;
 				this.allGroupsChanged.next([]);
@@ -43,12 +43,20 @@ export class SecurityGroupsService {
 
 	getAllGroups(): void {
 		this.securityGroupsApi.getSecurityGroups().subscribe((securityGroups: SecurityGroup[]) => {
+			console.log(securityGroups)
 			this.allGroupsChanged.next(securityGroups);
+			this.getUserGroups(this.loggedInUser.id);
 		});
 	}
 
 	getUserGroups(userId: number): void {
 		this.securityGroupsApi.getSecurityGroupsByUserId(userId).subscribe((securityGroups: SecurityGroup[]) => {
+			console.log(securityGroups)
+			securityGroups.map((group: SecurityGroup) =>{
+				console.log(this.allGroups.find((modelGroup: SecurityGroup) => modelGroup.id === group.id))
+				group.iconName = this.allGroups.find((modelGroup: SecurityGroup) => modelGroup.id === group.id).iconName;
+			});
+			console.log(securityGroups);
 			this.approvedGroupsChanged.next(securityGroups);
 		});		
 	}

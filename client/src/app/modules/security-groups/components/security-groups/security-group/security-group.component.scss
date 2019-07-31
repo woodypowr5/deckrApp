@@ -34,6 +34,8 @@ mat-card-title.name{
 }
 
 .icon-wrapper{
+	width: 80px;
+	height: 80px;
 	padding: 10px;
 	margin: 0 auto;
 }
@@ -70,4 +72,7 @@ mat-card-actions > .mat-button{
 	width: calc(100% - 20px);
 	text-align: center;
 	color: green;
+}
+.mat-card>.mat-card-actions:last-child{
+	margin-bottom: 0px;
 }

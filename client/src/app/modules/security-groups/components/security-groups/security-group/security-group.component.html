@@ -1,9 +1,11 @@
 <mat-card [ngClass]="{'pending': pending, 'approved': approved}">
 	<mat-card-title class="name">
 		{{ securityGroup.name }}
+		{{ securityGroup | json}}
 	</mat-card-title>
 	<div class="icon-wrapper">
-		<mat-icon aria-hidden="false" aria-label="Example home icon">{{ securityGroup.iconName }}</mat-icon>
+		<img src="../../../../../../assets/{{securityGroup.iconName}}.png" alt="">
+		<!-- <mat-icon aria-hidden="false" aria-label="Example home icon">{{ securityGroup.iconName }}</mat-icon> -->
 	</div>	
 	<mat-card-content class="description">
 		<p>
@@ -17,7 +19,7 @@
 			*ngIf="securityGroup.status !== 'Approved' && securityGroup.status !== 'Pending'"
 			(click)="raiseAccessRequest()"
 		>
-			Request Access
+			Request Accesss
 			{{ securityGroup.status }}
 		</button>
 		<div *ngIf="securityGroup.status === 'Pending'" class="waiting-message">
