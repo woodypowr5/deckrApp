@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { ApiUrls } from './api-urls';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { UserProgress, UserProgressSerializer } from '../types/user-progress';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminHomeApiService {
 	private apiUrl: string = ApiUrls.base + ApiUrls.adminHome.base;
+	private userProgressSerializer = new UserProgressSerializer
 	
 	constructor(
 		private http: HttpClient
@@ -18,12 +20,9 @@ export class AdminHomeApiService {
 		this.getProgressByUserId(365);
 	}	
 
-	getAllUsersProgress()  {
+	getAllUsersProgress(): Observable<UserProgress[]> {
 		const url =  'http://deckrwebapi.azurewebsites.net/api/adminhome';
-		this.http.get<any>(this.apiUrl + '').subscribe(data =>{
-			console.log(data)
-		});
-		// this.http.get<User[]>(this.apiUrl).pipe(map(data => this.usersSerializer.fromJson(data)));
+		return this.http.get<UserProgress[]>(this.apiUrl).pipe(map(data => this.userProgressSerializer.fromJson(data)));
 	}
 	
 	getProgressByUserId(id: number) {
