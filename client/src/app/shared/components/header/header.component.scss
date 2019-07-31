@@ -51,6 +51,12 @@ mat-toolbar{
 	max-width: calc(100% - 100px);
 }
 
+@media (max-width: 500px) { 
+	.navlinks-container{
+		display: none;
+	}
+ }
+
 .navigation-items{
 	display: flex;
 	justify-content: space-around;

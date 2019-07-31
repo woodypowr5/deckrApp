@@ -34,11 +34,8 @@ export class TrainingsApiService {
 	}
 
 	updateTraining(employeeId: number, training: Training): void {
-		console.log(training)
 		const url = this.apiUrl + `/post?employeeID=${employeeId}&trainingId=${training.id}&status=${training.status}&progress=${training.progress}`;
-		console.log(url);
 		this.http.post(url, {}).subscribe(data => {
-			console.log(data)
 		});
 	}
 }

@@ -127,7 +127,22 @@ export class AuthService {
 			});
 		});
 	}
-	
+
+	registerUser(user: User): Promise<number> {
+		const url = this.apiUrl + "/register/";
+		return new Promise<any>((resolve, reject) => {
+				this.http.post<number>(url ,JSON.stringify(this.makeAuthUser(user)), { headers: this.headers }).subscribe((userId: number) => {
+				this.getLoggedInUser();
+				this.router.navigate(["/home"]);
+				this.loadingService.isFinishedLoading();
+				resolve(userId);
+			}, (error) => {
+				this.loadingService.isFinishedLoading();
+				resolve(error);
+			});
+		});
+	}
+
 	logout() {
 		this.loadingService.isLoading();
 		this.isAuthChanged.next(false);
@@ -153,10 +168,6 @@ export class AuthService {
 		}
 	}
 
-	registerUser(user: User): Observable<number> {
-		const url = this.apiUrl + "/register/";
-		return this.http.post<number>(url ,JSON.stringify(this.makeAuthUser(user)), { headers: this.headers });
-	}
 
 	authenticate(username: string, password: string): Observable<any> {
 		const url = "http://deckrwebapi.azurewebsites.net/token";

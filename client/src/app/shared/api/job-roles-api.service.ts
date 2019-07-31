@@ -22,4 +22,5 @@ export class JobRolesApiService {
 	getJobRoles(): Observable<JobRole[]> {
 		return this.http.get<JobRole[]>(this.apiUrl).pipe(map(data => this.serializer.fromJson(data)));
 	}
+
 }

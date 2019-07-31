@@ -73,7 +73,7 @@ export class RegistrationComponent implements OnInit {
 			email: this.registerForm.controls.email.value,
 			role: this.registerForm.controls.role.value.name,
 			hashedPassword: this.registerForm.controls.password.value
-		}).subscribe((newUserId: number) => {
+		}).then((newUserId: number) => {
 			this.loadingService.isFinishedLoading();
 			this.userId = newUserId;
 			this.welcomeRef = this.dialog.open(WelcomeComponent, {
