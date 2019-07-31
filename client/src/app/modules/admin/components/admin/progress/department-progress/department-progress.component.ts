@@ -3,6 +3,7 @@ import { UserProgress } from 'src/app/shared/types/user-progress';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { DepartmentProgress } from 'src/app/shared/types/deparment-progress';
+import { DepartmentsApiService } from 'src/app/shared/api/departments-api.service';
 
 @Component({
   selector: 'app-department-progress',
@@ -17,11 +18,17 @@ export class DepartmentProgressComponent implements OnInit {
   
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
   
-	constructor() {
-		this.departments = this.addPercentComplete(Fixtures.departmentProgress);
-		if (this.departments.length > 0) {
-			this.activeDepartment = this.departments[0];
-		}
+	constructor(
+		private departmentsApi: DepartmentsApiService
+	) {
+		// this.departments = this.addPercentComplete(Fixtures.departmentProgress);
+		// this.departmentsApi.getDepartments().subscribe(data => {
+		// 	console.log(data);
+		// 	this.departments = data;
+		// 	if (this.departments.length > 0) {
+		// 		this.activeDepartment = this.departments[0];
+		// 	}
+		// });	
 	}
 
 	ngOnInit() {

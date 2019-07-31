@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ModulesApiService {
-	private apiUrl: string = ApiUrls.base + ApiUrls.modules;
+	private apiUrl: string = ApiUrls.base + ApiUrls.modules.base;
 	
 	constructor(
 		private http: HttpClient

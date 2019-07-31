@@ -53,7 +53,6 @@ export class AuthService {
 		private jwtHelper: JwtHelperService,
 	) { 
 		this.loggedInUserChanged.subscribe((user: User) => {
-			console.log(user)
 			this.loggedInUser = user;
 		});
 		this.isAuthChanged.subscribe( (newIsAuth: boolean) => {
@@ -86,7 +85,6 @@ export class AuthService {
 			const id = idPart.split(":")[1];
 			this.usersApi.getUserById(parseInt(id)).subscribe((user: User) =>{		
 				if (user && user !== null){
-					console.log(user.id);
 					if (user.id === 284) {
 						this.router.navigate(["admin"]);
 						this.isAuthChanged.next(true);

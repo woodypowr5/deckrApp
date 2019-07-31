@@ -22,7 +22,7 @@ export const ApiUrls = {
 	adminHome: {
 		base: "adminhome",
 		segments: {
-			progressByUser: "SingleUserProgress",
+			progressByUser: "userProgress",
 			progressByDepartment: "DepartmentProgress"
 		}
 	},
