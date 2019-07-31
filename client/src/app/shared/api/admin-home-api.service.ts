@@ -4,13 +4,15 @@ import { ApiUrls } from './api-urls';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserProgress, UserProgressSerializer } from '../types/user-progress';
+import { ModuleProgress, ModuleProgressSerializer } from '../types/module-progress';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminHomeApiService {
 	private apiUrl: string = ApiUrls.base + ApiUrls.adminHome.base;
-	private userProgressSerializer = new UserProgressSerializer
+	private userProgressSerializer = new UserProgressSerializer;
+	private moduleProgressSerializer = new ModuleProgressSerializer;
 	
 	constructor(
 		private http: HttpClient
@@ -25,18 +27,13 @@ export class AdminHomeApiService {
 		return this.http.get<UserProgress[]>(this.apiUrl).pipe(map(data => this.userProgressSerializer.fromJson(data)));
 	}
 	
-	getProgressByUserId(id: number) {
+	getProgressByUserId(id: number): Observable<UserProgress[]> {
 		const url = `http://deckrwebapi.azurewebsites.net/api/userhome/userProgress/${id}`;
-		this.http.get<any>(url).subscribe(data =>{
-			console.log(data)
-		});
+		return this.http.get<UserProgress[]>(this.apiUrl).pipe(map(data => this.userProgressSerializer.fromJson(data)));
 	}
 
-	getProgressByDepartmentId(id: number) {
+	getProgressByDepartmentId(id: number): Observable<UserProgress[]>  {
 		const url = this.apiUrl + '/' + ApiUrls.adminHome.segments.progressByDepartment + `/${id}`;
-		this.http.get<any>(url).subscribe(data =>{
-			console.log(data)
-		});
-		// this.http.get<User[]>(url);
+		return this.http.get<UserProgress[]>(this.apiUrl).pipe(map(data => this.userProgressSerializer.fromJson(data)));
 	}
 }
