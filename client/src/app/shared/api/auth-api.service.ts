@@ -41,7 +41,7 @@ export class AuthApiService {
 	}
 
 	getToken() {
-		return this.jwtHelper.tokenGetter();
+		return localStorage.getItem('token');
 	}
 
 	makeAuthUser(user: User): any {
@@ -72,7 +72,7 @@ export class AuthApiService {
 	}
 
 	authenticate(username: string, password: string): Observable<any> {
-		const url = "http://deckrwebapi.azurewebsites.net/token";
+		const url = "https://deckrwebapi.azurewebsites.net/token";
 		let headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
 		let body = new URLSearchParams();
 		body.set('username', username);

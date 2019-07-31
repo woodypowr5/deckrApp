@@ -35,8 +35,8 @@ import { AuthInterceptor } from './modules/auth/auth.interceptor';
 	HttpClientModule,
 	JwtModule.forRoot({
 		config: {
-			tokenGetter: () => localStorage.getItem('token'),
-			whitelistedDomains: ['localhost:4200', '*'],
+			tokenGetter: tokenGetter(),
+			whitelistedDomains: ['localhost:4200', '*', 'https://deckr-prod.firebaseapp.com', 'deckr-prod.firebaseapp.com', 'deckr-prod.firebaseapp'],
 		}
 	  })
   ],
@@ -50,3 +50,7 @@ import { AuthInterceptor } from './modules/auth/auth.interceptor';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function tokenGetter(): any {
+	return localStorage.getItem('token');
+}

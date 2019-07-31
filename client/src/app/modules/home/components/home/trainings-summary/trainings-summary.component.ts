@@ -12,6 +12,7 @@ export class TrainingsSummaryComponent implements OnInit {
 	constructor() { }
 
 	get numCompletedTrainings(): number {
+		
         return this.trainings.filter((training: Training) => training.progress === 100).length;
 	}
 	
@@ -25,5 +26,4 @@ export class TrainingsSummaryComponent implements OnInit {
 
 	ngOnInit() {
 	}
-
 }

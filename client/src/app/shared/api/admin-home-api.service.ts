@@ -22,17 +22,17 @@ export class AdminHomeApiService {
 	}	
 
 	getAllUsersProgress(): Observable<UserProgress[]> {
-		const url =  'http://deckrwebapi.azurewebsites.net/api/adminhome';
+		const url =  'https://deckrwebapi.azurewebsites.net/api/adminhome';
 		return this.http.get<UserProgress[]>(url).pipe(map(data => this.userProgressSerializer.fromJson(data)));
 	}
 	
 	getProgressByUserId(id: number): Observable<UserProgress[]> {
-		const url = `http://deckrwebapi.azurewebsites.net/api/userhome/userProgress/${id}`;
+		const url = `https://deckrwebapi.azurewebsites.net/api/userhome/userProgress/${id}`;
 		return this.http.get<UserProgress[]>(url).pipe(map(data => this.userProgressSerializer.fromJson(data)));
 	}
 
 	getProgressByDepartmentId(id: number): Observable<UserProgress[]>  {
-		const url = `http://deckrwebapi.azurewebsites.net/api/adminhome/DepartmentProgress/${id}`;
+		const url = `https://deckrwebapi.azurewebsites.net/api/adminhome/DepartmentProgress/${id}`;
 		return this.http.get<UserProgress[]>(url).pipe(map(data => this.userProgressSerializer.fromJson(data)));
 	}
 }

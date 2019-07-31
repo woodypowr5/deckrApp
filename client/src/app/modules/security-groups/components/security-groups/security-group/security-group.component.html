@@ -1,7 +1,6 @@
-<mat-card [ngClass]="{'pending': pending, 'approved': approved}">
+<mat-card>
 	<mat-card-title class="name">
 		{{ securityGroup.name }}
-		{{ securityGroup | json}}
 	</mat-card-title>
 	<div class="icon-wrapper">
 		<img src="../../../../../../assets/{{securityGroup.iconName}}.png" alt="">

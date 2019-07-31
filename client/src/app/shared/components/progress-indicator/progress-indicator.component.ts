@@ -17,10 +17,18 @@ export class ProgressIndicatorComponent implements OnInit, OnChanges {
 	constructor() { }
 
 	ngOnInit() {
-		this.data = [{
-			name: "",
-			value: Math.round(this.complete / this.total * 100)
-		}];
+		if (this.complete === 0 || this.total === 0) {
+			this.data = [{
+				name: "",
+				value: 0
+			}];
+		} else {
+			this.data = [{
+				name: "",
+				value: Math.round(this.complete / this.total * 100)
+			}];
+		}
+		
 	}
 
 	ngOnChanges(changes: SimpleChanges) {

@@ -56,7 +56,6 @@ export class DepartmentProgressComponent implements OnInit {
 	setActiveDepartment(department: Department) {
 		this.loadingService.isLoading();
 		this.adminHomeApi.getProgressByDepartmentId(department.id).subscribe((userProgressData: UserProgress[]) => {
-			console.log(userProgressData)
 			this.activeProgressData = userProgressData;
 			this.dataSource = new MatTableDataSource(userProgressData);
 			this.dataSource.sort = this.sort;

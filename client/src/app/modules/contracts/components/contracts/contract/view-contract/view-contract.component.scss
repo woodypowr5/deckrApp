@@ -1,9 +1,31 @@
 @import '../../../../../../styles/typography/typography';
 
+
+@media (max-width: 560px) { 
+	::ng-deep .cdk-overlay-pane {
+		max-width: 90vw !important;
+	}	
+}
+
+
+@media (max-width: 460px) { 
+	::ng-deep .cdk-overlay-pane {
+		max-width: 95vw !important;
+	}	
+}
+
+
 mat-card{
 	height: 90vh !important;
 	position: relative;
 }
+
+@media (max-width: 460px) { 
+	::ng-deep mat-dialog-container {
+		padding: 10px !important;
+	}	
+}
+
 
 mat-card-title{
 	margin-bottom: 20px;
@@ -20,6 +42,13 @@ mat-card-content{
 	border: 2px dashed #CCC;
 	padding: 20px;
 }
+
+@media (max-width: 460px) { 
+	::ng-deep p {
+		margin-top: 0px !important;
+	}	
+}
+
 
 mat-card-actions{
 	text-align: center;
