@@ -43,7 +43,6 @@ export class AllUsersProgressComponent implements OnInit {
 
 	getAllUsersProgress() {
 		this.adminHomeApi.getAllUsersProgress().subscribe((allUsersProgress: UserProgress[]) => {
-			console.log(allUsersProgress)
 			this.dataSource = new MatTableDataSource(allUsersProgress);
 			this.dataSource.sort = this.sort;
 		});

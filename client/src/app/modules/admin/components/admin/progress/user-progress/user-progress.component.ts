@@ -12,7 +12,6 @@ import { AdminHomeApiService } from 'src/app/shared/api/admin-home-api.service';
   styleUrls: ['./user-progress.component.scss']
 })
 export class UserProgressComponent implements OnInit {
-	// modules: any = Fixtures.moduleProgress;
 	private modules: any = [];
 	modulesChanged: BehaviorSubject<any> = new BehaviorSubject(null);
 

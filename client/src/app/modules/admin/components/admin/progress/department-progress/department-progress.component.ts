@@ -4,6 +4,8 @@ import { Fixtures } from 'src/app/shared/data/fixtures';
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { DepartmentProgress } from 'src/app/shared/types/deparment-progress';
 import { DepartmentsApiService } from 'src/app/shared/api/departments-api.service';
+import { Department } from 'src/app/shared/types/department.interface';
+import { AdminHomeApiService } from 'src/app/shared/api/admin-home-api.service';
 
 @Component({
   selector: 'app-department-progress',
@@ -11,29 +13,24 @@ import { DepartmentsApiService } from 'src/app/shared/api/departments-api.servic
   styleUrls: ['./department-progress.component.scss']
 })
 export class DepartmentProgressComponent implements OnInit {
-	departments: DepartmentProgress[];
-	activeDepartment: DepartmentProgress;
+	availableDepartments: Department[] = []
+	activeDepartment: Department;
 	displayedColumns: string[] = ['departmentID', 'name', 'completedTime', 'totalTime', 'percentComplete'];
-	dataSource = new MatTableDataSource(Fixtures.departmentProgress);
+	dataSource: any;
   
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
   
 	constructor(
-		private departmentsApi: DepartmentsApiService
+		private departmentsApi: DepartmentsApiService,
+		private adminHomeApi: AdminHomeApiService
 	) {
-		// this.departments = this.addPercentComplete(Fixtures.departmentProgress);
-		// this.departmentsApi.getDepartments().subscribe(data => {
-		// 	console.log(data);
-		// 	this.departments = data;
-		// 	if (this.departments.length > 0) {
-		// 		this.activeDepartment = this.departments[0];
-		// 	}
-		// });	
+		this.departmentsApi.getDepartments().subscribe((departments: Department[]) => {
+			this.availableDepartments = departments;
+			this.setActiveDepartment(this.availableDepartments[0]);
+		});	
 	}
 
-	ngOnInit() {
-		this.dataSource.sort = this.sort;
-	}
+	ngOnInit() { }
 
 	addPercentComplete(departmentProgress: DepartmentProgress[]) {
 		departmentProgress.map((department: DepartmentProgress) => {
@@ -42,7 +39,19 @@ export class DepartmentProgressComponent implements OnInit {
 		return departmentProgress;
 	}
 
-	setActiveDepartment(department: DepartmentProgress) {
+
+	activeDepartmentSelected(department: Department): void {
 		this.activeDepartment = department;
+		this.setActiveDepartment(department);
+	}
+
+
+	setActiveDepartment(department: Department) {
+		this.adminHomeApi.getProgressByDepartmentId(department.id).subscribe((userProgressData: UserProgress[]) => {
+			console.log(userProgressData)
+			this.dataSource = new MatTableDataSource(userProgressData);
+			this.dataSource.sort = this.sort;
+			this.activeDepartment = department;
+		});
 	}
 }
