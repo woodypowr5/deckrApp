@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { DestinationButtonComponent } from '../components/destination-button/destination-button.component';
 import { ProgressIndicatorComponent } from '../components/progress-indicator/progress-indicator.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { GlobalLoadingComponent } from '../components/global-loading/global-loading.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     FooterComponent,
 	SidenavListComponent,
 	DestinationButtonComponent,
-	ProgressIndicatorComponent
+	ProgressIndicatorComponent,
+	GlobalLoadingComponent
   ],
   providers: [],
   exports: [
@@ -37,7 +39,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     SidenavListComponent ,
 	CommonModule,
 	DestinationButtonComponent,
-	ProgressIndicatorComponent
+	ProgressIndicatorComponent,
+	GlobalLoadingComponent
   ]
 })
 export class SharedModule {}

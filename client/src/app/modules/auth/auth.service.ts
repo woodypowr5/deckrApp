@@ -11,6 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import * as jwt_decode from "jwt-decode";
 import { ApiUrls } from 'src/app/shared/api/api-urls';
 import { map } from 'rxjs/operators';
+import { GlobalLoadingService } from 'src/app/shared/services/global-loading.service';
 
 interface AuthUser {
 	Email: string;
@@ -51,6 +52,7 @@ export class AuthService {
 		private jobRolesApi: JobRolesApiService,
 		private http: HttpClient,
 		private jwtHelper: JwtHelperService,
+		private loadingService: GlobalLoadingService
 	) { 
 		this.loggedInUserChanged.subscribe((user: User) => {
 			this.loggedInUser = user;
@@ -110,12 +112,15 @@ export class AuthService {
 	}
 
 	loginUser(email: string, password: string): Promise<any> {
+		this.loadingService.isLoading();
 		return new Promise<any>((resolve, reject) => {
 			this.authApi.authenticate(email, password).subscribe(() => {
 				this.getLoggedInUser();
 				this.router.navigate(["/home"]);
+				this.loadingService.isFinishedLoading();
 				resolve(null);
 			}, (error) => {
+				this.loadingService.isFinishedLoading();
 				resolve(error);
 			});
 		});

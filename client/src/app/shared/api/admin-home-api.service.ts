@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserProgress, UserProgressSerializer } from '../types/user-progress';
 import { ModuleProgress, ModuleProgressSerializer } from '../types/module-progress';
+import { GlobalLoadingService } from '../services/global-loading.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +32,7 @@ export class AdminHomeApiService {
 	}
 
 	getProgressByDepartmentId(id: number): Observable<UserProgress[]>  {
-		console.log(id)
 		const url = `http://deckrwebapi.azurewebsites.net/api/adminhome/DepartmentProgress/${id}`;
-		console.log(url);
 		return this.http.get<UserProgress[]>(url).pipe(map(data => this.userProgressSerializer.fromJson(data)));
 	}
 }
