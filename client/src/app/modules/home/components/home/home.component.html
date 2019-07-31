@@ -1,4 +1,4 @@
-<h1 class="page-title">Welcome, {{ user.name }}!</h1>
+<h1 class="page-title" *ngIf="user">Welcome, {{ user.name }}!</h1>
 
 <mat-card class="destinations home-destinations">
 	<app-destination-button

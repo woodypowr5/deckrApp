@@ -1,16 +1,19 @@
 .security-groups {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+	grid-row-gap: 10px;
 }
 
 .security-group-wrapper{
 	width: 135px;
+	
 
 	& > mat-card {
 		--webkit-box-shadow: 3px 3px 12px -7px green;
 		-moz-box-shadow: 3px 3px 12px -7px rgreen;
 		box-shadow: 3px 3px 12px -7px green;
 		border: 1px solid green;
+		margin: 0 auto;
 	}
 
 	& > mat-card.pending{

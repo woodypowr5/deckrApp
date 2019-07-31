@@ -9,6 +9,7 @@ import { Contract } from 'src/app/shared/types/contract';
 import { Training } from 'src/app/shared/types/training.interface';
 import { UserSettings } from 'src/app/shared/types/user-settings';
 import { UserSettingsService } from 'src/app/shared/services/user-settings.service';
+import { GlobalLoadingService } from 'src/app/shared/services/global-loading.service';
 
 @Component({
   selector: 'app-home',
@@ -29,12 +30,15 @@ export class HomeComponent implements OnInit {
 		private trainingService: TrainingService,
 		private securityGroupsService: SecurityGroupsService,
 		private contractsService: ContractsService,
-		private userSettingsService: UserSettingsService
+		private userSettingsService: UserSettingsService,
+		private loadingService: GlobalLoadingService
 	) { }
 
 	ngOnInit() {
+		this.loadingService.isLoading()
 		this.authService.loggedInUserChanged.subscribe((user: User) => {
 			this.user = user;
+			this.loadingService.isFinishedLoading();
 		});
 		this.userSettingsService.userSettingsChanged.subscribe( (settings: UserSettings[]) => {
 			this.userSettings = settings[1];
