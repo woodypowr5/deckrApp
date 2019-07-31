@@ -17,6 +17,9 @@ export class DepartmentProgressComponent implements OnInit {
 	activeDepartment: Department;
 	displayedColumns: string[] = ['departmentID', 'name', 'completedTime', 'totalTime', 'percentComplete'];
 	dataSource: any;
+	activeProgressData: UserProgress[];
+	departmentCompletedTime: number;
+	departmentTotalTime: number;
   
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
   
@@ -49,9 +52,22 @@ export class DepartmentProgressComponent implements OnInit {
 	setActiveDepartment(department: Department) {
 		this.adminHomeApi.getProgressByDepartmentId(department.id).subscribe((userProgressData: UserProgress[]) => {
 			console.log(userProgressData)
+			this.activeProgressData = userProgressData;
 			this.dataSource = new MatTableDataSource(userProgressData);
 			this.dataSource.sort = this.sort;
 			this.activeDepartment = department;
+			this.computeDepartmentProgress();
 		});
+	}
+
+	computeDepartmentProgress() {
+		let sumTotalTime = 0;
+		let sumCompletedTime: number = 0;
+		this.activeProgressData.map((userProgress: UserProgress) => {
+			sumCompletedTime += userProgress.completedTime;
+			sumTotalTime += userProgress.totalTime;
+		});
+		this.departmentCompletedTime = sumCompletedTime;
+		this.departmentTotalTime = sumTotalTime;
 	}
 }

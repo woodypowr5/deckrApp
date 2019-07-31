@@ -123,6 +123,7 @@ export class AuthService {
 	
 	logout() {
 		this.isAuthChanged.next(false);
+		this.isAdminChanged.next(false);
 		this.loggedInUserChanged.next(null);
 		localStorage.removeItem('token');
 		this.router.navigate(["login"]);

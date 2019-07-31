@@ -64,6 +64,24 @@
 	>
 		<span class="nav-caption">Contracts</span>
 	</a>
+	<a 
+		*ngIf="isAuth && isAdmin" 
+		mat-list-item 
+		routerLink="/admin/progress" 
+		[ngClass]="{'active': activeRoute === '/admin/progress'}"
+		(click)="close()"
+	>
+		<span class="nav-caption">Progress</span>
+	</a>
+	<a 
+		*ngIf="isAuth && isAdmin" 
+		mat-list-item 
+		routerLink="/admin/userviews" 
+		[ngClass]="{'active': activeRoute === '/admin/userviews'}"
+		(click)="close()"
+	>
+		<span class="nav-caption">View Settings</span>
+	</a>
 	<mat-divider *ngIf="isAuth"></mat-divider>
 	<a *ngIf="isAuth" mat-list-item>
 		<button 
