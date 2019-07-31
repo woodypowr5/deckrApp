@@ -31,7 +31,7 @@
 
 		<ng-container matColumnDef="percentComplete">
 			<th mat-header-cell *matHeaderCellDef mat-sort-header> % Complete </th>
-			<td mat-cell *matCellDef="let user">{{ user.completedTime / user.totalTime }}</td>
+			<td mat-cell *matCellDef="let user">{{ user.percentComplete }}%</td>
 		</ng-container>
 
 		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

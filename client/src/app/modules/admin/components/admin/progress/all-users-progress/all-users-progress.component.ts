@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserProgress } from 'src/app/shared/types/user-progress';
 import { Fixtures } from 'src/app/shared/data/fixtures';
 import { MatSort, MatTableDataSource } from '@angular/material';
+import { AdminHomeApiService } from 'src/app/shared/api/admin-home-api.service';
 
 @Component({
   selector: 'app-all-users-progress',
@@ -12,11 +13,13 @@ export class AllUsersProgressComponent implements OnInit {
 	users: UserProgress[];
 	activeUser: UserProgress;
 	displayedColumns: string[] = ['employeeID', 'name', 'completedTime', 'totalTime', 'percentComplete'];
-	dataSource = new MatTableDataSource(Fixtures.userProgress);
+	dataSource: any;
   
 	@ViewChild(MatSort, {static: true}) sort: MatSort;
   
-	constructor() {
+	constructor(
+		private adminHomeApi: AdminHomeApiService
+	) {
 		this.users = this.addPercentComplete(Fixtures.userProgress);
 		if (this.users.length > 0) {
 			this.activeUser = this.users[0];
@@ -24,7 +27,7 @@ export class AllUsersProgressComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.dataSource.sort = this.sort;
+		this.getAllUsersProgress();
 	}
 
 	addPercentComplete(userProgress: UserProgress[]) {
@@ -36,5 +39,13 @@ export class AllUsersProgressComponent implements OnInit {
 
 	setActiveUser(user: UserProgress) {
 		this.activeUser = user;
+	}
+
+	getAllUsersProgress() {
+		this.adminHomeApi.getAllUsersProgress().subscribe((allUsersProgress: UserProgress[]) => {
+			console.log(allUsersProgress)
+			this.dataSource = new MatTableDataSource(allUsersProgress);
+			this.dataSource.sort = this.sort;
+		});
 	}
 }

@@ -42,8 +42,8 @@ export class UserProgressComponent implements OnInit {
 	}
 
 	getModules() {
-		this.modulesApi.getModules().subscribe(modules => {
-			console.log(modules);
-		});
+		// this.modulesApi.getModules().subscribe(modules => {
+		// 	console.log(modules);
+		// });
 	}
 }
