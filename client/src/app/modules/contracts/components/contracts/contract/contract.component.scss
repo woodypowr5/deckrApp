@@ -37,3 +37,7 @@ mat-card-actions > .mat-button{
 	margin-top: -75px;
 	margin-left: -75px;
 }
+
+.mat-card>.mat-card-actions:last-child{
+	margin-bottom: 0px;
+}
